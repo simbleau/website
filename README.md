@@ -1,7 +1,6 @@
 #  Personal Website
 ![Docker Version](https://img.shields.io/docker/v/simbleau/website)
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/website)](https://artifacthub.io/packages/helm/simbleau/website)
-
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/website)](https://artifacthub.io/packages/helm/simbleau/website) \
 This repo contains my personal website's source code.
 
 #  Dependencies
