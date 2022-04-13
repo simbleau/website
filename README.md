@@ -19,3 +19,6 @@ This repo contains my personal website's source code.
 -  `trunk build`
 -  `export BUILD_TAG='simbleau/website:latest'`
 -  `docker buildx build --platform linux/arm64/v8,linux/amd64 -t $BUILD_TAG --push .`
+
+# License
+This project is dual-licensed under both [Apache 2.0](LICENSE-APACHE) and [MIT](LICENSE-MIT) licenses.
