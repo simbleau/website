@@ -1,5 +1,5 @@
 #  Personal Website
-![Docker Version](https://img.shields.io/docker/v/simbleau/website)
+[![Docker Version](https://badgen.net/docker/size/simbleau/website?icon=docker&label=image%20size)](https://hub.docker.com/r/simbleau/website/)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/website)](https://artifacthub.io/packages/helm/simbleau/website) \
 This repo contains my personal website's source code.
 
