@@ -15,8 +15,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      # Should match rust-toolchain.toml
       - uses: dtolnay/rust-toolchain@nightly
       - name: Build
-        run: cargo build --verbose --target wasm32-unknown-unknown
+        run: cargo build --target wasm32-unknown-unknown --verbose
       - name: Run tests
         run: cargo test --verbose
