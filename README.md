@@ -1,4 +1,5 @@
 #  Personal Website
+[![build](https://img.shields.io/github/workflow/status/simbleau/website/build?style=for-the-badge&logo=github)](https://github.com/simbleau/website/actions/workflows/build.yml)
 [![sponsor me](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)](https://github.com/sponsors/simbleau)
 [![buy me a coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/simbleau)\
 This repo contains my personal website's source code.
