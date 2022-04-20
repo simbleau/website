@@ -18,8 +18,8 @@ This repo contains my personal website's source code.
 
 #  Deployment
 ##  Option 1: [Docker](https://docker.com) (Recommended)
-[![Docker AMD64 Image](https://badgen.net/docker/size/simbleau/website/latest/amd64?icon=docker&label=amd64)](https://hub.docker.com/r/simbleau/website/)
-[![Docker ARM64 Image](https://badgen.net/docker/size/simbleau/website/latest/arm64?icon=docker&label=arm64v8)](https://hub.docker.com/r/simbleau/website/)\
+[![Docker AMD64 Image](https://badgen.net/docker/size/simbleau/website/latest/amd64?icon=docker&label=amd64&style=for-the-badge)](https://hub.docker.com/r/simbleau/website/)
+[![Docker ARM64 Image](https://badgen.net/docker/size/simbleau/website/latest/arm64?icon=docker&label=arm64v8&style=for-the-badge)](https://hub.docker.com/r/simbleau/website/)\
 Quick setup: `docker run -p 80:80 simbleau/website:latest`
 
 ##  Option 2: Building
