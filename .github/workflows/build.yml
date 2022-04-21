@@ -12,11 +12,16 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        toolchain:
+          - nightly
     steps:
       - uses: actions/checkout@v3
-      # Should match rust-toolchain.toml
-      - uses: dtolnay/rust-toolchain@nightly
+      - name: Installing toolchain
+        run: rustup update ${{ matrix.toolchain }}
+      - name: Configuring toolchain
+        run: rustup default ${{ matrix.toolchain }}
       - name: Build
         run: cargo build --target wasm32-unknown-unknown --verbose
       - name: Run tests
