@@ -37,7 +37,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./dist
-          key: dist-${{ hashFiles('./dist') }}
+          key: dist-${{ hashFiles('./src') }}
         # Build
       - name: Build
         if: steps.cache-build.outputs.cache-hit != 'true'
