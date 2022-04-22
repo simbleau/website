@@ -3,13 +3,12 @@ name: artifact_upload
 on:
   workflow_run:
     workflows: ["build"]
+    branches: [main]
     types:
       - completed
 
 jobs:
   upload:
-    if: github.ref == 'refs/heads/main'
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/upload-artifact@v3
