@@ -2,7 +2,13 @@ name: docker_push
 
 on:
   push:
-    tags: [v*]
+    branches:
+      - "**"
+    tags:
+      - "v*.*.*"
+  pull_request:
+    branches:
+      - "main"
 
 jobs:
   docker_push:
@@ -32,9 +38,21 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            simbleau/website
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
       - name: Push to DockerHub
         uses: docker/build-push-action@v2
         with:
+          context: .
           platforms: linux/amd64,linux/arm64
-          tags: simbleau/website:latest,simbleau/website:${github.ref_name}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
