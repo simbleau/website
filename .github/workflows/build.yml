@@ -22,7 +22,6 @@ jobs:
           path: dist/
           key: dist
   build:
-    needs: cache
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -32,7 +31,7 @@ jobs:
         run: rustup default $TOOLCHAIN
       - name: Build
         run: cargo build --target wasm32-unknown-unknown --verbose
-      - name: Run tests
-        run: cargo test --verbose
+      - name: Build dist/
+        run: trunk build
       - name: Display structure of files
         run: ls -R
