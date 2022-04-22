@@ -59,5 +59,6 @@ jobs:
       - name: Build only
         uses: docker/build-push-action@v2
         with:
+          context: .
           platforms: linux/amd64,linux/arm64
           push: false
