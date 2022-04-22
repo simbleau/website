@@ -11,7 +11,18 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache dist/ directory
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-dist
+        with:
+          path: dist/
+          key: dist
   build:
+    needs: cache
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,14 +34,3 @@ jobs:
         run: cargo build --target wasm32-unknown-unknown --verbose
       - name: Run tests
         run: cargo test --verbose
-  cache:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache dist/ directory
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-dist
-        with:
-          path: dist/
-          key: dist
