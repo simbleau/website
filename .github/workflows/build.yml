@@ -30,7 +30,7 @@ jobs:
         run: |
           rustup update $TOOLCHAIN
           rustup default $TOOLCHAIN
-          argo install trunk
+          cargo install trunk
   build:
     needs: [config]
     runs-on: ubuntu-latest
