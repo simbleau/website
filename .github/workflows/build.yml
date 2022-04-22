@@ -11,16 +11,6 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  cache:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache dist/ directory
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-dist
-        with:
-          path: dist/
-          key: dist
   build:
     runs-on: ubuntu-latest
     steps:
@@ -29,9 +19,18 @@ jobs:
         run: rustup update $TOOLCHAIN
       - name: Configuring toolchain
         run: rustup default $TOOLCHAIN
+      - name: Install trunk
+        run: cargo install trunk
       - name: Build
         run: cargo build --target wasm32-unknown-unknown --verbose
       - name: Build dist/
         run: trunk build
       - name: Display structure of files
         run: ls -R
+      - name: Cache dist/ directory
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-dist
+        with:
+          path: dist/
+          key: dist
