@@ -11,7 +11,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  config:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -31,21 +31,14 @@ jobs:
           rustup update $TOOLCHAIN
           rustup default $TOOLCHAIN
           cargo install trunk
-  build:
-    needs: [config]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+
         # Build
       - name: Build
-        run: cargo build --target wasm32-unknown-unknown --verbose
-      - name: Build dist/
-        # Compile
-        run: trunk build
-  docker_build:
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
+        run: |
+          cargo build --target wasm32-unknown-unknown --verbose
+          trunk build
+
+        # Docker Build
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
