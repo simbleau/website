@@ -34,3 +34,5 @@ jobs:
         run: cargo build --target wasm32-unknown-unknown --verbose
       - name: Run tests
         run: cargo test --verbose
+      - name: Display structure of files
+        run: ls -R
