@@ -1,4 +1,4 @@
-name: docker_push
+name: release
 
 on:
   push:
@@ -6,22 +6,31 @@ on:
       - "**"
     tags:
       - "v*.*.*"
+
+env:
+  TOOLCHAIN: nightly
+
 jobs:
   docker_push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
+      # Pull website
+      - name: Build cache
+        id: cache-build
+        uses: actions/cache@v3
+        with:
+          path: ./dist
+          key: dist-${{ hashFiles('./src') }}
       # Install cargo deps
-      - name: Installing Cargo dependencies
+      - name: Trunk build
+        if: steps.cache-build.outputs.cache-hit != 'true'
         run: |
           rustup update $TOOLCHAIN
           rustup default $TOOLCHAIN
           cargo install trunk
-
-      # Trunk Build
-      - name: Build cache
-        run: |
           cargo build --target wasm32-unknown-unknown --verbose
           trunk build
 
