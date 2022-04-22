@@ -11,26 +11,47 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  config:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Installing toolchain
-        run: rustup update $TOOLCHAIN
-      - name: Configuring toolchain
-        run: rustup default $TOOLCHAIN
-      - name: Install trunk
-        run: cargo install trunk
+
+      # Pull cargo cache
+      - name: Cargo cache
+        id: cache-cargo
+        uses: actions/cache@v3
+        with:
+          path: ~/.cargo/bin
+          key: cargo
+
+      # Install cargo deps
+      - name: Pulling cargo dependencies
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: |
+          rustup update $TOOLCHAIN
+          rustup default $TOOLCHAIN
+          argo install trunk
+  build:
+    needs: [config]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        # Build
       - name: Build
         run: cargo build --target wasm32-unknown-unknown --verbose
       - name: Build dist/
+        # Compile
         run: trunk build
-      - name: Display structure of files
-        run: ls -R
-      - name: Cache dist/ directory
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-dist
+  docker_build:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build only
+        uses: docker/build-push-action@v2
         with:
-          path: dist/
-          key: dist
+          platforms: linux/amd64,linux/arm64
+          push: false
