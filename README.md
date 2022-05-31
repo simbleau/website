@@ -27,7 +27,7 @@ Quick setup: `docker run -p 80:80 simbleau/website:latest`
 - Serve: `trunk serve --port 8080` (✅ Hot-reloading)
 - Preview: [`http://localhost:8080/`](http://localhost:8080/).
 ## Updating Docker Images
-- Pushes to the main branch trigger a [`latest`](https://hub.docker.com/layers/website/simbleau/website/latest) image to push.
+- Pushes to the main branch trigger a [`latest`](https://hub.docker.com/r/simbleau/website/tags) image to push.
 - [Tagged releases](https://github.com/simbleau/website/releases) following [Semantic Versioning](https://semver.org) automatically upload a DockerHub image with the tag name.
 
 # License
