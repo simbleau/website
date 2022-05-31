@@ -9,7 +9,7 @@ struct ConstructionMessage {
 #[function_component(App)]
 fn app() -> Html {
     let construction = ConstructionMessage {
-        expected_end: "May 2022".to_string(),
+        expected_end: "June 2022".to_string(),
         title: "Under Construction".to_string(),
         message: "Pardon our dust!".to_string(),
     };
