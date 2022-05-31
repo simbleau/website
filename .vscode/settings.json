@@ -1,0 +1,11 @@
+{
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": [
+            "file:///home/simbleau/git/website/.github/workflows/release-latest.yml",
+            "file:///home/simbleau/git/website/.github/workflows/release-tagged.yml",
+            "file:///home/simbleau/git/website/.github/workflows/build.yml"
+        ],
+        "https://json.schemastore.org/github-funding.json": "file:///home/simbleau/git/website/.github/FUNDING.yml"
+    }
+}
