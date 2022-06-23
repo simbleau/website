@@ -5,3 +5,5 @@ edition = "2021"
 
 [dependencies]
 yew = "0.19.3"
+web-sys = { version = "0.3.58", features = ["console"] }
+wasm-bindgen = { version = "0.2.81" }

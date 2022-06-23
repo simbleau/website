@@ -1,3 +1,5 @@
+use wasm_bindgen::JsValue;
+use web_sys::console;
 use yew::prelude::*;
 
 struct ConstructionMessage {
@@ -14,12 +16,13 @@ fn app() -> Html {
         message: "Pardon our dust!".to_string(),
     };
 
+    console::log_1(&JsValue::from_str("Hello from Rust!"));
     html! {
         <>
             <div align="center">
-                <h1>{ construction.title }</h1>
-                <h3>{ construction.message }</h3>
-                <p>{ format!("Expected completion: {}", construction.expected_end) }</p>
+                <h1>{construction.title}</h1>
+                <h3>{construction.message}</h3>
+                <p>{ format!("Expected completion: {end}", end = construction.expected_end) }</p>
             </div>
         </>
     }
