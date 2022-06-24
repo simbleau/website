@@ -1,5 +1,6 @@
-use wasm_bindgen::JsValue;
-use web_sys::console;
+mod contact;
+
+use contact::ContactForm;
 use yew::prelude::*;
 
 struct ConstructionMessage {
@@ -8,23 +9,32 @@ struct ConstructionMessage {
     message: String,
 }
 
-#[function_component(App)]
-fn App() -> Html {
-    let construction = ConstructionMessage {
-        expected_end: "June 2022".to_string(),
-        title: "Under Construction".to_string(),
-        message: "Pardon our dust!".to_string(),
-    };
+pub struct App;
 
-    console::log_1(&JsValue::from_str("Hello from Rust!"));
-    html! {
-        <>
-            <div align="center">
+impl Component for App {
+    type Message = ();
+    type Properties = ();
+
+    fn create(_ctx: &Context<Self>) -> Self {
+        Self
+    }
+
+    fn view(&self, ctx: &Context<Self>) -> Html {
+        let construction = ConstructionMessage {
+            expected_end: "June 2022".to_string(),
+            title: "Under Construction".to_string(),
+            message: "Pardon our dust!".to_string(),
+        };
+
+        html! {
+            <div align="center" class="main">
                 <h1>{construction.title}</h1>
                 <h3>{construction.message}</h3>
                 <p>{ format!("Expected completion: {end}", end = construction.expected_end) }</p>
+                <br/>
+                <ContactForm/>
             </div>
-        </>
+        }
     }
 }
 
