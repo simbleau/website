@@ -28,8 +28,19 @@ jobs:
           rustup update $TOOLCHAIN
           rustup default $TOOLCHAIN
           cargo install trunk
-          cargo build --target wasm32-unknown-unknown --verbose
-          trunk build
+          cargo build --release --target wasm32-unknown-unknown --verbose
+          trunk build --release
+
+      # TODO: Optimize WASM
+      # https://rustwasm.github.io/book/reference/code-size.html#use-the-wasm-opt-tool
+      # Optimize for size.
+      #   wasm-opt -Os -o output.wasm input.wasm
+      # Optimize aggressively for size.
+      #   wasm-opt -Oz -o output.wasm input.wasm
+      # Optimize for speed.
+      #   wasm-opt -O -o output.wasm input.wasm
+      # Optimize aggressively for speed.
+      #   wasm-opt -O3 -o output.wasm input.wasm
 
       # Docker build
       - name: Set up QEMU

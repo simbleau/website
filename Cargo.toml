@@ -3,6 +3,10 @@ name = "website"
 version = "0.1.0"
 edition = "2021"
 
+[profile.release]
+lto = true
+opt-level = 's'
+
 [dependencies]
 yew = "0.19.3"
 web-sys = { version = "0.3.58", features = ["console", "HtmlInputElement"] }
