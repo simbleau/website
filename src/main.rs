@@ -19,7 +19,7 @@ impl Component for App {
         Self
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         let construction = ConstructionMessage {
             expected_end: "June 2022".to_string(),
             title: "Under Construction".to_string(),

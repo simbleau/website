@@ -48,8 +48,7 @@ impl Component for ContactForm {
                 false
             }
             BtnEvents::Hover(key) => {
-                &self
-                    .refs
+                self.refs
                     .get(key)
                     .unwrap()
                     .cast::<HtmlInputElement>()
