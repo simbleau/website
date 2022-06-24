@@ -1,12 +1,12 @@
+use gloo_console::log;
 use std::collections::HashMap;
 use wasm_bindgen::JsValue;
-use web_sys::console;
 use web_sys::HtmlInputElement;
 use yew::{html, Component, Context, Html, NodeRef};
 
-pub enum BtnEvents {
-    Click,
-    Hover(&'static str),
+pub enum Event {
+    BtnClick,
+    TxtHover(&'static str),
 }
 
 pub struct ContactForm {
@@ -14,7 +14,7 @@ pub struct ContactForm {
 }
 
 impl Component for ContactForm {
-    type Message = BtnEvents;
+    type Message = Event;
     type Properties = ();
 
     fn create(_ctx: &Context<Self>) -> Self {
@@ -26,7 +26,7 @@ impl Component for ContactForm {
 
     fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
-            BtnEvents::Click => {
+            Event::BtnClick => {
                 let name = &self
                     .refs
                     .get("name")
@@ -41,13 +41,11 @@ impl Component for ContactForm {
                     .cast::<HtmlInputElement>()
                     .unwrap()
                     .value();
-                console::log_2(
-                    &JsValue::from_str(name),
-                    &JsValue::from_str(message),
-                );
+
+                log!(name, message);
                 false
             }
-            BtnEvents::Hover(key) => {
+            Event::TxtHover(key) => {
                 self.refs
                     .get(key)
                     .unwrap()
@@ -61,12 +59,12 @@ impl Component for ContactForm {
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
-        let onclick = ctx.link().callback(|_| BtnEvents::Click);
+        let onclick = ctx.link().callback(|_| Event::BtnClick);
         html! {
             <div class="input-container">
             <label>{ "Name" }</label>
             <input
-                onmouseover={ ctx.link().callback(|_| BtnEvents::Hover("name")) }
+                onmouseover={ ctx.link().callback(|_| Event::TxtHover("name")) }
                 ref={self.refs.get("name").unwrap().clone()}
                 type="text"
                 placeholder="name"
@@ -74,7 +72,7 @@ impl Component for ContactForm {
             <br/>
             <label>{ "Message" }</label>
             <input
-                onmouseover={ ctx.link().callback(|_| BtnEvents::Hover("message")) }
+                onmouseover={ ctx.link().callback(|_| Event::TxtHover("message")) }
                 ref={self.refs.get("message").unwrap().clone()}
                 type="text"
                 placeholder="message"
