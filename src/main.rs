@@ -17,5 +17,6 @@ fn app() -> Html {
 }
 
 fn main() {
+    gloo_console::log!("Hello from Rust + WASM!");
     yew::start_app::<App>();
 }
