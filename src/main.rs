@@ -10,6 +10,7 @@ fn app() -> Html {
         if UNDER_CONSTRUCTION {
             <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
         } else {
+            // TODO: Replace with real website.
             <h3>{ "Not under construction." }</h3>
         }
     }
