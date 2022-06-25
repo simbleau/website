@@ -23,10 +23,6 @@ pub fn construction_page(props: &ConstructionMessage) -> Html {
             align-items: center;
             flex-direction: column;
             min-height: 100%;
-
-            font-family: sans-serif;
-            background-color: rgb(20, 20, 20);
-            color: rgb(200, 200, 200);
         "#
     )
     .unwrap();
