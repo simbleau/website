@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1280mm"
+   height="640mm"
+   viewBox="0 0 1280 640"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (56b05e47e7, 2022-06-09, custom)"
+   sodipodi:docname="banner.svg"
+   inkscape:export-xdpi="25.4"
+   inkscape:export-ydpi="25.4"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.1184265"
+     inkscape:cx="2921.6434"
+     inkscape:cy="637.52623"
+     inkscape:window-width="1920"
+     inkscape:window-height="941"
+     inkscape:window-x="980"
+     inkscape:window-y="34"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
+  <defs
+     id="defs2">
+    <rect
+       x="483.1398"
+       y="412.27059"
+       width="3842.5621"
+       height="860.74821"
+       id="rect3302" />
+  </defs>
+  <g
+     inkscape:label="Image"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-13.785015,-149.26375)">
+    <rect
+       style="fill:#f9f9f9;fill-opacity:1;stroke-width:6.28038;stroke-linecap:square"
+       id="rect1039"
+       width="1280"
+       height="640"
+       x="13.785015"
+       y="149.26375"
+       inkscape:label="Background" />
+    <g
+       id="g17455"
+       transform="translate(310.98701,525.71104)"
+       inkscape:label="Bounding">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458435,0,0,0.26458435,-44.580451,-211.2481)"
+         id="text3300"
+         style="font-style:normal;font-weight:normal;font-size:266.667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect3302);fill:#1a1a1a;fill-opacity:1;stroke:none"
+         inkscape:label="Text"><tspan
+           x="483.14062"
+           y="661.07179"
+           id="tspan500"><tspan
+             dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.00010681152"
+             style="font-family:cerapro;-inkscape-font-specification:cerapro"
+             id="tspan498">Spencer C. Imbleau</tspan></tspan></text>
+      <g
+         id="g17448"
+         transform="translate(213.78501,149.26375)"
+         inkscape:label="Logo">
+        <circle
+           style="fill:#1a1a1a;fill-opacity:1;stroke-width:5.29167;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+           id="path632"
+           cx="-197.994"
+           cy="-205.71104"
+           r="50" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:70.5556px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;inline-size:46.4307;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           x="214.12267"
+           y="528.91901"
+           id="text474"
+           transform="matrix(1.6625487,0,0,1.6625477,-585.77287,-1046.3544)"><tspan
+             x="214.12267"
+             y="528.91901"
+             id="tspan504"><tspan
+               style="font-family:'Cera Pro';-inkscape-font-specification:'Cera Pro'"
+               id="tspan502">S</tspan></tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
