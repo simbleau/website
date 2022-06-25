@@ -35,7 +35,7 @@ pub fn construction_page(props: &ConstructionMessage) -> Html {
                 height=144px
             />
             <h1>{ &props.title }</h1>
-            <h3>{ &props.message }</h3>
+            <h2>{ &props.message }</h2>
             if let Some(end) = &props.end {
                 <p>{ "Expected completion: " } { end }</p>
             }
