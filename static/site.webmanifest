@@ -1,8 +1,8 @@
 {
-    "name": "Spencer C. Imbleau's Blog",
-    "short_name": "Spencer's Blog",
-    "start_url": "https://spencer.imbleau.com/blog",
-    "description": "Insights on modern technology.",
+    "name": "Spencer C. Imbleau",
+    "short_name": "Spencer's Homepage",
+    "start_url": "https://spencer.imbleau.com/",
+    "description": "This is the web page of Spencer C. Imbleau. I am an American computer scientist working with Rust and Kubernetes.",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
