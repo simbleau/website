@@ -20,3 +20,6 @@ yew = "0.19.3"
 web-sys = { version = "0.3.58", features = ["HtmlInputElement"] }
 wasm-bindgen = "0.2.81"
 gloo-console = "0.2.1"
+stylist = { version = "0.10.0", features = [
+    "yew_integration",
+] }
