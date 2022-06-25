@@ -17,21 +17,22 @@ pub fn construction_page(props: &ConstructionMessage) -> Html {
         r#"
             padding: 0;
             margin: 0;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100%;
             flex-direction: column;
-            background-color: rgb(20, 20, 20);
+            min-height: 100%;
 
             font-family: sans-serif;
+            background-color: rgb(20, 20, 20);
             color: rgb(200, 200, 200);
         "#
     )
     .unwrap();
 
     html! {
-        <div align="center" class={ container_style }>
+        <div class={ container_style }>
             <img src = "static/construction_image.svg"
                 alt="Under Construction Image"
                 width=144px
