@@ -8,9 +8,14 @@ pub enum NavEntry {
     External(&'static str, &'static str),
 }
 
-const NAV_LINKS: [NavEntry; 3] = [
+const NAV_LINKS: [NavEntry; 8] = [
     NavEntry::Local("Home", Route::Home),
     NavEntry::External("Blog", "https://spencer.imbleau.com/blog/"),
+    NavEntry::Local("Résumé", Route::Resume),
+    NavEntry::Local("CV", Route::CirriculumVitae),
+    NavEntry::Local("Research", Route::Research),
+    NavEntry::Local("Projects", Route::Projects),
+    NavEntry::Local("Sponsor", Route::Sponsor),
     NavEntry::Local("Contact", Route::Contact),
 ];
 
