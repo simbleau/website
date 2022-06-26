@@ -1,5 +1,6 @@
 use stylist::style;
 use website::common::components::footer::Footer;
+use website::common::components::footer::FOOTER_HEIGHT;
 use website::common::components::header::Header;
 use website::pages::construction::ConstructionPage;
 use website::router;
@@ -10,15 +11,19 @@ const UNDER_CONSTRUCTION: bool = false;
 
 #[function_component(App)]
 fn app() -> Html {
-    let style = style!(
+    let main_style = style!(
         r#"
             position: relative;
             min-height: 100vh;
+        "#,
+    )
+    .unwrap();
 
-            #content-wrap {
-            padding-bottom: 50px;    /* Footer height */
-            }
-        "#
+    let content_style = style!(
+        r#"
+            padding-bottom: ${footer_height};
+        "#,
+        footer_height = FOOTER_HEIGHT,
     )
     .unwrap();
 
@@ -27,15 +32,13 @@ fn app() -> Html {
             <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
         } else {
             <BrowserRouter>
-            <div id="page-container" class={style}>
-                <div id="content-wrap">
-                    <Header />
-                    <main>
+                <div id="main" class={main_style}>
+                    <div id="content" class={content_style}>
+                        <Header />
                         <Switch<router::Route> render={Switch::render(router::switch)} />
-                    </main>
+                    </div>
+                    <Footer />
                 </div>
-                <Footer />
-            </div>
             </BrowserRouter>
         }
     }

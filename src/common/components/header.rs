@@ -9,7 +9,7 @@ pub fn header() -> Html {
         r#"
             width: 100%;
             background-color: #dadada;
-            padding: 5px;
+            padding: 0px;
 
             hr {
                 width: 80%;

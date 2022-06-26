@@ -2,6 +2,8 @@ use stylist::style;
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
+pub const FOOTER_HEIGHT: &str = "100px";
+
 #[styled_component(Footer)]
 pub fn footer() -> Html {
     let style = style!(
@@ -10,16 +12,17 @@ pub fn footer() -> Html {
             position: absolute;
             bottom: 0;
             width: 100%;
-            height: 50px;
+            height: ${footer_height};
+            overflow: hidden;
 
             /* Additional styling */
             background-color: #dadada;
-            padding: 5px;
 
             hr {
                 width: 80%;
             }
-        "#
+        "#,
+        footer_height = FOOTER_HEIGHT
     )
     .unwrap();
 
