@@ -3,5 +3,5 @@ use yew::prelude::*;
 
 #[function_component(ResumePage)]
 pub fn resume_page() -> Html {
-    html! { <ConstructionPage /> }
+    html! { <ConstructionPage message="You're on the Résumé page" /> }
 }
