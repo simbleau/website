@@ -2,6 +2,7 @@ use crate::router::Route;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
+#[derive(Clone, Copy)]
 pub enum NavEntry {
     Local(&'static str, Route),
     External(&'static str, &'static str),
@@ -21,10 +22,10 @@ pub fn navigation() -> Html {
                 NAV_LINKS.iter().map(|n: &NavEntry| {
                     match n {
                         NavEntry::Local(display, route) => html!{
-                            <Link<Route> to={route.clone()}>{display}</Link<Route>>
+                            <Link<Route> to={*route}>{display}</Link<Route>>
                         },
                         NavEntry::External(display, url) => html!{
-                            {"External"}
+                            <a href={*url}>{display}</a>
                         },
                     }
                 })

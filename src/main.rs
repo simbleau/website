@@ -16,8 +16,8 @@ fn app() -> Html {
                 <Navigation />
                 <Switch<router::Route> render={Switch::render(router::switch)} />
             </BrowserRouter>
-            // TODO: Footer
         }
+        // TODO: Footer
     }
 }
 
