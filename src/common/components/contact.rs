@@ -1,6 +1,5 @@
 use gloo_console::log;
 use std::collections::HashMap;
-use wasm_bindgen::JsValue;
 use web_sys::HtmlInputElement;
 use yew::{html, Component, Context, Html, NodeRef};
 
