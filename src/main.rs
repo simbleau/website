@@ -1,18 +1,23 @@
-use yew::prelude::*;
 mod pages;
+mod router;
 use pages::construction::ConstructionPage;
+use yew::prelude::*;
+use yew_router::prelude::*;
 
-const UNDER_CONSTRUCTION: bool = true;
+const UNDER_CONSTRUCTION: bool = false;
 
 #[function_component(App)]
 fn app() -> Html {
     html! {
+        // TODO: Header
         if UNDER_CONSTRUCTION {
             <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
         } else {
-            // TODO: Replace with real website.
-            <h3>{ "Not under construction." }</h3>
+            <BrowserRouter>
+                <Switch<router::Route> render={Switch::render(router::switch)} />
+            </BrowserRouter>
         }
+        // TODO: Footer
     }
 }
 
