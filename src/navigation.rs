@@ -27,29 +27,33 @@ pub fn navigation() -> Html {
         r#"
             width: 100%;
             background-color: #dadada;
-            padding: 0px;
+            padding-top: 5px;
+            padding-bottom: 5px;
         "#
     );
 
     html! {
-        <div id="header" align="center" class={ header_css }>
-            <nav>
-                {
-                    NAV_LINKS.iter().map(|n: &NavEntry| {
-                        match n {
-                            NavEntry::Local(display, route) => html!{
-                                <Link<Route> to={*route}>{display}</Link<Route>>
-                            },
-                            NavEntry::External(display, url) => html!{
-                                <a href={*url}>{display}</a>
-                            },
-                        }
-                    })
-                    .intersperse(html!{" | "})
-                    .collect::<Html>()
-                }
-            </nav>
-            <hr class={css!("width: 100%;")} />
-        </div>
+        <header class={ header_css }>
+            <div id="nav-wrapper" align="center">
+                <nav>
+                    <p>
+                    {
+                        NAV_LINKS.iter().map(|n: &NavEntry| {
+                            match n {
+                                NavEntry::Local(display, route) => html!{
+                                    <Link<Route> to={*route}>{display}</Link<Route>>
+                                },
+                                NavEntry::External(display, url) => html!{
+                                    <a href={*url}>{display}</a>
+                                },
+                            }
+                        })
+                        .intersperse(html!{" | "})
+                        .collect::<Html>()
+                    }
+                    </p>
+                </nav>
+            </div>
+        </header>
     }
 }

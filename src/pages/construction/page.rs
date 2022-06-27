@@ -15,7 +15,7 @@ pub struct ConstructionMessage {
 pub fn construction_page(props: &ConstructionMessage) -> Html {
     let container_style = style!(
         r#"
-            padding: 0;
+            padding: 10px;
             margin: 0;
 
             display: flex;

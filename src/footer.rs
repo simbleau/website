@@ -14,15 +14,16 @@ pub fn footer() -> Html {
             height: ${footer_height};
             overflow: hidden;
 
-            /* Additional styling */
+            /* Styling */
             background-color: #dadada;
+            padding-top: 5px;
+            padding-bottom: 5px;
         "#,
         footer_height = FOOTER_HEIGHT
     );
 
     html! {
         <footer class={ footer_class }>
-            <hr class={css!("width: 100%;")} />
             <div align="center">
                 <p>{ "Made with coffee and Rust " }</p>
             </div>

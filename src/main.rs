@@ -16,6 +16,7 @@ fn app() -> Html {
         r#"
             position: relative;
             min-height: 100vh;
+            background-color: #a0a0a0;
         "#,
     )
     .unwrap();
