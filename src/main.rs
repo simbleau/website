@@ -1,16 +1,17 @@
-use stylist::style;
-use website::common::components::footer::Footer;
-use website::common::components::footer::FOOTER_HEIGHT;
-use website::common::components::header::Header;
-use website::pages::construction::ConstructionPage;
+use stylist::{css, style};
 use website::router;
 use yew::prelude::*;
 use yew_router::prelude::*;
+
+use website::footer::{Footer, FOOTER_HEIGHT};
+use website::navigation::Navigation;
+use website::pages::construction::ConstructionPage;
 
 const UNDER_CONSTRUCTION: bool = false;
 
 #[function_component(App)]
 fn app() -> Html {
+    // TODO: Theme
     let main_style = style!(
         r#"
             position: relative;
@@ -19,26 +20,18 @@ fn app() -> Html {
     )
     .unwrap();
 
-    let content_style = style!(
-        r#"
-            padding-bottom: ${footer_height};
-        "#,
-        footer_height = FOOTER_HEIGHT,
-    )
-    .unwrap();
-
     html! {
         if UNDER_CONSTRUCTION {
             <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
         } else {
             <BrowserRouter>
-                <div id="main" class={main_style}>
-                    <div id="content" class={content_style}>
-                        <Header />
+                <main class={ main_style }>
+                    <Navigation />
+                    <div id="content" class={ css!("padding-bottom: ${fh};", fh = FOOTER_HEIGHT) }>
                         <Switch<router::Route> render={Switch::render(router::switch)} />
                     </div>
                     <Footer />
-                </div>
+                </main>
             </BrowserRouter>
         }
     }
