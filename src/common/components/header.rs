@@ -5,25 +5,20 @@ use yew::prelude::*;
 
 #[styled_component(Header)]
 pub fn header() -> Html {
-    let style = style!(
+    let header_css = css!(
         r#"
             width: 100%;
             background-color: #dadada;
             padding: 0px;
-
-            hr {
-                width: 80%;
-            }
         "#
-    )
-    .unwrap();
+    );
 
     html! {
-        <header class={ style }>
+        <header class={ header_css }>
             <div align="center">
                 <Navigation />
             </div>
-            <hr />
+            <hr class={css!("width: 100%;")} />
         </header>
     }
 }
