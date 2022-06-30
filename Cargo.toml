@@ -24,3 +24,4 @@ gloo-console = "0.2.1"
 stylist = { version = "0.10.1", features = [
     "yew_integration",
 ] }
+once_cell = "1.8.0"

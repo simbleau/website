@@ -1,4 +1,5 @@
-use stylist::{css, style};
+use stylist::css;
+use stylist::yew::Global;
 use website::router;
 use yew::prelude::*;
 use yew_router::prelude::*;
@@ -6,27 +7,51 @@ use yew_router::prelude::*;
 use website::footer::{Footer, FOOTER_HEIGHT};
 use website::navigation::Navigation;
 use website::pages::construction::ConstructionPage;
+use website::themes::*;
 
 const UNDER_CONSTRUCTION: bool = false;
 
+#[function_component(Root)]
+pub fn root() -> Html {
+    html! {
+        <ThemeProvider>
+            <App />
+        </ThemeProvider>
+    }
+}
+
 #[function_component(App)]
 fn app() -> Html {
-    // TODO: Theme
-    let main_style = style!(
+    let theme = use_theme();
+
+    let main_style = css!(
         r#"
-            position: relative;
-            min-height: 100vh;
-            background-color: #a0a0a0;
+            html, body {
+                position: relative;
+                min-height: 100vh;
+                background-color: ${bg};
+                color: ${ft_color};
+            }
         "#,
-    )
-    .unwrap();
+        bg = theme.paper_color.clone(),
+        ft_color = theme.font_color.clone(),
+    );
+
+    let other_theme = match theme.kind() {
+        ThemeKind::Light => ThemeKind::Dark,
+        ThemeKind::Dark => ThemeKind::Light,
+    };
+    let switch_theme = Callback::from(move |_| theme.set(other_theme.clone()));
 
     html! {
+        <>
+        <Global css={main_style}/>
         if UNDER_CONSTRUCTION {
             <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
         } else {
             <BrowserRouter>
-                <main class={ main_style }>
+                <main>
+                    <button onclick={switch_theme}>{"Switch"}</button>
                     <Navigation />
                     <div id="content" class={ css!("padding-bottom: ${fh};", fh = FOOTER_HEIGHT) }>
                         <Switch<router::Route> render={Switch::render(router::switch)} />
@@ -35,10 +60,11 @@ fn app() -> Html {
                 </main>
             </BrowserRouter>
         }
+        </>
     }
 }
 
 fn main() {
     gloo_console::log!("Hello from Rust + WASM!");
-    yew::start_app::<App>();
+    yew::start_app::<Root>();
 }
