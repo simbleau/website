@@ -51,7 +51,7 @@ fn app() -> Html {
         } else {
             <BrowserRouter>
                 <main>
-                    <button onclick={switch_theme}>{"Switch"}</button>
+                    <button onclick={switch_theme}>{"Switch"}</button><i class="svgs i-info"></i>
                     <Navigation />
                     <div id="content" class={ css!("padding-bottom: ${fh};", fh = FOOTER_HEIGHT) }>
                         <Switch<router::Route> render={Switch::render(router::switch)} />
