@@ -1,0 +1,67 @@
+.svgs {
+    box-sizing: border-box;
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle
+}
+
+@font-face {
+    font-family: 'Blog-Icons';
+    src: url('static/fonts/fa-solid-900.woff2') format('woff2');
+}
+
+[class^="i-"]:before,
+[class*=" i-"]:before {
+    font-family: "Blog-Icons";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    width: 1em;
+    vertical-align: 1em;
+    text-align: center;
+    display: inline-block;
+}
+
+.i-info:before {
+    content: '\f05a';
+}
+
+.i-privacy:before {
+    content: '\f21b';
+}
+
+.i-donate:before {
+    content: '\f4b9';
+}
+
+.i-sitemap:before {
+    content: '\f5a0';
+}
+
+.i-angles-up:before {
+    content: '\f102';
+}
+
+.i-sun:before {
+    content: '\f185';
+}
+
+.i-moon:before {
+    content: '\f186';
+}
+
+.i-edit:before {
+    content: '\f044';
+}
+
+.i-coffee:before {
+    content: '\f7b6';
+}
+
+.i-keyboard:before {
+    content: '\f11c';
+}
