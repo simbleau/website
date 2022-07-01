@@ -1,20 +1,11 @@
-.svgs {
-    box-sizing: border-box;
-    width: 1rem;
-    height: 1rem;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle
-}
-
 @font-face {
-    font-family: 'Blog-Icons';
+    font-family: 'Icons';
     src: url('static/fonts/fa-solid-900.woff2') format('woff2');
 }
 
 [class^="i-"]:before,
 [class*=" i-"]:before {
-    font-family: "Blog-Icons";
+    font-family: "Icons";
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -24,6 +15,12 @@
     vertical-align: 1em;
     text-align: center;
     display: inline-block;
+    box-sizing: border-box;
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .i-info:before {
