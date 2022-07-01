@@ -64,10 +64,45 @@
 </head>
 
 <body>
-    <div
-        style="padding: 0; margin: 0; display: flex; justify-content: center; align-items: center; flex-direction: column; min-height: 100%;">
-        <h1>Loading...</h1>
-    </div>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --fg: rgb(237, 244, 255);
+                --bg: rgb(50, 50, 50);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --fg: rgb(50, 50, 50);
+                --bg: rgb(237, 244, 255);
+            }
+        }
+
+        svg {
+            width: 100px;
+            height: 100px;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--fg);
+        }
+    </style>
+    <svg version=" 1.1" id="L3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+        <circle fill="none" stroke=var(--fg) stroke-width="4" cx="50" cy="50" r="44" style="opacity:0.5;" />
+        <circle fill=var(--bg) stroke=var(--fg) stroke-width="3" cx="8" cy="54" r="6">
+            <animateTransform attributeName="transform" dur="2s" type="rotate" from="0 50 48" to="360 50 52"
+                repeatCount="indefinite" />
+        </circle>
+    </svg>
 </body>
 
 </html>
