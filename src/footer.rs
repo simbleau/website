@@ -25,7 +25,13 @@ pub fn footer() -> Html {
     html! {
         <footer class={ footer_class }>
             <div align="center">
-                <p>{ "Made with coffee and Rust " }</p>
+                <p>
+                { "Build with " }<i class="i-coffee"></i>
+                {" and a "}
+                <i class="i-keyboard"></i>
+                {" using " }
+                <i class="b-rust"></i>
+                </p>
             </div>
         </footer>
     }
