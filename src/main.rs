@@ -27,6 +27,8 @@ fn app() -> Html {
     let main_style = css!(
         r#"
             html, body {
+                padding: 0;
+                margin: 0;
                 position: relative;
                 min-height: 100vh;
                 background-color: ${bg};
