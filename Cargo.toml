@@ -25,3 +25,4 @@ stylist = { version = "0.10.1", features = [
     "yew_integration",
 ] }
 once_cell = "1.12.0"
+wee_alloc = "0.4.5"

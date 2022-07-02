@@ -9,6 +9,10 @@ use website::pages::construction::ConstructionPage;
 use website::router;
 use website::style::{use_theme, ThemeProvider};
 
+// A smaller allocator to save some size on the WASM bundle
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 const UNDER_CONSTRUCTION: bool = false;
 
 #[function_component(Root)]
