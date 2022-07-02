@@ -46,22 +46,22 @@ pub const NAV_LINKS: [NavEntry; 7] = [
 pub fn navigation() -> Html {
     html! {
         <nav>
-            <p>
+            <ul>
             {
                 NAV_LINKS.iter().map(|n: &NavEntry| {
                     match n {
                         NavEntry::Local(display, route) => html!{
-                            <Link<Route> to={ *route }>{ display() }</Link<Route>>
+                            <li><Link<Route> to={ *route }>{ display() }</Link<Route>></li>
                         },
                         NavEntry::External(display, url) => html!{
-                            <a href={ *url }>{ display() }</a>
+                            <li><a href={ *url }>{ display() }</a></li>
                         },
                     }
                 })
                 .intersperse(SEPARATOR())
                 .collect::<Html>()
             }
-            </p>
+            </ul>
         </nav>
     }
 }

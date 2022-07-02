@@ -39,12 +39,6 @@ fn app() -> Html {
         fg = theme.fg1.to_css(),
     );
 
-    let other_theme = match theme.kind() {
-        ThemeChoice::Light => ThemeChoice::Dark,
-        ThemeChoice::Dark => ThemeChoice::Light,
-    };
-    let switch_theme = Callback::from(move |_| theme.set(other_theme));
-
     html! {
         <>
         <Global css={main_style}/>
@@ -53,7 +47,6 @@ fn app() -> Html {
         } else {
             <BrowserRouter>
                 <main>
-                    <button onclick={switch_theme}>{"Switch"}</button><i class="svgs i-info"></i>
                     <Header />
                     <div id="content" class={ css!("padding-bottom: ${fh};", fh = FOOTER_HEIGHT) }>
                         <Switch<router::Route> render={Switch::render(router::switch)} />

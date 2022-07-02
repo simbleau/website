@@ -1,0 +1,18 @@
+use yew::prelude::*;
+
+use crate::themes::{use_theme, ThemeChoice};
+
+#[function_component(ThemeSwitcher)]
+pub fn theme_switcher() -> Html {
+    let theme = use_theme();
+
+    let other_theme = match theme.kind() {
+        ThemeChoice::Light => ThemeChoice::Dark,
+        ThemeChoice::Dark => ThemeChoice::Light,
+    };
+    let switch_theme = Callback::from(move |_| theme.set(other_theme));
+
+    html! {
+        <button onclick={switch_theme}>{"Switch"}</button>
+    }
+}
