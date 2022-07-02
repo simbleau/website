@@ -3,6 +3,14 @@
     src: url('static/fonts/fa-solid-900.woff2') format('woff2');
 }
 
+[class^="i-"],
+[class*=" i-"] {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 [class^="i-"]:before,
 [class*=" i-"]:before {
     font-family: "Icons";
@@ -10,17 +18,12 @@
     font-weight: normal;
     font-variant: normal;
     text-transform: none;
+
     line-height: 1em;
     width: 1em;
     vertical-align: 1em;
     text-align: center;
     display: inline-block;
-    box-sizing: border-box;
-    width: 1rem;
-    height: 1rem;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
 }
 
 .i-info:before {
@@ -61,4 +64,28 @@
 
 .i-keyboard:before {
     content: '\f11c';
+}
+
+.i-bookmark:before {
+    content: '\e0bb';
+}
+
+.i-bug:before {
+    content: '\f188';
+}
+
+.i-copyright:before {
+    content: '\f1f9';
+}
+
+.i-idcard:before {
+    content: '\f2bb';
+}
+
+.i-profile:before {
+    content: '\f2bd';
+}
+
+.i-pencil:before {
+    content: '\f303';
 }
