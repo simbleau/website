@@ -5,7 +5,7 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 
 use website::footer::{Footer, FOOTER_HEIGHT};
-use website::navigation::Navigation;
+use website::header::Header;
 use website::pages::construction::ConstructionPage;
 use website::themes::*;
 
@@ -54,7 +54,7 @@ fn app() -> Html {
             <BrowserRouter>
                 <main>
                     <button onclick={switch_theme}>{"Switch"}</button><i class="svgs i-info"></i>
-                    <Navigation />
+                    <Header />
                     <div id="content" class={ css!("padding-bottom: ${fh};", fh = FOOTER_HEIGHT) }>
                         <Switch<router::Route> render={Switch::render(router::switch)} />
                     </div>
