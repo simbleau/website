@@ -10,9 +10,13 @@ pub fn theme_switcher() -> Html {
         ThemeChoice::Light => ThemeChoice::Dark,
         ThemeChoice::Dark => ThemeChoice::Light,
     };
+    let other_icon: fn() -> Html = match theme.kind() {
+        ThemeChoice::Light => || html!( <i class="i-moon" /> ),
+        ThemeChoice::Dark => || html!( <i class="i-sun" /> ),
+    };
     let switch_theme = Callback::from(move |_| theme.set(other_theme));
 
     html! {
-        <button onclick={switch_theme}>{"Switch"}</button>
+        <button onclick={switch_theme}>{ other_icon() }</button>
     }
 }
