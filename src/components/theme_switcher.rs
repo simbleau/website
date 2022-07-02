@@ -4,7 +4,7 @@ use yew::prelude::*;
 use crate::style::{use_theme, ThemeChoice};
 
 const ICON_SIZE: &str = "1.4em";
-const ICON_PADDING: &str = ".5em";
+const ICON_PADDING: &str = ".4em";
 
 #[function_component(ThemeSwitcher)]
 pub fn theme_switcher() -> Html {
@@ -26,6 +26,7 @@ pub fn theme_switcher() -> Html {
 
             i{
                 font-size: ${size};
+                text-decoration:none;
             }
         "#,
         size = ICON_SIZE,
