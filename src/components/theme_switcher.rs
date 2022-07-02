@@ -43,7 +43,10 @@ pub fn theme_switcher() -> Html {
         ThemeChoice::Light => || html!( <i class="i-moon" /> ),
         ThemeChoice::Dark => || html!( <i class="i-sun" /> ),
     };
-    let switch_theme = Callback::from(move |_| theme.set(other_theme));
+    let switch_theme = Callback::from(move |_| {
+        theme.set(other_theme)
+        // TODO: Save setting in local storage
+    });
 
     html! {
         <button class={style} onclick={ switch_theme }>

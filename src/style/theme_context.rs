@@ -1,4 +1,6 @@
+use gloo_console::log;
 use std::ops::Deref;
+use wasm_bindgen::UnwrapThrowExt;
 use yew::prelude::*;
 
 use crate::style::Theme;

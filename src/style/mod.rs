@@ -17,5 +17,5 @@ pub mod colors;
 
 use yew::use_context;
 pub fn use_theme() -> ThemeContext {
-    use_context::<ThemeContext>().expect("Called from outside ThemeContext")
+    use_context::<ThemeContext>().unwrap()
 }

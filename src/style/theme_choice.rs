@@ -8,6 +8,12 @@ pub enum ThemeChoice {
     Light,
 }
 
+impl Default for ThemeChoice {
+    fn default() -> Self {
+        ThemeChoice::Light
+    }
+}
+
 impl ThemeChoice {
     pub fn current(&self) -> &Theme {
         static LIGHT_THEME: Lazy<Theme> = Lazy::new(|| Theme {
