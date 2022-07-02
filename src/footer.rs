@@ -1,37 +1,52 @@
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
-pub const FOOTER_HEIGHT: &str = "100px";
+pub const FOOTER_HEIGHT: &str = "150px";
+pub const FOOTER_PADDING: &str = "5px";
 
 #[styled_component(Footer)]
 pub fn footer() -> Html {
-    let footer_class = css!(
+    let css = css!(
         r#"
             /* Anchor to bottom */
             position: absolute;
             bottom: 0;
             width: 100%;
             height: ${footer_height};
-            overflow: hidden;
+
+            /* Center footer line */
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             /* Styling */
-            background-color: #dadada;
-            padding-top: 5px;
-            padding-bottom: 5px;
+            padding-top: ${footer_padding};
+            padding-bottom: ${footer_padding};
         "#,
-        footer_height = FOOTER_HEIGHT
+        footer_height = FOOTER_HEIGHT,
+        footer_padding = FOOTER_PADDING,
     );
 
     html! {
-        <footer class={ footer_class }>
-            <div align="center">
+        <footer class={ css }>
+            <div id="footer_wrap" align="center">
                 <p>
-                { "Build with " }<i class="i-coffee"></i>
+                    { "2022 " }
+                    <i class="i-copyright"></i>
+                    { " Spencer C. Imbleau" }
+                </p>
+                { "Built with " }<i class="i-coffee"></i>
                 {" and a "}
                 <i class="i-keyboard"></i>
                 {" using " }
                 <i class="b-rust"></i>
-                </p>
+                <br />
+                <small>
+                    <a href="https://github.com/simbleau/blog">
+                        <i class="i-edit"></i>
+                        {" Edit on GitHub"}
+                    </a>
+                </small>
             </div>
         </footer>
     }
