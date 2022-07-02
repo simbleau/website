@@ -1,4 +1,4 @@
-use crate::themes::Color;
+use crate::style::Color;
 
 pub const WHITE: Color = Color {
     red: 0xff,

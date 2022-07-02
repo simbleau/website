@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::themes::{use_theme, ThemeChoice};
+use crate::style::{use_theme, ThemeChoice};
 
 #[function_component(ThemeSwitcher)]
 pub fn theme_switcher() -> Html {

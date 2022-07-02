@@ -1,6 +1,6 @@
 use once_cell::sync::Lazy;
 
-use crate::themes::{colors::BLACK, colors::WHITE, Theme};
+use crate::style::{colors::BLACK, colors::WHITE, Theme};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ThemeChoice {

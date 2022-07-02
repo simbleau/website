@@ -1,7 +1,7 @@
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
-use crate::themes::{ThemeChoice, ThemeContext};
+use crate::style::{ThemeChoice, ThemeContext};
 
 #[derive(Debug, PartialEq, Properties)]
 pub struct ThemeProviderProps {

@@ -1,8 +1,8 @@
 use std::ops::Deref;
 use yew::prelude::*;
 
-use crate::themes::Theme;
-use crate::themes::ThemeChoice;
+use crate::style::Theme;
+use crate::style::ThemeChoice;
 
 #[derive(Debug, Clone)]
 pub struct ThemeContext {
