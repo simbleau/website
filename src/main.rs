@@ -7,7 +7,7 @@ use website::footer::{Footer, FOOTER_HEIGHT};
 use website::header::Header;
 use website::pages::construction::ConstructionPage;
 use website::router;
-use website::style::{use_theme, ThemeChoice, ThemeProvider};
+use website::style::{use_theme, ThemeProvider};
 
 const UNDER_CONSTRUCTION: bool = false;
 
