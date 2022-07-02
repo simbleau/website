@@ -27,10 +27,14 @@ fn app() -> Html {
     let main_style = css!(
         r#"
             html, body {
+                /* General styling */
                 padding: 0;
                 margin: 0;
                 position: relative;
                 min-height: 100vh;
+                scroll-behavior: smooth;
+
+                /* Apply theme */
                 background-color: ${bg};
                 color: ${fg};
             }
