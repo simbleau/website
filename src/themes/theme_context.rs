@@ -1,28 +1,25 @@
-use once_cell::sync::Lazy;
 use std::ops::Deref;
-use stylist::yew::styled_component;
-use yew::html::ImplicitClone;
 use yew::prelude::*;
 
 use crate::themes::Theme;
-use crate::themes::ThemeKind;
+use crate::themes::ThemeChoice;
 
 #[derive(Debug, Clone)]
 pub struct ThemeContext {
-    inner: UseStateHandle<ThemeKind>,
+    inner: UseStateHandle<ThemeChoice>,
 }
 
 impl ThemeContext {
-    pub fn new(inner: UseStateHandle<ThemeKind>) -> Self {
+    pub fn new(inner: UseStateHandle<ThemeChoice>) -> Self {
         Self { inner }
     }
 
-    pub fn set(&self, kind: ThemeKind) {
+    pub fn set(&self, kind: ThemeChoice) {
         self.inner.set(kind)
     }
 
-    pub fn kind(&self) -> ThemeKind {
-        (*self.inner).clone()
+    pub fn kind(&self) -> ThemeChoice {
+        *self.inner
     }
 }
 
@@ -30,7 +27,7 @@ impl Deref for ThemeContext {
     type Target = Theme;
 
     fn deref(&self) -> &Self::Target {
-        &*self.inner.current()
+        &(*self.inner.current())
     }
 }
 

@@ -1,13 +1,13 @@
 use stylist::css;
 use stylist::yew::Global;
-use website::router;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
 use website::footer::{Footer, FOOTER_HEIGHT};
 use website::header::Header;
 use website::pages::construction::ConstructionPage;
-use website::themes::*;
+use website::router;
+use website::themes::{use_theme, ThemeChoice, ThemeProvider};
 
 const UNDER_CONSTRUCTION: bool = false;
 
@@ -32,18 +32,18 @@ fn app() -> Html {
                 position: relative;
                 min-height: 100vh;
                 background-color: ${bg};
-                color: ${ft_color};
+                color: ${fg};
             }
         "#,
-        bg = theme.paper_color.clone(),
-        ft_color = theme.font_color.clone(),
+        bg = theme.bg1.to_css(),
+        fg = theme.fg1.to_css(),
     );
 
     let other_theme = match theme.kind() {
-        ThemeKind::Light => ThemeKind::Dark,
-        ThemeKind::Dark => ThemeKind::Light,
+        ThemeChoice::Light => ThemeChoice::Dark,
+        ThemeChoice::Dark => ThemeChoice::Light,
     };
-    let switch_theme = Callback::from(move |_| theme.set(other_theme.clone()));
+    let switch_theme = Callback::from(move |_| theme.set(other_theme));
 
     html! {
         <>

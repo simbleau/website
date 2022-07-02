@@ -1,7 +1,7 @@
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
-use crate::themes::{ThemeContext, ThemeKind};
+use crate::themes::{ThemeChoice, ThemeContext};
 
 #[derive(Debug, PartialEq, Properties)]
 pub struct ThemeProviderProps {
@@ -10,7 +10,7 @@ pub struct ThemeProviderProps {
 
 #[styled_component(ThemeProvider)]
 pub fn theme_provider(props: &ThemeProviderProps) -> Html {
-    let theme_kind = use_state(|| ThemeKind::Light);
+    let theme_kind = use_state(|| ThemeChoice::Light);
     let theme_ctx = ThemeContext::new(theme_kind);
 
     html! {
