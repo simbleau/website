@@ -1,4 +1,3 @@
-use gloo_console::log;
 use std::collections::HashMap;
 use web_sys::HtmlInputElement;
 use yew::{html, Component, Context, Html, NodeRef};
@@ -41,7 +40,6 @@ impl Component for ContactForm {
                     .unwrap()
                     .value();
 
-                log!(name, message);
                 false
             }
             Event::TxtHover(key) => {

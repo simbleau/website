@@ -17,12 +17,21 @@ lto = true
 
 [dependencies]
 yew = "0.19.3"
-yew-router = "*"
-web-sys = { version = "0.3.58", features = ["HtmlInputElement"] }
+yew-router = "0.16.0"
 wasm-bindgen = "0.2.81"
-gloo-console = "0.2.1"
-stylist = { version = "0.10.1", features = [
-    "yew_integration",
-] }
+stylist = { version = "0.10.1", features = [ "yew_integration"] }
+
+# Logging
+console_error_panic_hook = "0.1.7"
+log = "0.4.17"
+console_log = { version = "0.2.0" }
+
+# Optimizations
 once_cell = "1.12.0"
 wee_alloc = "0.4.5"
+
+[dependencies.web-sys]
+version = "0.3.58"
+features = [
+    "HtmlInputElement",
+]

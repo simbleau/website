@@ -46,7 +46,6 @@ fn app() -> Html {
         bg = theme.bg1.to_css(),
         fg = theme.fg1.to_css(),
     );
-
     html! {
         <>
         <Global css={main_style}/>
@@ -68,6 +67,13 @@ fn app() -> Html {
 }
 
 fn main() {
-    gloo_console::log!("Hello from Rust + WASM!");
+    #[cfg(debug_assertions)]
+    {
+        // Initialize log and panics to forward to browser log if debugging
+        console_log::init_with_level(log::Level::Trace)
+            .expect("Failed to initialise Log!");
+        std::panic::set_hook(Box::new(console_error_panic_hook::hook));
+    }
+
     yew::start_app::<Root>();
 }
