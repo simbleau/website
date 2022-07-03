@@ -1,3 +1,10 @@
+use gloo_storage::errors::StorageError;
+use gloo_storage::LocalStorage;
+use gloo_storage::Storage;
+use log::info;
+use wasm_bindgen::JsValue;
+use wasm_bindgen::UnwrapThrowExt;
+
 use crate::style::Color;
 use crate::style::ThemeChoice;
 
@@ -18,25 +25,30 @@ pub struct Theme {
 }
 
 impl Theme {
-    /// Get the browser's theme preference through a media query.
+    /// Get the browser's theme preference through a med ia query.
     pub fn get_preference() -> ThemeChoice {
-        // TODO: Check local storage for a preference
-
-        // No local storage preference found, query the browser for a preference
-        let window = web_sys::window().unwrap();
-        match window
-            .match_media("(prefers-color-scheme: dark)")
-            .unwrap()
-            .unwrap()
-            .matches()
-        {
-            true => {
-                // Browser prefers dark theme
-                ThemeChoice::Dark
+        match gloo_storage::LocalStorage::get("theme") {
+            Ok(preference) => {
+                // Get saved theme from local storage
+                preference
             }
-            false => {
-                // Browser prefers dark theme
-                ThemeChoice::Light
+            Err(_) => {
+                // No local storage preference found, query the browser for a
+                // preference
+                match web_sys::window()
+                    .and_then(|w| {
+                        w.match_media("(prefers-color-scheme: dark)").ok()
+                    })
+                    .flatten()
+                    .map(|m| m.matches())
+                {
+                    // Browser prefers dark theme
+                    Some(true) => ThemeChoice::Dark,
+                    // Browser prefers light theme
+                    Some(false) => ThemeChoice::Light,
+                    // Browser was not queryable
+                    None => ThemeChoice::default(),
+                }
             }
         }
     }

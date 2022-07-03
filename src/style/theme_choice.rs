@@ -1,8 +1,9 @@
 use once_cell::sync::Lazy;
+use serde::{Deserialize, Serialize};
 
 use crate::style::{colors::BLACK, colors::WHITE, Theme};
 
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub enum ThemeChoice {
     Dark,
     Light,

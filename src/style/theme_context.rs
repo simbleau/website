@@ -1,3 +1,4 @@
+use gloo_storage::Storage;
 use std::ops::Deref;
 use yew::prelude::*;
 
@@ -14,8 +15,12 @@ impl ThemeContext {
         Self { inner }
     }
 
-    pub fn set(&self, kind: ThemeChoice) {
-        self.inner.set(kind)
+    pub fn set(&self, choice: ThemeChoice) {
+        self.inner.set(choice);
+        // Try to save in local storage
+        if gloo_storage::LocalStorage::set("theme", choice).is_ok() {
+            log::info!("Theme preference saved: {:?}", choice);
+        };
     }
 
     pub fn kind(&self) -> ThemeChoice {
