@@ -31,8 +31,8 @@ pub fn theme_switcher() -> Html {
         "#,
         size = ICON_SIZE,
         padding = ICON_PADDING,
-        bg = theme.fg1.to_css(),
-        fg = theme.bg1.to_css(),
+        bg = theme.bg1.to_css(),
+        fg = theme.fg1.to_css(),
     );
 
     let other_theme = match theme.kind() {
