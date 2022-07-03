@@ -1,9 +1,4 @@
-use gloo_storage::errors::StorageError;
-use gloo_storage::LocalStorage;
 use gloo_storage::Storage;
-use log::info;
-use wasm_bindgen::JsValue;
-use wasm_bindgen::UnwrapThrowExt;
 
 use crate::style::Color;
 use crate::style::ThemeChoice;

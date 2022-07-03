@@ -40,6 +40,7 @@ impl Component for ContactForm {
                     .unwrap()
                     .value();
 
+                log::debug!("Name: {}, Message: {}", name, message);
                 false
             }
             Event::TxtHover(key) => {
