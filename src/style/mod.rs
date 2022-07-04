@@ -1,3 +1,5 @@
+pub mod global;
+
 mod theme_provider;
 pub use theme_provider::ThemeProvider;
 

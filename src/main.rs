@@ -1,5 +1,5 @@
-use stylist::css;
 use stylist::yew::Global;
+use stylist::{css, global_style};
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -7,7 +7,7 @@ use website::footer::{Footer, FOOTER_HEIGHT};
 use website::header::Header;
 use website::pages::construction::ConstructionPage;
 use website::router;
-use website::style::{use_theme, ThemeProvider};
+use website::style::{global, ThemeProvider};
 
 // A smaller allocator to save some size on the WASM bundle
 #[global_allocator]
@@ -26,29 +26,9 @@ pub fn root() -> Html {
 
 #[function_component(App)]
 fn app() -> Html {
-    let theme = use_theme();
-
-    let main_style = css!(
-        r#"
-            html, body {
-                /* General styling */
-                padding: 0;
-                margin: 0;
-                position: relative;
-                min-height: 100vh;
-                scroll-behavior: smooth;
-
-                /* Apply theme */
-                background-color: ${bg};
-                color: ${fg};
-            }
-        "#,
-        bg = theme.bg1.to_css(),
-        fg = theme.fg1.to_css(),
-    );
     html! {
         <>
-        <Global css={main_style}/>
+        <Global css={ global::get_style() } />
         if UNDER_CONSTRUCTION {
             <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
         } else {
