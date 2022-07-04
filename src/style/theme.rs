@@ -1,4 +1,6 @@
 use gloo_storage::Storage;
+use stylist::css;
+use stylist::StyleSource;
 
 use crate::style::Color;
 use crate::style::ThemeChoice;
@@ -20,6 +22,19 @@ pub struct Theme {
 }
 
 impl Theme {
+    pub fn css(&self) -> StyleSource<'static> {
+        css!(
+            r#"
+        & {
+            background-color: ${bg};
+            color: ${fg};
+        }
+        "#,
+            bg = self.bg1.to_css(),
+            fg = self.fg1.to_css(),
+        )
+    }
+
     /// Get the browser's theme preference through a med ia query.
     pub fn get_preference() -> ThemeChoice {
         match gloo_storage::LocalStorage::get("theme") {

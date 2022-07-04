@@ -1,10 +1,6 @@
-use stylist::css;
+use stylist::{css, StyleSource};
 
-use crate::style::use_theme;
-
-pub fn get_style() -> stylist::StyleSource<'static> {
-    let theme = use_theme();
-
+pub fn css() -> StyleSource<'static> {
     css!(
         r#"
             :root {
@@ -39,10 +35,6 @@ pub fn get_style() -> stylist::StyleSource<'static> {
                 /* Font sizing */
                 font-weight:var(--fw);
                 font-size:var(--fs);
-
-                /* Theme */
-                background-color: ${bg};
-                color: ${fg};
             }
 
             h1,
@@ -54,7 +46,5 @@ pub fn get_style() -> stylist::StyleSource<'static> {
                 font-weight:var(--fh);
             }
         "#,
-        bg = theme.bg1.to_css(),
-        fg = theme.fg1.to_css(),
     )
 }
