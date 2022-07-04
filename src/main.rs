@@ -7,7 +7,7 @@ use website::footer::{Footer, FOOTER_HEIGHT};
 use website::header::Header;
 use website::pages::construction::ConstructionPage;
 use website::router;
-use website::style::{global, use_theme, ThemeProvider};
+use website::style::{global, ThemeProvider};
 
 // A smaller allocator to save some size on the WASM bundle
 #[global_allocator]
@@ -29,7 +29,6 @@ fn app() -> Html {
     html! {
         <>
         <Global css={ global::css() } />
-        <Global css={ use_theme().css() } />
         if UNDER_CONSTRUCTION {
             <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
         } else {
