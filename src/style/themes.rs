@@ -31,7 +31,7 @@ pub static LIGHT_THEME: Lazy<Theme> = Lazy::new(|| Theme {
     },
     ac1: Color {
         red: 0x00,
-        green: 0x06,
+        green: 0x66,
         blue: 0xee,
         alpha: 0xff,
     },
