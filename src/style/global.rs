@@ -10,8 +10,12 @@ pub fn css() -> StyleSource<'static> {
                 --fs: 1rem;
                 --fw: 400;
                 --fh: 700;
-                --bg: ${bg};
-                --fg: ${fg};
+                --bg1: ${bg1};
+                --bg2: ${bg2};
+                --fg1: ${fg1};
+                --fg2: ${fg2};
+                --ac1: ${ac1};
+                --ac2: ${ac2};
             }
             @media (min-width: 768px) {
                 :root {
@@ -42,27 +46,32 @@ pub fn css() -> StyleSource<'static> {
                 font-size:var(--fs);
 
                 /* Theme Application */
-                background-color: var(--bg);
-                color: var(--fg);
+                background-color: var(--bg1);
+                color: var(--fg1);
             }
 
-            /* Header sizing */
+            /* Headers */
             h1,
             h2,
             h3,
             h4,
             h5,
             h6 {
+                color: var(--fg2);
                 font-weight:var(--fh);
             }
 
-            /* Link Text Decoration */
+            /* Links */
             a {
-                text-decoration:none
+                color: var(--ac1);
+                text-decoration:none;
             }
             a:hover {
-                text-decoration:underline
+                color: var(--ac2);
+                text-decoration:underline;
             }
+
+            /* Specific styling (Because I feel like it!) */
             h1 a,
             h2 a,
             main nav a,
@@ -72,7 +81,11 @@ pub fn css() -> StyleSource<'static> {
                 text-decoration:none
             }
         "#,
-        bg = theme.bg1.to_css(),
-        fg = theme.fg1.to_css(),
+        bg1 = theme.bg1.to_css(),
+        bg2 = theme.bg2.to_css(),
+        fg1 = theme.fg1.to_css(),
+        fg2 = theme.fg2.to_css(),
+        ac1 = theme.ac1.to_css(),
+        ac2 = theme.ac2.to_css(),
     )
 }
