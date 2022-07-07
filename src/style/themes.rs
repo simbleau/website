@@ -37,17 +37,47 @@ pub static LIGHT_THEME: Lazy<Theme> = Lazy::new(|| Theme {
     },
     ac2: Color {
         red: 0x00,
-        green: 0x99,
+        green: 0xaa,
         blue: 0xff,
         alpha: 0xff,
     },
 });
 
 pub static DARK_THEME: Lazy<Theme> = Lazy::new(|| Theme {
-    fg1: WHITE,
-    fg2: WHITE,
-    bg1: BLACK,
-    bg2: BLACK,
-    ac1: WHITE,
-    ac2: WHITE,
+    fg1: Color {
+        red: 0xcc,
+        green: 0xcc,
+        blue: 0xcc,
+        alpha: 0xff,
+    },
+    fg2: Color {
+        red: 0xdd,
+        green: 0xdd,
+        blue: 0xdd,
+        alpha: 0xff,
+    },
+    bg1: Color {
+        red: 0x22,
+        green: 0x22,
+        blue: 0x22,
+        alpha: 0xff,
+    },
+    bg2: Color {
+        red: 0x30,
+        green: 0x30,
+        blue: 0x30,
+        alpha: 0xff,
+    },
+    ac1: Color {
+        red: 0x00,
+        green: 0xaa,
+        blue: 0xff,
+        alpha: 0xff,
+    },
+    ac2: Color {
+        red: 0x00,
+        green: 0xc0,
+        blue: 0xff,
+        alpha: 0xff,
+    },
 });
