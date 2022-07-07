@@ -1,6 +1,5 @@
 use once_cell::sync::Lazy;
 
-use crate::style::colors::{BLACK, WHITE};
 use crate::style::Color;
 use crate::style::Theme;
 
