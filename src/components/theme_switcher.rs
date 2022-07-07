@@ -22,19 +22,12 @@ pub fn theme_switcher() -> Html {
                 height: calc(${size} + 2 * ${padding});
                 text-align:center;
 
-                -webkit-transition: 0.5s;
-                -moz-transition: 0.5s;
-                -ms-transition: 0.5s;
-                -o-transition: 0.5s;
+                transition: background-color 0.5s;
                 background-color: ${bg};
                 color: var(--fg1);
             }
 
             &:hover {
-                -webkit-transition: 0.5s;
-                -moz-transition: 0.5s;
-                -ms-transition: 0.5s;
-                -o-transition: 0.5s;
                 background-color: ${bg_hover};
             }
 
