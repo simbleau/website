@@ -14,6 +14,7 @@ pub use theme::Theme;
 pub mod themes;
 
 mod color;
+pub use color::AlphaColor;
 pub use color::Color;
 pub mod colors;
 
