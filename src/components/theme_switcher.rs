@@ -1,7 +1,6 @@
 use stylist::css;
 use yew::prelude::*;
 
-use crate::style::color::Color;
 use crate::style::{use_theme, Icon, IconMask, ThemeChoice};
 
 const ICON_SIZE: &str = "1.6em";

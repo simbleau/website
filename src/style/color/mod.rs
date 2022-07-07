@@ -1,5 +1,5 @@
-mod color;
-pub use color::Color;
+mod model;
+pub use model::Color;
 
 mod transparent;
 pub use transparent::TransparentColor;
