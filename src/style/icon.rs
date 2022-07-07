@@ -1,7 +1,7 @@
 use stylist::style;
 use yew::prelude::*;
 
-use crate::style::color::Color;
+use crate::style::colors::Color;
 use crate::style::IconMask::*;
 
 #[derive(PartialEq, Clone, Copy)]

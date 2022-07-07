@@ -1,6 +1,6 @@
 use std::fmt;
 
-use crate::style::color::{OpaqueColor, TransparentColor};
+use crate::style::colors::{OpaqueColor, TransparentColor};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Color {

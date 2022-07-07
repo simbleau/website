@@ -1,6 +1,6 @@
 use once_cell::sync::Lazy;
 
-use crate::style::color::Color;
+use crate::style::colors::Color;
 use crate::style::Theme;
 
 pub static LIGHT_THEME: Lazy<Theme> = Lazy::new(|| Theme {

@@ -17,7 +17,7 @@ mod theme;
 pub use theme::Theme;
 pub mod themes;
 
-pub mod color;
+pub mod colors;
 
 use yew::use_context;
 pub fn use_theme() -> ThemeContext {
