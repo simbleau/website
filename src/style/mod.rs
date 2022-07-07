@@ -9,9 +9,7 @@ pub use theme_context::ThemeContext;
 mod theme_choice;
 pub use theme_choice::ThemeChoice;
 
-mod icon;
-pub use icon::Icon;
-pub use icon::IconMask;
+pub mod icons;
 
 mod theme;
 pub use theme::Theme;
