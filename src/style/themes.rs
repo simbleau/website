@@ -37,7 +37,7 @@ pub static LIGHT_THEME: Lazy<Theme> = Lazy::new(|| Theme {
     },
     ac2: Color {
         red: 0x00,
-        green: 0xaa,
+        green: 0x99,
         blue: 0xff,
         alpha: 0xff,
     },
@@ -76,7 +76,7 @@ pub static DARK_THEME: Lazy<Theme> = Lazy::new(|| Theme {
     },
     ac2: Color {
         red: 0x00,
-        green: 0xc0,
+        green: 0xcf,
         blue: 0xff,
         alpha: 0xff,
     },
