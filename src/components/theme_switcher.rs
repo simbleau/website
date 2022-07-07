@@ -48,10 +48,10 @@ pub fn theme_switcher() -> Html {
     };
     let other_icon = match theme.kind() {
         ThemeChoice::Light => {
-            html!( <Icon mask={IconMask::HalfFill} fill={theme.fg1} /> )
+            html!( <Icon mask={IconMask::Moon} fill={theme.fg1} /> )
         }
         ThemeChoice::Dark => {
-            html!( <Icon mask={IconMask::HalfFill} fill={theme.fg1} /> )
+            html!( <Icon mask={IconMask::Brightness} fill={theme.fg1} /> )
         }
     };
     let switch_theme = Callback::from(move |_| theme.set(other_theme));
