@@ -61,6 +61,15 @@ pub fn css() -> StyleSource<'static> {
                 font-weight:var(--fh);
             }
 
+            /* Icon styling */
+            .ico {
+                width: var(--fs);
+                height: var(--fs);
+                display: inline-block;
+                text-align: center;
+                vertical-align: middle;
+            }
+
             /* Links */
             a {
                 color: var(--ac1);
@@ -81,11 +90,11 @@ pub fn css() -> StyleSource<'static> {
                 text-decoration:none
             }
         "#,
-        bg1 = theme.bg1.to_css(),
-        bg2 = theme.bg2.to_css(),
-        fg1 = theme.fg1.to_css(),
-        fg2 = theme.fg2.to_css(),
-        ac1 = theme.ac1.to_css(),
-        ac2 = theme.ac2.to_css(),
+        bg1 = theme.bg1,
+        bg2 = theme.bg2,
+        fg1 = theme.fg1,
+        fg2 = theme.fg2,
+        ac1 = theme.ac1,
+        ac2 = theme.ac2,
     )
 }

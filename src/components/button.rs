@@ -25,8 +25,8 @@ pub fn button(props: &Props) -> Html {
             padding: 10px;
             cursor:pointer;
         "#,
-        bg = theme.fg1.to_css(),
-        fg = theme.bg1.to_css(),
+        bg = theme.fg1,
+        fg = theme.bg1,
     );
 
     html! {

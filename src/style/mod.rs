@@ -9,14 +9,15 @@ pub use theme_context::ThemeContext;
 mod theme_choice;
 pub use theme_choice::ThemeChoice;
 
+mod icon;
+pub use icon::Icon;
+pub use icon::IconMask;
+
 mod theme;
 pub use theme::Theme;
 pub mod themes;
 
-mod color;
-pub use color::AlphaColor;
-pub use color::Color;
-pub mod colors;
+pub mod color;
 
 use yew::use_context;
 pub fn use_theme() -> ThemeContext {

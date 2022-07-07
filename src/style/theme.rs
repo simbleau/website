@@ -1,6 +1,6 @@
 use gloo_storage::Storage;
 
-use crate::style::Color;
+use crate::style::color::Color;
 use crate::style::ThemeChoice;
 
 #[derive(Debug, Clone)]
