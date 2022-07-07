@@ -3,8 +3,8 @@ use yew::prelude::*;
 
 use crate::style::{use_theme, ThemeChoice};
 
-const ICON_SIZE: &str = "1.4em";
-const ICON_PADDING: &str = ".4em";
+const ICON_SIZE: &str = "1.6em";
+const ICON_PADDING: &str = ".5em";
 
 #[function_component(ThemeSwitcher)]
 pub fn theme_switcher() -> Html {
@@ -12,27 +12,40 @@ pub fn theme_switcher() -> Html {
 
     let style = css!(
         r#"
-            display:block;
-            cursor:pointer;
+            & {
+                display:block;
+                cursor:pointer;
 
-            border: 0;
-            border-radius: 50%;
-            width: calc(${size} + 2 * ${padding});
-            height: calc(${size} + 2 * ${padding});
-            text-align:center;
+                border: 0;
+                border-radius: 50%;
+                width: calc(${size} + 2 * ${padding});
+                height: calc(${size} + 2 * ${padding});
+                text-align:center;
 
-            background-color: ${bg};
-            color: ${fg};
+                -webkit-transition: 0.5s;
+                -moz-transition: 0.5s;
+                -ms-transition: 0.5s;
+                -o-transition: 0.5s;
+                background-color: ${bg};
+                color: var(--fg1);
+            }
 
-            i{
+            &:hover {
+                -webkit-transition: 0.5s;
+                -moz-transition: 0.5s;
+                -ms-transition: 0.5s;
+                -o-transition: 0.5s;
+                background-color: ${bg_hover};
+            }
+
+            & i{
                 font-size: ${size};
-                text-decoration:none;
             }
         "#,
         size = ICON_SIZE,
         padding = ICON_PADDING,
-        bg = theme.bg1.to_css(),
-        fg = theme.fg1.to_css(),
+        bg = theme.fg1.with_alpha(0.10).to_css(),
+        bg_hover = theme.fg1.with_alpha(0.25).to_css(),
     );
 
     let other_theme = match theme.kind() {

@@ -6,7 +6,7 @@ pub struct Color {
 }
 
 impl Color {
-    pub fn with_alpha(&self, alpha: u8) -> AlphaColor {
+    pub fn with_alpha(&self, alpha: f32) -> AlphaColor {
         AlphaColor {
             red: self.red,
             green: self.green,
@@ -25,7 +25,7 @@ pub struct AlphaColor {
     pub red: u8,
     pub green: u8,
     pub blue: u8,
-    pub alpha: u8,
+    pub alpha: f32,
 }
 
 impl AlphaColor {
