@@ -11,7 +11,7 @@ pub enum NavEntry {
 }
 
 pub const SEPARATOR: fn() -> Html = || html! { {" "} };
-pub const NAV_LINKS: [NavEntry; 7] = [
+pub const NAV_LINKS: [NavEntry; 6] = [
     NavEntry::Local(
         || html! {<><i class="i-profile" />{" Home"}</>},
         Route::Home,
@@ -25,12 +25,8 @@ pub const NAV_LINKS: [NavEntry; 7] = [
         Route::Resume,
     ),
     NavEntry::Local(
-        || html! {<><i class="i-bookmark" />{" Research"}</>},
-        Route::Research,
-    ),
-    NavEntry::Local(
-        || html! {<><i class="i-bug" />{" Projects"}</>},
-        Route::Projects,
+        || html! {<><i class="i-bookmark" />{" Contributions"}</>},
+        Route::Contributions,
     ),
     NavEntry::Local(
         || html! {<><i class="i-donate" />{" Sponsor"}</>},

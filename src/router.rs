@@ -2,8 +2,8 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 
 use crate::pages::{
-    contact::ContactPage, cv::CvPage, home::HomePage, not_found::NotFoundPage,
-    projects::ProjectsPage, research::ResearchPage, resume::ResumePage,
+    contact::ContactPage, contributions::ContributionsPage, cv::CvPage,
+    home::HomePage, not_found::NotFoundPage, resume::ResumePage,
     sponsor::SponsorPage,
 };
 
@@ -17,10 +17,8 @@ pub enum Route {
     Resume,
     #[at("/cv")]
     CirriculumVitae,
-    #[at("/research")]
-    Research,
-    #[at("/projects")]
-    Projects,
+    #[at("/contributions")]
+    Contributions,
     #[at("/sponsor")]
     Sponsor,
     #[not_found]
@@ -34,8 +32,7 @@ pub fn switch(route: &Route) -> Html {
         Route::Contact => html! {<ContactPage />},
         Route::Resume => html! {<ResumePage />},
         Route::CirriculumVitae => html! {<CvPage />},
-        Route::Research => html! {<ResearchPage />},
-        Route::Projects => html! {<ProjectsPage />},
+        Route::Contributions => html! {<ContributionsPage />},
         Route::Sponsor => html! {<SponsorPage />},
         Route::NotFound => html! {<NotFoundPage />},
     }
