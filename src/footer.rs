@@ -42,7 +42,7 @@ pub fn footer() -> Html {
                 <i class="b-rust"></i>
                 <br />
                 <small>
-                    <a href="https://github.com/simbleau/blog">
+                    <a href="https://github.com/simbleau/website">
                         <i class="i-edit"></i>
                         {" Edit on GitHub"}
                     </a>
