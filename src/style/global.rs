@@ -61,15 +61,6 @@ pub fn css() -> StyleSource<'static> {
                 font-weight:var(--fh);
             }
 
-            /* Icon styling */
-            .ico {
-                width: var(--fs);
-                height: var(--fs);
-                display: inline-block;
-                text-align: center;
-                vertical-align: middle;
-            }
-
             /* Links */
             a {
                 color: var(--ac1);

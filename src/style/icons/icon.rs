@@ -12,7 +12,17 @@ pub struct Props {
 
 #[function_component(Icon)]
 pub fn icon(props: &Props) -> Html {
-    let class = css!(
+    let icon_style = css! {
+        & {
+            width: var(--fs);
+            height: var(--fs);
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+        }
+    };
+
+    let mask_style = css!(
         r#"
         & {
             -webkit-mask:url("${mask}");
@@ -24,6 +34,6 @@ pub fn icon(props: &Props) -> Html {
     );
 
     html! {
-        <i class={classes!("ico", class)}></i>
+        <i class={classes!(icon_style, mask_style)}></i>
     }
 }
