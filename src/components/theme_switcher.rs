@@ -49,6 +49,10 @@ pub fn theme_switcher() -> Html {
                 transition: background-color 0.5s;
                 background-color: ${bg};
             }
+
+            & * {
+                pointer-events: none;
+            }
         "#,
         size = ICON_SIZE,
         padding = ICON_PADDING,
