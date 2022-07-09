@@ -16,7 +16,7 @@ impl Default for ThemeChoice {
 }
 
 impl ThemeChoice {
-    pub fn current(&self) -> &Theme {
+    pub fn theme(&self) -> &Theme {
         match self {
             ThemeChoice::Dark => &DARK_THEME,
             ThemeChoice::Light => &LIGHT_THEME,

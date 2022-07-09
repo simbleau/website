@@ -1,15 +1,38 @@
+use once_cell::sync::Lazy;
 use stylist::css;
 use yew::prelude::*;
 
+use crate::style::colors::Color;
 use crate::style::icons::{Icon, IconMask};
+use crate::style::Theme;
 use crate::style::{use_theme, ThemeChoice};
 
 const ICON_SIZE: &str = "1.6em";
 const ICON_PADDING: &str = ".5em";
 
+struct SwitcherColors {
+    icon: Color,
+    circle: Color,
+}
+
+static MOUSE_INSIDE: Lazy<fn(&Theme) -> SwitcherColors> = Lazy::new(|| {
+    |theme| SwitcherColors {
+        icon: theme.fg2,
+        circle: theme.fg1.with_alpha(0.25),
+    }
+});
+
+static MOUSE_OUTSIDE: Lazy<fn(&Theme) -> SwitcherColors> = Lazy::new(|| {
+    |theme| SwitcherColors {
+        icon: theme.fg1,
+        circle: theme.fg1.with_alpha(0.10),
+    }
+});
+
 #[function_component(ThemeSwitcher)]
 pub fn theme_switcher() -> Html {
     let theme = use_theme();
+    let switcher_colors = use_state(|| MOUSE_OUTSIDE(&theme));
 
     let style = css!(
         r#"
@@ -25,40 +48,50 @@ pub fn theme_switcher() -> Html {
 
                 transition: background-color 0.5s;
                 background-color: ${bg};
-                color: var(--fg1);
-            }
-
-            &:hover {
-                background-color: ${bg_hover};
-            }
-
-            & i{
-                font-size: ${size};
             }
         "#,
         size = ICON_SIZE,
         padding = ICON_PADDING,
-        bg = theme.fg1.with_alpha(0.10),
-        bg_hover = theme.fg1.with_alpha(0.25),
+        bg = switcher_colors.circle,
     );
 
-    let other_theme = match theme.kind() {
-        ThemeChoice::Light => ThemeChoice::Dark,
-        ThemeChoice::Dark => ThemeChoice::Light,
+    let onmouseenter = {
+        let theme = theme.clone();
+        let hover_colors = switcher_colors.clone();
+        move |_| hover_colors.set(MOUSE_INSIDE(&theme))
     };
-    let other_icon = match theme.kind() {
-        ThemeChoice::Light => {
-            html!( <Icon mask={IconMask::Moon} fill={theme.fg1} /> )
-        }
-        ThemeChoice::Dark => {
-            html!( <Icon mask={IconMask::Brightness} fill={theme.fg1} /> )
-        }
+
+    let onmouseleave = {
+        let theme = theme.clone();
+        let hover_colors = switcher_colors.clone();
+        move |_| hover_colors.set(MOUSE_OUTSIDE(&theme))
     };
-    let switch_theme = Callback::from(move |_| theme.set(other_theme));
+
+    let onclick = Callback::from({
+        let theme = theme.clone();
+        let switcher_colors = switcher_colors.clone();
+        let other = match theme.kind() {
+            ThemeChoice::Light => ThemeChoice::Dark,
+            ThemeChoice::Dark => ThemeChoice::Light,
+        };
+        move |_| {
+            theme.set(other);
+            switcher_colors.set(MOUSE_INSIDE(other.theme()));
+        }
+    });
 
     html! {
-        <button class={style} onclick={ switch_theme }>
-            { other_icon }
+        <button class={style} { onclick } {onmouseenter} {onmouseleave}>
+        {
+            match theme.kind() {
+                ThemeChoice::Light => {
+                    html!( <Icon mask={IconMask::Moon} fill={switcher_colors.icon} /> )
+                }
+                ThemeChoice::Dark => {
+                    html!( <Icon mask={IconMask::Brightness} fill={switcher_colors.icon} /> )
+                }
+            }
+        }
         </button>
     }
 }

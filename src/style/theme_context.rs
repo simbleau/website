@@ -32,7 +32,7 @@ impl Deref for ThemeContext {
     type Target = Theme;
 
     fn deref(&self) -> &Self::Target {
-        &(*self.inner.current())
+        &(*self.inner.theme())
     }
 }
 
