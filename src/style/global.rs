@@ -46,6 +46,7 @@ pub fn css() -> StyleSource<'static> {
                 font-size:var(--fs);
 
                 /* Theme Application */
+                transition: background-color 0.5s, font-size 0.5s; width: 0.5s; height: 0.5s;
                 background-color: var(--bg1);
                 color: var(--fg1);
             }
