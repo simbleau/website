@@ -3,15 +3,19 @@ use yew::prelude::*;
 
 use crate::components::ThemeSwitcher;
 use crate::navigation::Navigation;
+use crate::style::use_theme;
 
 pub const HEADER_PADDING: &str = "5px";
 
 #[styled_component(Header)]
 pub fn header() -> Html {
+    let theme = use_theme();
+
     let header_css = css!(
         r#"
             width: 100%;
-            background-color: var(--bg2);
+            transition: background-color 0.1s;
+            background-color: ${bg};
             padding-top: ${header_padding};
             padding-bottom: ${header_padding};
 
@@ -26,6 +30,7 @@ pub fn header() -> Html {
                 display: inline-block;
             }
         "#,
+        bg = theme.bg2,
         header_padding = HEADER_PADDING,
     );
 
