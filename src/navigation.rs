@@ -1,5 +1,3 @@
-use std::fmt;
-
 use stylist::yew::styled_component;
 use yew::prelude::*;
 use yew_router::prelude::*;
@@ -32,7 +30,7 @@ pub fn navigation() -> Html {
             Route::Resume,
         ),
         NavEntry::Local(
-            html! {<><Icon mask={IconMask::Calendar} fill={theme.ac1} />{" Contributions"}</>},
+            html! {<><Icon mask={IconMask::Calendar} fill={theme.fg1} />{" Contributions"}</>},
             Route::Contributions,
         ),
         NavEntry::Local(
