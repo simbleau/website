@@ -30,6 +30,11 @@ pub fn button(props: &Props) -> Html {
     );
 
     html! {
-        <button class={style} onclick={&props.onclick}>{ (props.inner_text)() }</button>
+        <button
+            class={style}
+            onclick={&props.onclick}
+        >
+        { (props.inner_text)() }
+        </button>
     }
 }
