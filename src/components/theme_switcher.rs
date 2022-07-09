@@ -9,7 +9,6 @@ use crate::style::{use_theme, ThemeChoice};
 
 const ICON_SIZE: &str = "1.6em";
 const ICON_PADDING: &str = ".5em";
-const TRANSITION_SPEED: &str = "0.5s";
 
 struct SwitcherColors {
     icon: Color,
@@ -47,18 +46,17 @@ pub fn theme_switcher() -> Html {
                 height: calc(${size} + 2 * ${padding});
                 text-align:center;
 
-                transition: ${speed};
+                transition: background-color 0.5s;
                 background-color: ${bg};
             }
 
-            & * {
-                transition: ${speed};
+            & i {
+                transition: 0s;
                 pointer-events: none;
             }
         "#,
         size = ICON_SIZE,
         padding = ICON_PADDING,
-        speed = TRANSITION_SPEED,
         bg = switcher_colors.circle,
     );
 

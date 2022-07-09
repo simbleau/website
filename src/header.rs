@@ -14,7 +14,6 @@ pub fn header() -> Html {
     let header_css = css!(
         r#"
             width: 100%;
-            transition: background-color 0.1s;
             background-color: ${bg};
             padding-top: ${header_padding};
             padding-bottom: ${header_padding};

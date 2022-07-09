@@ -1,6 +1,7 @@
 use stylist::{css, StyleSource};
 
 use crate::style::use_theme;
+pub const THEME_TRANSITION_SPEED: &str = "0.5s";
 
 pub fn css() -> StyleSource<'static> {
     let theme = use_theme();
@@ -46,7 +47,10 @@ pub fn css() -> StyleSource<'static> {
                 font-size:var(--fs);
 
                 /* Theme Application */
-                transition: background-color 0.5s, font-size 0.5s; width: 0.5s; height: 0.5s;
+                transition: background-color ${transition_speed},
+                            font-size ${transition_speed};
+                            width: ${transition_speed};
+                            height: ${transition_speed};
                 background-color: var(--bg1);
                 color: var(--fg1);
             }
@@ -88,5 +92,6 @@ pub fn css() -> StyleSource<'static> {
         fg2 = theme.fg2,
         ac1 = theme.ac1,
         ac2 = theme.ac2,
+        transition_speed = THEME_TRANSITION_SPEED,
     )
 }
