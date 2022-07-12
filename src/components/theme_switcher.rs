@@ -1,4 +1,3 @@
-use once_cell::sync::Lazy;
 use stylist::css;
 use yew::prelude::*;
 
@@ -15,19 +14,15 @@ struct SwitcherColors {
     circle: Color,
 }
 
-static MOUSE_INSIDE: Lazy<fn(&Theme) -> SwitcherColors> = Lazy::new(|| {
-    |theme| SwitcherColors {
-        icon: theme.fg2,
-        circle: theme.fg1.with_alpha(0.25),
-    }
-});
+static MOUSE_INSIDE: fn(&Theme) -> SwitcherColors = |theme| SwitcherColors {
+    icon: theme.fg2,
+    circle: theme.fg1.with_alpha(0.25),
+};
 
-static MOUSE_OUTSIDE: Lazy<fn(&Theme) -> SwitcherColors> = Lazy::new(|| {
-    |theme| SwitcherColors {
-        icon: theme.fg1,
-        circle: theme.fg1.with_alpha(0.10),
-    }
-});
+static MOUSE_OUTSIDE: fn(&Theme) -> SwitcherColors = |theme| SwitcherColors {
+    icon: theme.fg1,
+    circle: theme.fg1.with_alpha(0.10),
+};
 
 #[function_component(ThemeSwitcher)]
 pub fn theme_switcher() -> Html {
