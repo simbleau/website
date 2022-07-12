@@ -1,11 +1,18 @@
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
+use crate::style::{
+    icons::{Icon, IconMask},
+    use_theme,
+};
+
 pub const FOOTER_HEIGHT: &str = "150px";
 pub const FOOTER_PADDING: &str = "5px";
 
 #[styled_component(Footer)]
 pub fn footer() -> Html {
+    let theme = use_theme();
+
     let css = css!(
         r#"
             /* Anchor to bottom */
@@ -32,18 +39,18 @@ pub fn footer() -> Html {
             <div id="footer_wrap" align="center">
                 <p>
                     { "2022 " }
-                    <i class="i-copyright"></i>
+                    <Icon mask={IconMask::Copyright} fill={theme.fg1} />
                     { " Spencer C. Imbleau" }
                 </p>
-                { "Built with " }<i class="i-coffee"></i>
+                <Icon mask={IconMask::Coffee} fill={theme.fg1} />
                 {" and a "}
-                <i class="i-keyboard"></i>
+                <Icon mask={IconMask::Keyboard} fill={theme.fg1} />
                 {" using " }
-                <i class="b-rust"></i>
+                <Icon mask={IconMask::Rust} fill={theme.fg1} />
                 <br />
                 <small>
                     <a href="https://github.com/simbleau/website">
-                        <i class="i-edit"></i>
+                        <Icon mask={IconMask::PenToSquare} fill={theme.fg1} />
                         {" Edit on GitHub"}
                     </a>
                 </small>

@@ -2,8 +2,13 @@ use stylist::yew::styled_component;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-use crate::style::icons::{Icon, IconMask};
-use crate::{router::Route, style::use_theme};
+use crate::{
+    router::Route,
+    style::{
+        icons::{Icon, IconMask},
+        use_theme,
+    },
+};
 
 #[derive(Clone)]
 pub enum NavEntry {
@@ -17,30 +22,15 @@ pub fn navigation() -> Html {
 
     let separator = html! { {" "} };
     let nav_links = [
-        NavEntry::Local(
-            html! {<><i class="i-profile" />{" Home"}</>},
-            Route::Home,
-        ),
+        NavEntry::Local(html! {<>{"Home"}</>}, Route::Home),
         NavEntry::External(
-            html! {<><i class="i-pencil" />{" Blog"}</>},
+            html! {<>{"Blog"}<Icon mask={IconMask::ArrowUpRightFromSquare} fill={theme.fg1} /></>},
             "https://spencer.imbleau.com/blog/",
         ),
-        NavEntry::Local(
-            html! {<><i class="i-info" />{" Résumé"}</>},
-            Route::Resume,
-        ),
-        NavEntry::Local(
-            html! {<><Icon mask={IconMask::Calendar} fill={theme.fg1} />{" Contributions"}</>},
-            Route::Contributions,
-        ),
-        NavEntry::Local(
-            html! {<><i class="i-donate" />{" Sponsor"}</>},
-            Route::Sponsor,
-        ),
-        NavEntry::Local(
-            html! {<><i class="i-idcard" />{" Contact"}</>},
-            Route::Contact,
-        ),
+        NavEntry::Local(html! {<>{"Résumé"}</>}, Route::Resume),
+        NavEntry::Local(html! {<>{"Contributions"}</>}, Route::Contributions),
+        NavEntry::Local(html! {<>{"Sponsor"}</>}, Route::Sponsor),
+        NavEntry::Local(html! {<>{"Contact"}</>}, Route::Contact),
     ];
 
     html! {
