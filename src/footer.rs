@@ -3,7 +3,7 @@ use yew::prelude::*;
 
 use crate::style::{
     icons::{Icon, IconMask},
-    use_theme,
+    themes::use_theme,
 };
 
 pub const FOOTER_HEIGHT: &str = "150px";

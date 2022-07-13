@@ -6,7 +6,7 @@ use crate::{
     router::Route,
     style::{
         icons::{Icon, IconMask},
-        use_theme,
+        themes::use_theme,
     },
 };
 

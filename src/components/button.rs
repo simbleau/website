@@ -1,7 +1,7 @@
 use stylist::css;
 use yew::prelude::*;
 
-use crate::style::use_theme;
+use crate::style::themes::use_theme;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {

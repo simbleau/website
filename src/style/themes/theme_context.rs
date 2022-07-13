@@ -2,8 +2,7 @@ use gloo_storage::Storage;
 use std::ops::Deref;
 use yew::prelude::*;
 
-use crate::style::Theme;
-use crate::style::ThemeChoice;
+use super::{Theme, ThemeChoice};
 
 #[derive(Debug, Clone)]
 pub struct ThemeContext {

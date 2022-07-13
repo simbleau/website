@@ -3,8 +3,7 @@ use yew::prelude::*;
 
 use crate::style::colors::Color;
 use crate::style::icons::{Icon, IconMask};
-use crate::style::Theme;
-use crate::style::{use_theme, ThemeChoice};
+use crate::style::themes::{use_theme, Theme, ThemeChoice};
 
 const ICON_SIZE: &str = "1.6em";
 const ICON_PADDING: &str = ".5em";

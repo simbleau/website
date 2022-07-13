@@ -1,7 +1,7 @@
 use gloo_storage::Storage;
 
+use super::ThemeChoice;
 use crate::style::colors::Color;
-use crate::style::ThemeChoice;
 
 #[derive(Debug, Clone)]
 pub struct Theme {

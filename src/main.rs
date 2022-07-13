@@ -7,7 +7,8 @@ use website::footer::{Footer, FOOTER_HEIGHT};
 use website::header::Header;
 use website::pages::construction::ConstructionPage;
 use website::router;
-use website::style::{global, ThemeProvider};
+use website::style::global;
+use website::style::themes::ThemeProvider;
 
 // A smaller allocator to save some size on the WASM bundle
 #[global_allocator]

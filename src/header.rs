@@ -3,7 +3,7 @@ use yew::prelude::*;
 
 use crate::components::ThemeSwitcher;
 use crate::navigation::Navigation;
-use crate::style::use_theme;
+use crate::style::themes::use_theme;
 
 pub const HEADER_PADDING: &str = "5px";
 

@@ -1,7 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::style::themes::{DARK_THEME, LIGHT_THEME};
-use crate::style::Theme;
+use super::{Theme, DARK_THEME, LIGHT_THEME};
 
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub enum ThemeChoice {

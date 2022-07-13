@@ -1,6 +1,6 @@
 use stylist::{css, StyleSource};
 
-use crate::style::use_theme;
+use crate::style::themes::use_theme;
 pub const THEME_TRANSITION_SPEED: &str = "0.5s";
 
 pub fn css() -> StyleSource<'static> {
