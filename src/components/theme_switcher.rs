@@ -5,7 +5,6 @@ use crate::style::colors::Color;
 use crate::style::icons::{Icon, IconMask};
 use crate::style::themes::{use_theme, Theme, ThemeChoice};
 
-const ICON_SIZE: &str = "1.6em";
 const ICON_PADDING: &str = ".5em";
 
 struct SwitcherColors {
@@ -34,22 +33,47 @@ pub fn theme_switcher() -> Html {
                 display:block;
                 cursor:pointer;
 
+                width: calc(${width} + 2 * ${padding});
+                height: calc(${height} + 2 * ${padding});
                 border: 0;
                 border-radius: 50%;
-                width: calc(${size} + 2 * ${padding});
-                height: calc(${size} + 2 * ${padding});
                 text-align:center;
 
                 transition: background-color 0.5s;
                 background-color: ${bg};
             }
+            @media (min-width: 768px) {
+                & {
+                    width: calc(${width_mobile} + 2 * ${padding});
+                    height: calc(${height_mobile} + 2 * ${padding});
+                }
+            }
+            @media (min-width: 992px) {
+                & {
+                    width: calc(${width_tablet} + 2 * ${padding});
+                    height: calc(${height_tablet} + 2 * ${padding});
+                }
+            }
+            @media (min-width: 1200px) {
+                & {
+                    width: calc(${width_desktop} + 2 * ${padding});
+                    height: calc(${height_desktop} + 2 * ${padding});
+                }
+            }
 
             & i {
-                transition: 0s;
+                transition: background 0s;
                 pointer-events: none;
             }
         "#,
-        size = ICON_SIZE,
+        width = theme.fs,
+        height = theme.fs,
+        width_mobile = theme.fsm,
+        height_mobile = theme.fsm,
+        width_tablet = theme.fst,
+        height_tablet = theme.fst,
+        width_desktop = theme.fsd,
+        height_desktop = theme.fsd,
         padding = ICON_PADDING,
         bg = switcher_colors.circle,
     );

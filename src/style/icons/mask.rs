@@ -13,24 +13,22 @@ pub enum IconMask {
 }
 
 impl IconMask {
-    pub const fn viewbox(&self) -> (u16, u16, u16, u16) {
+    pub const fn viewbox(&self) -> (f32, f32, f32, f32) {
         match self {
-            IconMask::Moon => (0, 0, 512, 512),
-            IconMask::Brightness => (2, 2, 16, 16),
-            IconMask::Rust => (0, 0, 512, 512),
-            IconMask::Coffee => (0, 0, 640, 512),
-            IconMask::Keyboard => (0, 0, 576, 512),
-            IconMask::PenToSquare => (0, 0, 512, 512),
-            IconMask::ArrowUpRightFromSquare => (0, 0, 448, 512),
-            IconMask::Copyright => (0, 0, 512, 512),
+            IconMask::Moon => (0., 0., 512., 512.),
+            IconMask::Brightness => (2., 2., 16., 16.),
+            IconMask::Rust => (0., 0., 512., 512.),
+            IconMask::Coffee => (0., 0., 640., 512.),
+            IconMask::Keyboard => (0., 0., 576., 512.),
+            IconMask::PenToSquare => (0., 0., 512., 512.),
+            IconMask::ArrowUpRightFromSquare => (0., 0., 448., 512.),
+            IconMask::Copyright => (0., 0., 512., 512.),
         }
     }
 
-    pub const fn vb_size(&self) -> (u16, u16) {
-        let (x1, y1, x2, y2) = self.viewbox();
-        let w = x2 - x1;
-        let h = y2 - y1;
-        (w, h)
+    pub fn aspect_ratio(icon: IconMask) -> f32 {
+        let (x1, y1, x2, y2) = icon.viewbox();
+        (x2 - x1) / (y2 - y1)
     }
 
     pub const fn data(&self) -> &'static str {
