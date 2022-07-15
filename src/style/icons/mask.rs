@@ -13,7 +13,7 @@ pub enum IconMask {
 }
 
 impl IconMask {
-    fn viewbox(&self) -> (u16, u16, u16, u16) {
+    pub const fn viewbox(&self) -> (u16, u16, u16, u16) {
         match self {
             IconMask::Moon => (0, 0, 512, 512),
             IconMask::Brightness => (2, 2, 16, 16),
@@ -26,7 +26,14 @@ impl IconMask {
         }
     }
 
-    fn data(&self) -> &'static str {
+    pub const fn vb_size(&self) -> (u16, u16) {
+        let (x1, y1, x2, y2) = self.viewbox();
+        let w = x2 - x1;
+        let h = y2 - y1;
+        (w, h)
+    }
+
+    pub const fn data(&self) -> &'static str {
         match self {
             IconMask::Moon => {
                 r#"M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"#
