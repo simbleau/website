@@ -1,4 +1,4 @@
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub struct OpaqueColor {
     pub(crate) red: u8,
     pub(crate) green: u8,

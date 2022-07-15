@@ -1,7 +1,7 @@
 use stylist::{style, yew::styled_component};
 use yew::prelude::*;
 
-#[derive(Properties, PartialEq)]
+#[derive(Properties, PartialEq, Eq)]
 pub struct ConstructionMessage {
     #[prop_or("Under Construction!".to_string())]
     pub title: String,

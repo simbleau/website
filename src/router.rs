@@ -7,7 +7,7 @@ use crate::pages::{
     sponsor::SponsorPage,
 };
 
-#[derive(Routable, Debug, Clone, Copy, PartialEq)]
+#[derive(Routable, Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Route {
     #[at("/")]
     Home,
