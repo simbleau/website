@@ -10,4 +10,10 @@ pub static LIGHT_THEME: Lazy<Theme> = Lazy::new(|| Theme {
     bg2: Color::opaque(0xf1, 0xf1, 0xf1),
     ac1: Color::opaque(0x00, 0x66, 0xee),
     ac2: Color::opaque(0x00, 0x99, 0xff),
+    fs: "1rem",
+    fsm: "1.04rem",
+    fst: "1.08rem",
+    fsd: "1.12rem",
+    fw: "400",
+    fwh: "700",
 });

@@ -7,33 +7,6 @@ pub fn css() -> StyleSource<'static> {
     let theme = use_theme();
     css!(
         r#"
-            :root {
-                --fs: 1rem;
-                --fw: 400;
-                --fh: 700;
-                --bg1: ${bg1};
-                --bg2: ${bg2};
-                --fg1: ${fg1};
-                --fg2: ${fg2};
-                --ac1: ${ac1};
-                --ac2: ${ac2};
-            }
-            @media (min-width: 768px) {
-                :root {
-                    --fs: 1.04rem;
-                }
-            }
-            @media (min-width: 992px) {
-                :root {
-                    --fs: 1.08rem;
-                }
-            }
-            @media (min-width: 1200px) {
-                :root {
-                    --fs: 1.12rem;
-                }
-            }
-
             html, body {
                 /* General styling */
                 padding: 0;
@@ -43,16 +16,32 @@ pub fn css() -> StyleSource<'static> {
                 scroll-behavior: smooth;
 
                 /* Font sizing */
-                font-weight:var(--fw);
-                font-size:var(--fs);
+                font-weight: ${fw};
+                font-size: ${fs};
 
                 /* Theme Application */
                 transition: background-color ${transition_speed},
                             font-size ${transition_speed};
                             width: ${transition_speed};
                             height: ${transition_speed};
-                background-color: var(--bg1);
-                color: var(--fg1);
+                background-color: ${bg1};
+                color: ${fg1};
+            }
+
+            @media (min-width: 768px) {
+                html, body {
+                    font-size: ${fsm};
+                }
+            }
+            @media (min-width: 992px) {
+                html, body {
+                    font-size: ${fst};
+                }
+            }
+            @media (min-width: 1200px) {
+                html, body {
+                    font-size: ${fsd};
+                }
             }
 
             /* Headers */
@@ -62,21 +51,20 @@ pub fn css() -> StyleSource<'static> {
             h4,
             h5,
             h6 {
-                color: var(--fg2);
-                font-weight:var(--fh);
+                color: ${fg2};
+                font-weight: ${fwh};
             }
 
             /* Links */
             a {
-                color: var(--ac1);
+                color: ${ac1};
                 text-decoration:none;
             }
             a:hover {
-                color: var(--ac2);
+                color: ${ac2};
                 text-decoration:underline;
             }
 
-            /* Specific styling (Because I feel like it!) */
             h1 a,
             h2 a,
             main nav a,
@@ -87,11 +75,16 @@ pub fn css() -> StyleSource<'static> {
             }
         "#,
         bg1 = theme.bg1,
-        bg2 = theme.bg2,
         fg1 = theme.fg1,
         fg2 = theme.fg2,
         ac1 = theme.ac1,
         ac2 = theme.ac2,
+        fs = theme.fs,
+        fsm = theme.fsm,
+        fst = theme.fst,
+        fsd = theme.fsd,
+        fw = theme.fw,
+        fwh = theme.fwh,
         transition_speed = THEME_TRANSITION_SPEED,
     )
 }
