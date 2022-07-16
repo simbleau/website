@@ -42,6 +42,7 @@ pub fn footer() -> Html {
                     <Icon mask={IconMask::Copyright} fill={theme.fg1} />
                     { " Spencer C. Imbleau" }
                 </p>
+                {"Made with "}
                 <Icon mask={IconMask::Coffee} fill={theme.fg1} />
                 {" and a "}
                 <Icon mask={IconMask::Keyboard} fill={theme.fg1} />
