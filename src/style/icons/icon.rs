@@ -9,7 +9,10 @@ use crate::style::themes::use_theme;
 pub struct Props {
     pub mask: IconMask,
     pub fill: Color,
+    #[prop_or_default]
     pub fs: Option<&'static str>,
+    #[prop_or_default]
+    pub class: Classes,
 }
 
 #[function_component(Icon)]
@@ -63,6 +66,7 @@ pub fn icon(props: &Props) -> Html {
         & {
             -webkit-mask:url("${mask}");
             background: ${fill};
+            transition: background 0.5s;
         }
         "#,
         mask = props.mask,
@@ -70,6 +74,6 @@ pub fn icon(props: &Props) -> Html {
     );
 
     html! {
-        <i class={classes!(icon_style, mask_style)}></i>
+        <i class={classes!(icon_style, mask_style, props.class.clone())}></i>
     }
 }
