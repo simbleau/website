@@ -28,7 +28,7 @@ pub fn construction_page(props: &ConstructionMessage) -> Html {
 
     html! {
         <div class={ container_style }>
-            <img src = "static/construction_image.svg"
+            <img src = "/static/construction_image.svg"
                 alt="Under Construction Image"
                 width=144px
                 height=144px
