@@ -24,7 +24,7 @@ pub fn navigation() -> Html {
     let nav_links = [
         NavEntry::Local(html! {<>{"Home"}</>}, Route::Home),
         NavEntry::External(
-            html! {<>{"Blog"}<Icon mask={IconMask::ArrowUpRightFromSquare} fill={theme.fg1} /></>},
+            html! {<>{"Blog"}<Icon mask={IconMask::ArrowUpRightFromSquare} fill={theme.ac1} /></>},
             "https://spencer.imbleau.com/blog/",
         ),
         NavEntry::Local(html! {<>{"Résumé"}</>}, Route::Resume),
