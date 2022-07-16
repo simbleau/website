@@ -8,18 +8,18 @@ use crate::style::themes::{use_theme, Theme, ThemeChoice};
 const ICON_PADDING: &str = ".5em";
 
 struct SwitcherColors {
-    icon: Color,
-    circle: Color,
+    icon_color: Color,
+    background_color: Color,
 }
 
 static MOUSE_INSIDE: fn(&Theme) -> SwitcherColors = |theme| SwitcherColors {
-    icon: theme.fg2,
-    circle: theme.fg1.with_alpha(0.25),
+    icon_color: theme.fg2,
+    background_color: theme.fg1.with_alpha(0.25),
 };
 
 static MOUSE_OUTSIDE: fn(&Theme) -> SwitcherColors = |theme| SwitcherColors {
-    icon: theme.fg1,
-    circle: theme.fg1.with_alpha(0.10),
+    icon_color: theme.fg1,
+    background_color: theme.fg1.with_alpha(0.10),
 };
 
 #[function_component(ThemeSwitcher)]
@@ -75,7 +75,7 @@ pub fn theme_switcher() -> Html {
         width_desktop = theme.fsd,
         height_desktop = theme.fsd,
         padding = ICON_PADDING,
-        bg = switcher_colors.circle,
+        bg = switcher_colors.background_color,
     );
 
     let onmouseenter = {
@@ -108,10 +108,10 @@ pub fn theme_switcher() -> Html {
         {
             match theme.kind() {
                 ThemeChoice::Light => {
-                    html!( <Icon mask={IconMask::Moon} fill={switcher_colors.icon} /> )
+                    html!( <Icon mask={IconMask::Moon} fill={switcher_colors.icon_color} /> )
                 }
                 ThemeChoice::Dark => {
-                    html!( <Icon mask={IconMask::Brightness} fill={switcher_colors.icon} /> )
+                    html!( <Icon mask={IconMask::Brightness} fill={switcher_colors.icon_color} /> )
                 }
             }
         }
