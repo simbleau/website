@@ -50,7 +50,7 @@ pub fn footer() -> Html {
                 <br />
                 <small>
                     <a href="https://github.com/simbleau/website">
-                        <Icon mask={IconMask::PenToSquare} fill={theme.fg1} />
+                        <Icon mask={IconMask::PenToSquare} fill={theme.ac1} />
                         {" Edit on GitHub"}
                     </a>
                 </small>
