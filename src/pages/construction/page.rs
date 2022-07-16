@@ -1,4 +1,4 @@
-use stylist::{style, yew::styled_component};
+use stylist::yew::styled_component;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq, Eq)]
@@ -13,7 +13,7 @@ pub struct ConstructionMessage {
 
 #[styled_component(ConstructionPage)]
 pub fn construction_page(props: &ConstructionMessage) -> Html {
-    let container_style = style!(
+    let container_style = css!(
         r#"
             padding: 10px;
             margin: 0;
@@ -24,8 +24,7 @@ pub fn construction_page(props: &ConstructionMessage) -> Html {
             flex-direction: column;
             min-height: 100%;
         "#
-    )
-    .unwrap();
+    );
 
     html! {
         <div class={ container_style }>
