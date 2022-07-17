@@ -8,7 +8,10 @@ use crate::style::themes::use_theme;
 #[derive(Properties, PartialEq)]
 pub struct Props {
     pub mask: IconMask,
-    pub fill: Color,
+    #[prop_or_default]
+    pub fill: Option<Color>,
+    #[prop_or_default]
+    pub hover_fill: Option<Color>,
     #[prop_or_default]
     pub fs: Option<&'static str>,
     #[prop_or_default]
@@ -66,14 +69,25 @@ pub fn icon(props: &Props) -> Html {
         & {
             -webkit-mask:url("${mask}");
             background: ${fill};
-            transition: background 0.5s;
+            transition: background 0s;
         }
         "#,
         mask = props.mask,
-        fill = props.fill,
+        fill = props.fill.unwrap_or(theme.fg1),
     );
 
+    let mask_hover_style = props.hover_fill.map(|fill| {
+        css!(
+            r#"
+            &:hover {
+                background: ${hover_fill};
+            }
+            "#,
+            hover_fill = fill,
+        )
+    });
+
     html! {
-        <i class={classes!(icon_style, mask_style, props.class.clone())}></i>
+        <i class={classes!(icon_style, mask_style, mask_hover_style, props.class.clone())}></i>
     }
 }
