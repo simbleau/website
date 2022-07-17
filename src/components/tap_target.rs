@@ -13,9 +13,7 @@ use crate::style::themes::{use_theme, ThemeChoice};
 pub struct Props {
     pub mask: IconMask,
     #[prop_or_default]
-    pub mask_color: Option<Color>,
-    #[prop_or_default]
-    pub background_color: Option<Color>,
+    pub color: Option<Color>,
     #[prop_or_default]
     pub onclick: Callback<MouseEvent>,
 }
@@ -27,7 +25,7 @@ pub fn view(props: &Props) -> Html {
     let bg = theme.fg1.with_alpha(0.10);
     let hover_bg = theme.fg1.with_alpha(0.25);
 
-    let fg = match props.mask_color {
+    let fg = match props.color {
         Some(c) => c,
         None => theme.fg1,
     };
