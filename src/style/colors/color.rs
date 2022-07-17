@@ -54,6 +54,35 @@ impl Color {
         }
     }
 
+    /// Lighten the color by a percentage. 1.0 will always result in white, 0.0
+    /// will result in no color change.
+    pub fn lighten(&self, a: f32) -> Color {
+        Color::Transparent(TransparentColor {
+            red: {
+                let r = self.r() as f32;
+                let adjustment = r * a;
+                (r + adjustment).clamp(0., 255.) as u8
+            },
+            green: {
+                let g = self.g() as f32;
+                let adjustment = g * a;
+                (g + adjustment).clamp(0., 255.) as u8
+            },
+            blue: {
+                let b = self.b() as f32;
+                let adjustment = b * a;
+                (b + adjustment).clamp(0., 255.) as u8
+            },
+            alpha: self.a(),
+        })
+    }
+
+    /// Darken the color by a percentage. 1.0 will always result in black, 0.0
+    /// will result in no color change.
+    pub fn darken(&self, a: f32) -> Color {
+        self.lighten(-a)
+    }
+
     pub fn with_alpha(&self, a: f32) -> Color {
         Color::Transparent(TransparentColor {
             red: self.r(),
