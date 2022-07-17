@@ -25,7 +25,7 @@ pub fn navigation() -> Html {
     let nav_links = [
         NavEntry::Local(html! {<>{"Home"}</>}, Route::Home),
         NavEntry::External(
-            html! {<>{"Blog "}<Icon mask={IconMask::Share} fill={theme.ac1} /></>},
+            html! {<>{ "Blog" }</>},
             "https://spencer.imbleau.com/blog/",
         ),
         NavEntry::Local(html! {<>{"Résumé"}</>}, Route::Resume),
@@ -51,6 +51,14 @@ pub fn navigation() -> Html {
                             <li>
                                 <a href={ *url }>
                                     { display.clone() }
+                                </a>
+                                <a href={ *url } target="blank" class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2) }>
+                                    <Icon
+                                        mask={ IconMask::Share }
+                                        fill={ theme.ac1 }
+                                        fs={ "12px" }
+                                        class={ css!("vertical-align: top !important;") }
+                                    />
                                 </a>
                             </li>
                         },
