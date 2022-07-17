@@ -50,9 +50,22 @@ pub fn footer() -> Html {
                 <Icon mask={IconMask::Rust} fill={theme.fg1} />
                 <br />
                 <small>
-                    <a href="https://github.com/simbleau/website">
+                    <a  href="https://github.com/simbleau/website"
+                        class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2) }
+                    >
                         <Icon mask={IconMask::PenToSquare} fill={theme.ac1} />
                         {" Edit on GitHub"}
+                    </a>
+                    <a  href="https://github.com/simbleau/website"
+                        target="blank"
+                        class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2) }
+                    >
+                        <Icon
+                            mask={ IconMask::Share }
+                            fill={ theme.ac1 }
+                            fs={ "12px" }
+                            class={ css!("vertical-align: top !important;") }
+                        />
                     </a>
                 </small>
             </div>
