@@ -27,8 +27,6 @@ jobs:
       - name: Pull Cargo dependencies
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
-          rustup update $TOOLCHAIN
-          rustup default $TOOLCHAIN
           cargo install trunk
 
       # Build cache
