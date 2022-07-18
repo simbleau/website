@@ -35,6 +35,17 @@ pub fn view(props: &Props) -> Html {
         ThemeChoice::Light => fg.darken(0.3),
     };
 
+    let height = "24px";
+    let width =
+        format!("calc({} * {})", height, IconMask::aspect_ratio(props.mask));
+
+    let hover_height = "28px";
+    let hover_width = format!(
+        "calc({} * {})",
+        hover_height,
+        IconMask::aspect_ratio(props.mask)
+    );
+
     let style = css!(
         r#"
         & {
@@ -56,17 +67,26 @@ pub fn view(props: &Props) -> Html {
         }
 
         & > i {
+            transition: width 0.5s, height 0.5s;
             background: ${fg};
+            width: ${width};
+            height: ${height};
         }
 
         &:hover > i {
             background: ${hover_fg};
+            width: ${hover_width};
+            height: ${hover_height};
         }
         "#,
         bg = bg,
         hover_bg = hover_bg,
         fg = fg,
         hover_fg = hover_fg,
+        width = width,
+        height = height,
+        hover_width = hover_width,
+        hover_height = hover_height
     );
 
     let icon_style = css!(
