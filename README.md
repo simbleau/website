@@ -18,20 +18,6 @@
 - Builds are released using [GitHub Actions](https://github.com/simbleau/website/actions/workflows/build.yml) to [DockerHub](https://hub.docker.com/r/simbleau/website).
 - [FluxCD](https://fluxcd.io/) monitors DockerHub's [`simbleau/website:latest`](https://hub.docker.com/r/simbleau/website/tags?name=latest) and automatically upgrades on [my home infrastructure](https://github.com/simbleau/home-ops).
 
-# 🌐 Local Deployment
-## Option 1: [Docker](https://docker.com) (Recommended)
-[![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/simbleau/website/latest?label=version%20%28latest%29)](https://hub.docker.com/r/simbleau/website/tags)
-[![Docker AMD64 Image](https://badgen.net/docker/size/simbleau/website/latest/amd64?icon=docker&label=amd64)](https://hub.docker.com/r/simbleau/website/tags)
-[![Docker ARM64 Image](https://badgen.net/docker/size/simbleau/website/latest/arm64?icon=docker&label=arm64v8)](https://hub.docker.com/r/simbleau/website/tags)\
-Quick setup: `docker run -p 80:80 simbleau/website:latest`
-## Option 2: Building
-### Dependencies
--  [Rust](https://www.rust-lang.org/)
--  [trunk](https://trunkrs.dev/) (`cargo install trunk`)
--  [wasm32-unkown-unknown](https://yew.rs/docs/getting-started/introduction#install-webassembly-target) (`rustup target add wasm32-unknown-unknown`)
-### Serving
--  `trunk build --release` (generates the `dist/` folder)
--  Serve the `dist/` folder with a web server such as [nginx](https://www.nginx.com/).
 
 # 🔧 Development
 ## Dependencies
@@ -39,8 +25,23 @@ Quick setup: `docker run -p 80:80 simbleau/website:latest`
 - [trunk](https://trunkrs.dev/) (`cargo install trunk`)
 - [wasm32-unkown-unknown](https://yew.rs/docs/getting-started/introduction#install-webassembly-target) (`rustup target add wasm32-unknown-unknown`)
 ## Serving
-- Serve: `trunk serve --port 8080` (✅ Hot-reloading)
-- Preview: [`http://localhost:8080/`](http://localhost:8080/).
+- Serve: `trunk serve --port 8080`
+- Preview: [`http://localhost:8080/`](http://localhost:8080/) (✅ Hot-reloading)
+
+# 🌐 Serving
+## Option 1: [Docker](https://docker.com) (Recommended)
+[![Docker AMD64 Image](https://badgen.net/docker/size/simbleau/website/latest/amd64?icon=docker&label=amd64)](https://hub.docker.com/r/simbleau/website/tags)
+[![Docker ARM64 Image](https://badgen.net/docker/size/simbleau/website/latest/arm64?icon=docker&label=arm64v8)](https://hub.docker.com/r/simbleau/website/tags)\
+[![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/simbleau/website/latest?label=version%20%28latest%29)](https://hub.docker.com/r/simbleau/website/tags)\
+Quick setup: `docker run -p 80:80 simbleau/website:latest`
+## Option 2: Trunk + nginx
+### Dependencies
+-  [Rust](https://www.rust-lang.org/)
+-  [trunk](https://trunkrs.dev/) (`cargo install trunk`)
+-  [wasm32-unkown-unknown](https://yew.rs/docs/getting-started/introduction#install-webassembly-target) (`rustup target add wasm32-unknown-unknown`)
+### Serving
+-  `trunk build --release` generates the `dist/` folder
+-  Serve the `dist/` folder with a web server such as [nginx](https://www.nginx.com/).
 
 ## 🔏 License
 This project is dual-licensed under both [Apache 2.0](LICENSE-APACHE) and [MIT](LICENSE-MIT) licenses.
