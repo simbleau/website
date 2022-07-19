@@ -34,11 +34,11 @@ pub fn view(props: &Props) -> Html {
     };
 
     // Sizing - Background
-    let bgh = format!("max({}, calc({} * 2))", MIN_BG_SIZE, theme.fs);
+    let bgh = format!("max({}, calc({} * 1.5))", MIN_BG_SIZE, theme.fs);
     let bgw = bgh.clone();
 
     // Sizing - Foreground
-    let fgh = format!("max({}, calc({} * 1))", MIN_FG_SIZE, theme.fs);
+    let fgh = format!("max({}, {})", MIN_FG_SIZE, theme.fs);
     let fgw = format!("calc({} * {})", fgh, IconMask::aspect_ratio(props.mask));
     let fgh_hover = format!("calc({} * 1.3)", fgh);
     let fgw_hover = format!("calc({} * 1.3)", fgw);
