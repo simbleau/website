@@ -184,19 +184,11 @@ pub fn view(props: &Props) -> Html {
         fghd_hover = fghd_hover,
     );
 
-    let icon_style = css!(
-        r#"
-        & {
-            pointer-events: none;
-        }
-        "#,
-    );
-
     html! {
         <button class={style} onclick={ props.onclick.clone() } >
         <Icon
             mask={ props.mask }
-            class={ icon_style }
+            class={ css!("pointer-events: none;") }
         />
         </button>
     }
