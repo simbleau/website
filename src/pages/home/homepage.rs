@@ -30,7 +30,10 @@ pub fn view() -> Html {
     };
     let image_style = css!(
         r#"
+        height: auto;
+        width: auto;
         max-width: 80%;
+        max-height: 300px;
         border-radius: 50%;
         box-shadow: 0 0 10px ${shadow};
         "#,
@@ -39,7 +42,7 @@ pub fn view() -> Html {
 
     html! {
         <div align="center" class={container_style}>
-            <img    width="300" height="300"
+            <img    width="800" height="800"
                     src="/static/images/me.webp"
                     alt="Spencer C. Imbleau"
                     class={ image_style }
