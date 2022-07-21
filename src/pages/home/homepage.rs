@@ -15,11 +15,9 @@ pub fn view() -> Html {
             animation: size-anim 0.5s ease;
             @keyframes size-anim {
                 from {
-                    transform: scaleX(0);
                     opacity: 0;
                 }
                 to {
-                    transform: scaleX(1);
                     opacity: 1;
                 }
             }
@@ -43,7 +41,7 @@ pub fn view() -> Html {
 
     html! {
         <div align="center" class={container_style}>
-            <img    src="/static/images/Me.jpeg"
+            <img    src="/static/images/me.webp"
                     alt="Spencer C. Imbleau"
                     class={ image_style }
             />
