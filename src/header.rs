@@ -3,14 +3,11 @@ use yew::prelude::*;
 
 use crate::components::ThemeSwitcher;
 use crate::navigation::Navigation;
-use crate::style::themes::use_theme;
 
 pub const HEADER_PADDING: &str = "5px";
 
 #[styled_component(Header)]
 pub fn header() -> Html {
-    let theme = use_theme();
-
     let header_css = css!(
         r#"
             width: 100%;

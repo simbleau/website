@@ -57,7 +57,8 @@ pub fn footer() -> Html {
                         {" Edit on GitHub"}
                     </a>
                     <a  href="https://github.com/simbleau/website"
-                        target="blank"
+                        aria-label="Open in new tab"
+                        target="_blank"
                         class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2) }
                     >
                         <Icon

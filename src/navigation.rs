@@ -51,7 +51,11 @@ pub fn navigation() -> Html {
                                 <a href={ *url }>
                                     { display.clone() }
                                 </a>
-                                <a href={ *url } target="blank" class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2) }>
+                                <a  href={ *url }
+                                    target="_blank"
+                                    class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2)}
+                                    aria-label="Open in new tab"
+                                >
                                     <Icon
                                         mask={ IconMask::Share }
                                         fill={ theme.ac1 }
