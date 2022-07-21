@@ -48,7 +48,7 @@ pub fn view() -> Html {
                     class={ image_style }
             />
             <br />
-            <div class={ css!("display: inline-flex; & > * {margin: 0 5px;}") }>
+            <div class={ css!("display: inline-flex; & > * {margin: 10px 5px;}") }>
                 <a href="https://www.linkedin.com/in/simbleau/">
                     <TapTarget mask={IconMask::LinkedIn} />
                 </a>
