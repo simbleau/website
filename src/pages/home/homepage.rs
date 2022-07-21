@@ -11,12 +11,7 @@ pub fn view() -> Html {
 
     let container_style = css!(
         r#"
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100%;
-
+            margin: 10px 0 0 0;
             animation: size-anim 0.5s ease;
             @keyframes size-anim {
                 from {
@@ -28,15 +23,11 @@ pub fn view() -> Html {
                     opacity: 1;
                 }
             }
-
-            & > * {
-                margin: 10px 10px 0px 10px;
-            }
         "#
     );
 
     let shadow = match theme.kind() {
-        crate::style::themes::ThemeChoice::Dark => "#000",
+        crate::style::themes::ThemeChoice::Dark => "rgba(0,0,0,0.5)",
         crate::style::themes::ThemeChoice::Light => "rgba(0,0,0,0.25)",
     };
     let image_style = css!(
@@ -51,11 +42,20 @@ pub fn view() -> Html {
     );
 
     html! {
-        <div class={ container_style }>
+        <div align="center" class={container_style}>
             <img    src="/static/images/Me.jpeg"
                     alt="Spencer C. Imbleau"
                     class={ image_style }
             />
+            <br />
+            <div class={ css!("display: inline-flex; & > * {margin: 0 5px;}") }>
+                <a href="https://www.linkedin.com/in/simbleau/">
+                    <TapTarget mask={IconMask::LinkedIn} />
+                </a>
+                <a href="https://www.twitter.com/spencerimbleau/">
+                    <TapTarget mask={IconMask::Twitter} />
+                </a>
+            </div>
         </div>
     }
 }
