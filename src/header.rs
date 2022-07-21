@@ -14,7 +14,6 @@ pub fn header() -> Html {
     let header_css = css!(
         r#"
             width: 100%;
-            background-color: ${bg};
             padding-top: ${header_padding};
             padding-bottom: ${header_padding};
 
@@ -29,7 +28,6 @@ pub fn header() -> Html {
                 display: inline-block;
             }
         "#,
-        bg = theme.bg2,
         header_padding = HEADER_PADDING,
     );
 
