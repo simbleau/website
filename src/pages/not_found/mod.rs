@@ -3,5 +3,5 @@ use yew::prelude::*;
 
 #[function_component(NotFoundPage)]
 pub fn not_found_page() -> Html {
-    html! { <ConstructionPage title="404" message="You shall not pass!" /> }
+    html! { <ConstructionPage title="Yikes" message="How did you get here?" /> }
 }
