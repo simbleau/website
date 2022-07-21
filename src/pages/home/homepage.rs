@@ -30,8 +30,6 @@ pub fn view() -> Html {
     };
     let image_style = css!(
         r#"
-        width: 300px;
-        height: auto;
         max-width: 80%;
         border-radius: 50%;
         box-shadow: 0 0 10px ${shadow};
@@ -41,20 +39,21 @@ pub fn view() -> Html {
 
     html! {
         <div align="center" class={container_style}>
-            <img    src="/static/images/me.webp"
+            <img    width="300" height="300"
+                    src="/static/images/me.webp"
                     alt="Spencer C. Imbleau"
                     class={ image_style }
             />
             <br />
             <div class={ css!("display: inline-flex; & > * {margin: 10px 5px;}") }>
                 <a href="https://www.linkedin.com/in/simbleau/">
-                    <TapTarget mask={IconMask::LinkedIn} />
+                    <TapTarget accessibility={"LinkedIn"} mask={IconMask::LinkedIn} />
                 </a>
                 <a href="https://www.twitter.com/spencerimbleau/">
-                    <TapTarget mask={IconMask::Twitter} />
+                    <TapTarget accessibility={"Twitter"} mask={IconMask::Twitter} />
                 </a>
                 <a href="https://www.github.com/simbleau/">
-                    <TapTarget mask={IconMask::GitHub} />
+                    <TapTarget accessibility={"GitHub"} mask={IconMask::GitHub} />
                 </a>
             </div>
         </div>

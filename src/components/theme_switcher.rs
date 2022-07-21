@@ -21,6 +21,7 @@ pub fn theme_switcher() -> Html {
 
     html! {
         <TapTarget
+            accessibility={ "Switch Theme" }
             mask={match theme.kind() {
                 ThemeChoice::Light => IconMask::Moon,
                 ThemeChoice::Dark => IconMask::Brightness

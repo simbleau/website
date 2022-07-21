@@ -11,6 +11,7 @@ const MIN_FG_SIZE: &str = "16px";
 #[derive(Properties, PartialEq)]
 pub struct Props {
     pub mask: IconMask,
+    pub accessibility: String,
     #[prop_or_default]
     pub color: Option<Color>,
     #[prop_or_default]
@@ -185,7 +186,10 @@ pub fn view(props: &Props) -> Html {
     );
 
     html! {
-        <button class={style} onclick={ props.onclick.clone() } >
+        <button class={style}
+                onclick={ props.onclick.clone() }
+                aria-label={ props.accessibility.clone() }
+        >
         <Icon
             mask={ props.mask }
             class={ css!("pointer-events: none;") }
