@@ -26,7 +26,7 @@ pub fn navigation() -> Html {
         NavEntry::Local(html! {<>{"Home"}</>}, Route::Home),
         NavEntry::External(
             html! {<>{ "Blog" }</>},
-            "https://spencer.imbleau.com/blog/",
+            "https://simbleau.github.io/blog/",
         ),
         NavEntry::Local(html! {<>{"Résumé"}</>}, Route::Resume),
         NavEntry::Local(html! {<>{"Contributions"}</>}, Route::Contributions),
