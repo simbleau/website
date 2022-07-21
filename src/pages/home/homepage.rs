@@ -1,0 +1,61 @@
+use stylist::css;
+use yew::prelude::*;
+
+use crate::components::TapTarget;
+use crate::style::icons::IconMask;
+use crate::style::themes::use_theme;
+
+#[function_component(HomePage)]
+pub fn view() -> Html {
+    let theme = use_theme();
+
+    let container_style = css!(
+        r#"
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100%;
+
+            animation: size-anim 0.5s ease;
+            @keyframes size-anim {
+                from {
+                    transform: scaleX(0);
+                    opacity: 0;
+                }
+                to {
+                    transform: scaleX(1);
+                    opacity: 1;
+                }
+            }
+
+            & > * {
+                margin: 10px 10px 0px 10px;
+            }
+        "#
+    );
+
+    let shadow = match theme.kind() {
+        crate::style::themes::ThemeChoice::Dark => "#000",
+        crate::style::themes::ThemeChoice::Light => "rgba(0,0,0,0.25)",
+    };
+    let image_style = css!(
+        r#"
+        width: 300px;
+        height: auto;
+        max-width: 80%;
+        border-radius: 50%;
+        box-shadow: 0 0 10px ${shadow};
+        "#,
+        shadow = shadow
+    );
+
+    html! {
+        <div class={ container_style }>
+            <img    src="/static/images/Me.jpeg"
+                    alt="Spencer C. Imbleau"
+                    class={ image_style }
+            />
+        </div>
+    }
+}
