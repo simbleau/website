@@ -55,6 +55,9 @@ pub fn view() -> Html {
                 <a href="https://www.twitter.com/spencerimbleau/">
                     <TapTarget mask={IconMask::Twitter} />
                 </a>
+                <a href="https://www.github.com/simbleau/">
+                    <TapTarget mask={IconMask::GitHub} />
+                </a>
             </div>
         </div>
     }
