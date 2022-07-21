@@ -3,7 +3,6 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 
 use crate::{
-    components::Divider,
     router::Route,
     style::{
         icons::{Icon, IconMask},
@@ -21,7 +20,7 @@ pub enum NavEntry {
 pub fn navigation() -> Html {
     let theme = use_theme();
 
-    let separator = html! { <Divider /> };
+    let separator = html! { {" "}};
     let nav_links = [
         NavEntry::Local(html! {<>{"Home"}</>}, Route::Home),
         NavEntry::External(
