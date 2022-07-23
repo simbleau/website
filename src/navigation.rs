@@ -3,6 +3,7 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 
 use crate::{
+    components::ColorLink,
     router::Route,
     style::{
         icons::{Icon, IconMask},
@@ -41,28 +42,32 @@ pub fn navigation() -> Html {
                     match n {
                         NavEntry::Local(display, route) => html!{
                             <li>
-                                <Link<Route> to={ *route }>
-                                    { display.clone() }
-                                </Link<Route>>
+                                <ColorLink>
+                                    <Link<Route> to={ *route }>
+                                            { display.clone() }
+                                    </Link<Route>>
+                                </ColorLink>
                             </li>
                         },
                         NavEntry::External(display, url) => html!{
                             <li>
-                                <a href={ *url }>
-                                    { display.clone() }
-                                </a>
-                                <a  href={ *url }
-                                    target="_blank"
-                                    class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2)}
-                                    aria-label="Open in new tab"
-                                >
-                                    <Icon
-                                        mask={ IconMask::Share }
-                                        fill={ theme.ac1 }
-                                        fs={ "12px" }
-                                        class={ css!("vertical-align: top !important;") }
-                                    />
-                                </a>
+                                <ColorLink>
+                                    <a href={ *url }>
+                                        { display.clone() }
+                                    </a>
+                                    <a  href={ *url }
+                                        target="_blank"
+                                        class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2)}
+                                        aria-label="Open in new tab"
+                                    >
+                                        <Icon
+                                            mask={ IconMask::Share }
+                                            fill={ theme.ac1 }
+                                            fs={ "12px" }
+                                            class={ css!("vertical-align: top !important;") }
+                                        />
+                                    </a>
+                                </ColorLink>
                             </li>
                         },
                     }
