@@ -1,6 +1,7 @@
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
+use crate::components::{Hyperlink, Url};
 use crate::style::{
     icons::{Icon, IconMask},
     themes::use_theme,
@@ -50,24 +51,10 @@ pub fn footer() -> Html {
                 <Icon mask={IconMask::Rust} fill={theme.fg1} />
                 <br />
                 <small>
-                    <a  href="https://github.com/simbleau/website"
-                        class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2) }
-                    >
-                        <Icon mask={IconMask::PenToSquare} fill={theme.ac1} />
-                        {" Edit on GitHub"}
-                    </a>
-                    <a  href="https://github.com/simbleau/website"
-                        aria-label="Open in new tab"
-                        target="_blank"
-                        class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2) }
-                    >
-                        <Icon
-                            mask={ IconMask::Share }
-                            fill={ theme.ac1 }
-                            fs={ "12px" }
-                            class={ css!("vertical-align: top !important;") }
-                        />
-                    </a>
+                    <Hyperlink  icon={IconMask::PenToSquare}
+                                domain={Url::External("https://github.com/simbleau/website")}
+                                display={html!("Edit on GitHub")}
+                    />
                 </small>
             </div>
         </footer>

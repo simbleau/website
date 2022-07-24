@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use stylist::{style, yew::styled_component};
 use yew::prelude::*;
 use yew_router::prelude::*;
@@ -6,15 +8,12 @@ use crate::style::icons::Icon;
 use crate::style::icons::IconMask;
 use crate::{router::Route, style::themes::use_theme};
 
-#[derive(Debug, PartialEq, Clone)]
-pub enum NavItem {
-    Local(Html, Route),
-    External(Html, &'static str),
-}
+use super::hyperlink::Url;
 
-#[derive(Debug, PartialEq, Properties)]
+#[derive(Properties, PartialEq)]
 pub struct Props {
-    pub nav: NavItem,
+    pub domain: Url,
+    pub display: Html,
 }
 
 #[styled_component(NavLink)]
@@ -51,20 +50,20 @@ pub fn view(props: &Props) -> Html {
         ac2 = theme.ac2,
     };
 
-    match &props.nav {
-        NavItem::Local(display, route) => html! {
+    match &props.domain {
+        Url::Local(route) => html! {
             <Link<Route> to={ *route }>
                 <div class={style}>
-                    <div>{ display.clone() }</div>
+                    <div>{ props.display.clone() }</div>
                     <div id="underline" />
                 </div>
             </Link<Route>>
         },
-        NavItem::External(display, url) => html! {
+        Url::External(url) => html! {
             <a href={ *url }>
                 <div class={style}>
                     <div>
-                        { display.clone() }
+                        { props.display.clone() }
                         <Icon
                             mask={ IconMask::Share }
                             class={ css!("vertical-align: top !important;") }

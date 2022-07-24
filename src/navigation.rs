@@ -1,34 +1,38 @@
+use std::fmt::Display;
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
 use crate::{
-    components::{NavItem, NavLink},
+    components::{NavLink, Url},
     router::Route,
 };
 
 #[styled_component(Navigation)]
 pub fn navigation() -> Html {
     let separator = html! { {" "}};
-    let nav_links = [
-        NavItem::Local(html! {<>{"Home"}</>}, Route::Home),
-        NavItem::External(
+    let nav_links: [(Url, Html); 6] = [
+        (Url::Local(Route::Home), html! {<>{"Home"}</>}),
+        (
+            Url::External("https://simbleau.github.io/blog/"),
             html! {<>{ "Blog" }</>},
-            "https://simbleau.github.io/blog/",
         ),
-        NavItem::Local(html! {<>{"Résumé"}</>}, Route::Resume),
-        NavItem::Local(html! {<>{"Contributions"}</>}, Route::Contributions),
-        NavItem::Local(html! {<>{"Sponsor"}</>}, Route::Sponsor),
-        NavItem::Local(html! {<>{"Contact"}</>}, Route::Contact),
+        (Url::Local(Route::Resume), html! {<>{"Résumé"}</>}),
+        (
+            Url::Local(Route::Contributions),
+            html! {<>{"Contributions"}</>},
+        ),
+        (Url::Local(Route::Sponsor), html! {<>{"Sponsor"}</>}),
+        (Url::Local(Route::Contact), html! {<>{"Contact"}</>}),
     ];
 
     html! {
         <nav>
             <ul>
             {
-                nav_links.into_iter().map(|n| {
+                nav_links.into_iter().map(|(domain, display)| {
                     html!{
                         <li>
-                            <NavLink nav={n} />
+                            <NavLink domain={domain} display={display} />
                         </li>
                     }
                 })
