@@ -13,7 +13,7 @@ pub struct Props {
     #[prop_or_default]
     pub hover_fill: Option<Color>,
     #[prop_or_default]
-    pub fs: Option<&'static str>,
+    pub scale: Option<f32>,
     #[prop_or_default]
     pub class: Classes,
 }
@@ -22,46 +22,61 @@ pub struct Props {
 pub fn icon(props: &Props) -> Html {
     let theme = use_theme();
 
+    // Sizing
+    let fsh = format!("calc({} * {})", props.scale.unwrap_or(1.0), theme.fs);
+    let fsw = format!("calc({} * {})", fsh, IconMask::aspect_ratio(props.mask));
+
+    // Size - Mobile
+    let fshm = format!("calc({} * {})", props.scale.unwrap_or(1.0), theme.fsm);
+    let fswm =
+        format!("calc({} * {})", fshm, IconMask::aspect_ratio(props.mask));
+
+    // Size - Tablet
+    let fsht = format!("calc({} * {})", props.scale.unwrap_or(1.0), theme.fst);
+    let fswt =
+        format!("calc({} * {})", fsht, IconMask::aspect_ratio(props.mask));
+
+    // Size - Desktop
+    let fshd = format!("calc({} * {})", props.scale.unwrap_or(1.0), theme.fsd);
+    let fswd =
+        format!("calc({} * {})", fshd, IconMask::aspect_ratio(props.mask));
+
     let icon_style = css! {
         r#"
         & {
-            width: ${width};
-            height: ${height};
+            width: ${fsw};
+            height: ${fsh};
             display: inline-block;
             text-align: center;
             vertical-align: middle;
         }
         @media (min-width: 768px) {
             & {
-                width: ${width_mobile};
-                height: ${height_mobile};
+                width: ${fswm};
+                height: ${fshm};
             }
         }
         @media (min-width: 992px) {
             & {
-                width: ${width_tablet};
-                height: ${height_tablet};
+                width: ${fswt};
+                height: ${fsht};
             }
         }
         @media (min-width: 1200px) {
             & {
-                width: ${width_desktop};
-                height: ${height_desktop};
+                width: ${fswd};
+                height: ${fshd};
             }
         }
         "#,
-        width = format!("calc({} * {})", props.fs.unwrap_or(theme.fs),
-            IconMask::aspect_ratio(props.mask)).as_str(),
-        height = props.fs.unwrap_or(theme.fs),
-        width_mobile = format!("calc({} * {})", props.fs.unwrap_or(theme.fsm),
-            IconMask::aspect_ratio(props.mask)).as_str(),
-        height_mobile = props.fs.unwrap_or(theme.fsm),
-        width_tablet = format!("calc({} * {})", props.fs.unwrap_or(theme.fst),
-            IconMask::aspect_ratio(props.mask)).as_str(),
-        height_tablet = props.fs.unwrap_or(theme.fst),
-        width_desktop = format!("calc({} * {})", props.fs.unwrap_or(theme.fsd),
-            IconMask::aspect_ratio(props.mask)).as_str(),
-        height_desktop = props.fs.unwrap_or(theme.fsd),
+        fsw = fsw,
+        fsh = fsh,
+        fswm = fswm,
+        fshm = fshm,
+        fswt = fswt,
+        fsht = fsht,
+        fswd = fswd,
+        fshd = fshd,
     };
 
     let mask_style = css!(
@@ -88,6 +103,14 @@ pub fn icon(props: &Props) -> Html {
     });
 
     html! {
-        <i class={classes!(icon_style, mask_style, mask_hover_style, props.class.clone())}></i>
+        <i  class={
+                classes!(
+                    icon_style,
+                    mask_style,
+                    mask_hover_style,
+                    props.class.clone()
+                )
+            }
+        />
     }
 }

@@ -50,12 +50,11 @@ pub fn footer() -> Html {
                 {" using " }
                 <Icon mask={IconMask::Rust} fill={theme.fg1} />
                 <br />
-                <small>
-                    <Hyperlink  icon={IconMask::PenToSquare}
-                                domain={Url::External("https://github.com/simbleau/website")}
-                                display={html!("Edit on GitHub")}
-                    />
-                </small>
+                <Hyperlink
+                    icon={IconMask::PenToSquare}
+                    domain={Url::External("https://github.com/simbleau/website")}
+                    display={html!("Edit on GitHub")}
+                />
             </div>
         </footer>
     }

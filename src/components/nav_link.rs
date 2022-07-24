@@ -39,7 +39,7 @@ pub fn view(props: &Props) -> Html {
             background-color: ${ac2};
         }
         & i {
-            vertical-align: top !important;
+            vertical-align: baseline;
             margin-left: 3px;
 
             background-color: ${ac1};
@@ -66,7 +66,10 @@ pub fn view(props: &Props) -> Html {
                 <div class={style}>
                     <div>
                         { props.display.clone() }
-                        <Icon mask={ IconMask::Share }/>
+                        <Icon
+                            mask={ IconMask::Share }
+                            scale={ 0.75 }
+                        />
                     </div>
                     <div id="underline" />
                 </div>
