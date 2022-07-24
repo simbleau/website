@@ -2,11 +2,10 @@ use stylist::yew::styled_component;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
+use crate::components::hyperlink::Url;
 use crate::style::icons::Icon;
 use crate::style::icons::IconMask;
 use crate::{router::Route, style::themes::use_theme};
-
-use super::hyperlink::Url;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {

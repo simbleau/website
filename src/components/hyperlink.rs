@@ -22,30 +22,8 @@ struct ExternalLinkProps {
 
 #[styled_component(ExternalLink)]
 fn view_external_link(props: &ExternalLinkProps) -> Html {
-    let theme = use_theme();
-
-    let style = css! {
-        r#"
-        & {
-            display: inline-flex;
-            align-items: center;
-        }
-        & > i {
-            vertical-align: baseline;
-            margin-left: 3px;
-
-            background-color: ${ac1};
-        }
-        &:hover > i {
-            background-color: ${ac2};
-        }
-        "#,
-        ac1 = theme.ac1,
-        ac2 = theme.ac2,
-    };
-
     html! {
-        <a href={ props.url } class={style}>
+        <a href={ props.url }>
             if let Some(mask) = props.icon {
                 <Icon {mask} />
             }
@@ -68,30 +46,8 @@ struct RouteLinkProps {
 
 #[styled_component(RouteLink)]
 fn view_route_link(props: &RouteLinkProps) -> Html {
-    let theme = use_theme();
-
-    let style = css! {
-        r#"
-        & {
-            display: inline-flex;
-            align-items: center;
-        }
-        & > i {
-            vertical-align: baseline;
-            margin-left: 3px;
-
-            background-color: ${ac1};
-        }
-        &:hover > i {
-            background-color: ${ac2};
-        }
-        "#,
-        ac1 = theme.ac1,
-        ac2 = theme.ac2,
-    };
-
     html! {
-        <Link<Route> to={ props.route } classes={style}>
+        <Link<Route> to={ props.route }>
             if let Some(mask) = props.icon {
                 <Icon {mask} />
             }
@@ -110,22 +66,47 @@ pub struct Props {
 
 #[styled_component(Hyperlink)]
 pub fn view(props: &Props) -> Html {
+    let theme = use_theme();
+
+    let style = css! {
+        r#"
+        a {
+            display: inline-flex;
+            align-items: center;
+        }
+        a > i {
+            vertical-align: baseline;
+            margin-left: 3px;
+
+            background-color: ${ac1};
+        }
+        a:hover > i {
+            background-color: ${ac2};
+        }
+        "#,
+        ac1 = theme.ac1,
+        ac2 = theme.ac2,
+    };
     html! {
-        match &props.domain {
-            Url::Local(route) => html! {
-            <RouteLink
-                route={*route}
-                display={props.display.clone()}
-                icon={props.icon}
-            />
-        },
-            Url::External(url) => html! {
-                <ExternalLink
-                    url={*url}
+        <div class={style}>
+        {
+            match &props.domain {
+                Url::Local(route) => html! {
+                <RouteLink
+                    route={*route}
                     display={props.display.clone()}
                     icon={props.icon}
                 />
             },
+                Url::External(url) => html! {
+                    <ExternalLink
+                        url={*url}
+                        display={props.display.clone()}
+                        icon={props.icon}
+                    />
+                },
+            }
         }
+        </div>
     }
 }
