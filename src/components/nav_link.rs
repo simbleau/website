@@ -22,7 +22,6 @@ pub fn view(props: &Props) -> Html {
         & {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             padding-bottom: 5px;
         }
@@ -37,13 +36,13 @@ pub fn view(props: &Props) -> Html {
             width: 100%;
             background-color: ${ac2};
         }
-        & i {
+        & > div > i {
             vertical-align: baseline;
             margin-left: 3px;
 
             background-color: ${ac1};
         }
-        &:hover i {
+        &:hover > div > i {
             background-color: ${ac2};
         }
         "#,
