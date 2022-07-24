@@ -26,25 +26,44 @@ pub struct Props {
 pub fn view(props: &Props) -> Html {
     let theme = use_theme();
 
+    let style = css! {
+        r#"
+        & i {
+            background-color: ${ac1};
+        }
+        &:hover i {
+            background-color: ${ac2};
+        }
+        "#,
+        ac1 = theme.ac1,
+        ac2 = theme.ac2,
+    };
+
     match &props.domain {
         Url::Local(route) => html! {
             <Link<Route> to={ *route }>
-                if let Some(mask) = props.icon {
-                    <Icon {mask} fill={theme.ac1} />
-                }
-                { props.display.clone() }
+                <div class={style}>
+                    if let Some(mask) = props.icon {
+                        <Icon {mask} />
+                    }
+                    { props.display.clone() }
+                </div>
             </Link<Route>>
         },
         Url::External(url) => html! {
             <a href={ *url }>
-                if let Some(mask) = props.icon {
-                    <Icon {mask} fill={theme.ac1} />
-                }
-                { props.display.clone() }
-                <Icon
-                    mask={ IconMask::Share }
-                    class={ css!("vertical-align: top !important;") }
-                />
+                <div class={style}>
+                    if let Some(mask) = props.icon {
+                        <Icon {mask} />
+                        {" "}
+                    }
+                    { props.display.clone() }
+                    {" "}
+                    <Icon
+                        mask={ IconMask::Share }
+                        class={ css!("vertical-align: top !important;") }
+                    />
+                </div>
             </a>
         },
     }
