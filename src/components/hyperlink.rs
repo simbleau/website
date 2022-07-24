@@ -44,7 +44,6 @@ pub fn view(props: &Props) -> Html {
                 <Icon
                     mask={ IconMask::Share }
                     class={ css!("vertical-align: top !important;") }
-                    fs={"12px"}
                 />
             </a>
         },
