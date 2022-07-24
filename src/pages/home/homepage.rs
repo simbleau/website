@@ -42,7 +42,7 @@ pub fn view() -> Html {
 
     html! {
         <div align="center" class={container_style}>
-            <img    width="800" height="800"
+            <img    width="300" height="300"
                     src="/static/images/me.webp"
                     alt="Spencer C. Imbleau"
                     class={ image_style }
