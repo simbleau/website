@@ -60,17 +60,17 @@ impl Color {
         Color::Transparent(TransparentColor {
             red: {
                 let r = self.r() as f32;
-                let adjustment = r * a;
+                let adjustment = 255.0 * a;
                 (r + adjustment).clamp(0., 255.) as u8
             },
             green: {
                 let g = self.g() as f32;
-                let adjustment = g * a;
+                let adjustment = 255.0 * a;
                 (g + adjustment).clamp(0., 255.) as u8
             },
             blue: {
                 let b = self.b() as f32;
-                let adjustment = b * a;
+                let adjustment = 255.0 * a;
                 (b + adjustment).clamp(0., 255.) as u8
             },
             alpha: self.a(),

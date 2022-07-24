@@ -30,8 +30,8 @@ pub fn view(props: &Props) -> Html {
         None => theme.fg1,
     };
     let fgc_hover = match theme.kind() {
-        ThemeChoice::Dark => fgc.lighten(0.3),
-        ThemeChoice::Light => fgc.darken(0.3),
+        ThemeChoice::Dark => fgc.lighten(0.2),
+        ThemeChoice::Light => fgc.darken(0.2),
     };
 
     // Sizing - Background
