@@ -29,6 +29,9 @@ pub fn view(props: &Props) -> Html {
     let style = css! {
         r#"
         & i {
+            vertical-align: top !important;
+            margin-left: 3px;
+
             background-color: ${ac1};
         }
         &:hover i {
@@ -58,10 +61,8 @@ pub fn view(props: &Props) -> Html {
                         {" "}
                     }
                     { props.display.clone() }
-                    {" "}
                     <Icon
                         mask={ IconMask::Share }
-                        class={ css!("vertical-align: top !important;") }
                     />
                 </div>
             </a>

@@ -32,6 +32,7 @@ pub fn view(props: &Props) -> Html {
         & > #underline {
             height: 3px;
             width: 0%;
+
             transition: width 0.2s ease-out, background-color 0.5s;
             background-color: ${ac1};
         }
@@ -40,6 +41,9 @@ pub fn view(props: &Props) -> Html {
             background-color: ${ac2};
         }
         & i {
+            vertical-align: top !important;
+            margin-left: 3px;
+
             background-color: ${ac1};
         }
         &:hover i {
@@ -54,7 +58,7 @@ pub fn view(props: &Props) -> Html {
         Url::Local(route) => html! {
             <Link<Route> to={ *route }>
                 <div class={style}>
-                    <div>{ props.display.clone() }</div>
+                    { props.display.clone() }
                     <div id="underline" />
                 </div>
             </Link<Route>>
@@ -64,10 +68,7 @@ pub fn view(props: &Props) -> Html {
                 <div class={style}>
                     <div>
                         { props.display.clone() }
-                        <Icon
-                            mask={ IconMask::Share }
-                            class={ css!("vertical-align: top !important;") }
-                        />
+                        <Icon mask={ IconMask::Share }/>
                     </div>
                     <div id="underline" />
                 </div>
