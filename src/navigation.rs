@@ -1,75 +1,35 @@
 use stylist::yew::styled_component;
 use yew::prelude::*;
-use yew_router::prelude::*;
 
 use crate::{
-    components::ColorLink,
+    components::{NavItem, NavLink},
     router::Route,
-    style::{
-        icons::{Icon, IconMask},
-        themes::use_theme,
-    },
 };
-
-#[derive(Clone)]
-pub enum NavEntry {
-    Local(Html, Route),
-    External(Html, &'static str),
-}
 
 #[styled_component(Navigation)]
 pub fn navigation() -> Html {
-    let theme = use_theme();
-
     let separator = html! { {" "}};
     let nav_links = [
-        NavEntry::Local(html! {<>{"Home"}</>}, Route::Home),
-        NavEntry::External(
+        NavItem::Local(html! {<>{"Home"}</>}, Route::Home),
+        NavItem::External(
             html! {<>{ "Blog" }</>},
             "https://simbleau.github.io/blog/",
         ),
-        NavEntry::Local(html! {<>{"Résumé"}</>}, Route::Resume),
-        NavEntry::Local(html! {<>{"Contributions"}</>}, Route::Contributions),
-        NavEntry::Local(html! {<>{"Sponsor"}</>}, Route::Sponsor),
-        NavEntry::Local(html! {<>{"Contact"}</>}, Route::Contact),
+        NavItem::Local(html! {<>{"Résumé"}</>}, Route::Resume),
+        NavItem::Local(html! {<>{"Contributions"}</>}, Route::Contributions),
+        NavItem::Local(html! {<>{"Sponsor"}</>}, Route::Sponsor),
+        NavItem::Local(html! {<>{"Contact"}</>}, Route::Contact),
     ];
 
     html! {
         <nav>
             <ul>
             {
-                nav_links.iter().map(|n: &NavEntry| {
-                    match n {
-                        NavEntry::Local(display, route) => html!{
-                            <li>
-                                <ColorLink>
-                                    <Link<Route> to={ *route }>
-                                            { display.clone() }
-                                    </Link<Route>>
-                                </ColorLink>
-                            </li>
-                        },
-                        NavEntry::External(display, url) => html!{
-                            <li>
-                                <ColorLink>
-                                    <a href={ *url }>
-                                        { display.clone() }
-                                    </a>
-                                    <a  href={ *url }
-                                        target="_blank"
-                                        class={ css!("&:hover i { background: ${ac2}}", ac2 = theme.ac2)}
-                                        aria-label="Open in new tab"
-                                    >
-                                        <Icon
-                                            mask={ IconMask::Share }
-                                            fill={ theme.ac1 }
-                                            fs={ "12px" }
-                                            class={ css!("vertical-align: top !important;") }
-                                        />
-                                    </a>
-                                </ColorLink>
-                            </li>
-                        },
+                nav_links.into_iter().map(|n| {
+                    html!{
+                        <li>
+                            <NavLink nav={n} />
+                        </li>
                     }
                 })
                 .intersperse(separator)

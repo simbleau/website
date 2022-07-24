@@ -7,5 +7,5 @@ pub use theme_switcher::ThemeSwitcher;
 mod button;
 pub use button::Button;
 
-mod color_link;
-pub use color_link::ColorLink;
+mod nav_link;
+pub use nav_link::{NavItem, NavLink};
