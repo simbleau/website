@@ -36,12 +36,13 @@
 Quick setup: `docker run -p 80:80 simbleau/website:latest`
 ## Option 2: Trunk + nginx
 ### Dependencies
--  [Rust](https://www.rust-lang.org/)
--  [trunk](https://trunkrs.dev/) (`cargo install trunk`)
--  [wasm32-unkown-unknown](https://yew.rs/docs/getting-started/introduction#install-webassembly-target) (`rustup target add wasm32-unknown-unknown`)
+- [Rust](https://www.rust-lang.org/)
+- [trunk](https://trunkrs.dev/) (`cargo install trunk`)
+- [wasm32-unkown-unknown](https://yew.rs/docs/getting-started/introduction#install-webassembly-target) (`rustup target add wasm32-unknown-unknown`)
 ### Serving
--  `trunk build --release` generates the `dist/` folder
--  Serve the `dist/` folder with a web server such as [nginx](https://www.nginx.com/).
+- `trunk build --release` generates the `dist/` folder
+- Serve the `dist/` folder with a web server such as [nginx](https://www.nginx.com/)
+  - Note: [`website.nginx.conf`](website.nginx.conf) is the nginx configuration that the Docker image uses
 
 ## 🔏 License
 This project is dual-licensed under both [Apache 2.0](LICENSE-APACHE) and [MIT](LICENSE-MIT) licenses.
