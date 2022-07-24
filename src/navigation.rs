@@ -1,4 +1,3 @@
-use std::fmt::Display;
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
