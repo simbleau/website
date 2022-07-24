@@ -8,7 +8,7 @@ use crate::{
 
 #[styled_component(Navigation)]
 pub fn navigation() -> Html {
-    let separator = html! { {" "}};
+    // If updating the links, update the sitemap!
     let nav_links: [(Url, Html); 6] = [
         (Url::Local(Route::Home), html! {<>{"Home"}</>}),
         (
@@ -23,6 +23,7 @@ pub fn navigation() -> Html {
         (Url::Local(Route::Sponsor), html! {<>{"Sponsor"}</>}),
         (Url::Local(Route::Contact), html! {<>{"Contact"}</>}),
     ];
+    let separator = html! { {" "}};
 
     html! {
         <nav>
