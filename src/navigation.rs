@@ -10,20 +10,17 @@ use crate::{
 pub fn navigation() -> Html {
     // If updating the links, update the sitemap!
     let nav_links: [(Url, Html); 6] = [
-        (Url::Local(Route::Home), html! {<>{"Home"}</>}),
+        (Url::Local(Route::Home), html! {{"Home"}}),
         (
             Url::External("https://simbleau.github.io/blog/"),
-            html! {<>{ "Blog" }</>},
+            html! {{ "Blog" }},
         ),
-        (Url::Local(Route::Resume), html! {<>{"Résumé"}</>}),
-        (
-            Url::Local(Route::Contributions),
-            html! {<>{"Contributions"}</>},
-        ),
-        (Url::Local(Route::Sponsor), html! {<>{"Sponsor"}</>}),
-        (Url::Local(Route::Contact), html! {<>{"Contact"}</>}),
+        (Url::Local(Route::Resume), html! {{"Résumé"}}),
+        (Url::Local(Route::Contributions), html! {{"Contributions"}}),
+        (Url::Local(Route::Sponsor), html! {{"Sponsor"}}),
+        (Url::Local(Route::Contact), html! {{"Contact"}}),
     ];
-    let separator = html! { {" "}};
+    let separator = html! {{" "}};
 
     html! {
         <nav>
