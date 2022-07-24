@@ -30,8 +30,8 @@ pub fn view() -> Html {
     };
     let image_style = css!(
         r#"
+        width: 300px;
         height: auto;
-        width: auto;
         max-width: 80%;
         max-height: 300px;
         border-radius: 50%;
