@@ -32,13 +32,10 @@ pub fn view() -> Html {
             }
         }
         #text_wrap {
-            margin: 5px 0;
+            margin: 5px;
             display: inline-block;
             vertical-align: middle;
             text-align: center;
-        }
-        #text_wrap > * {
-            margin: 0 5px;
         }
         "#,
         fg1 = theme.fg1,
@@ -52,8 +49,9 @@ pub fn view() -> Html {
                 <Icon
                     mask={IconMask::GitHub}
                     scale={1.5}
+                    class={css!("margin-right: 3px;")}
                 />
-                {" This résumé is "}
+                {"This résumé is "}
                 <Hyperlink
                     domain={Url::External("https://github.com/simbleau/resume")}
                     display={html!("source controlled") }
@@ -64,6 +62,7 @@ pub fn view() -> Html {
                     display={html!("automated") }
                 />
             </div>
+            <br />
             <iframe
                 src="https://docs.google.com/viewer?url=https://github.com/simbleau/resume/releases/download/latest/resume.pdf&embedded=true"
                 width="800"
