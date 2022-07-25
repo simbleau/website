@@ -74,7 +74,7 @@ pub fn view(props: &Props) -> Html {
             display: inline;
         }
         a {
-            display: inline-flex;
+            display: inline;
             align-items: center;
         }
         a > i {

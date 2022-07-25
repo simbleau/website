@@ -31,13 +31,13 @@ pub fn view() -> Html {
                 border-radius: ${br};
             }
         }
-        & > span {
+        #text_wrap {
             margin: 5px 0;
-            display: inline-flex;
-            align-items: center;
+            display: inline-block;
             vertical-align: middle;
+            text-align: center;
         }
-        & > span > * {
+        #text_wrap > * {
             margin: 0 5px;
         }
         "#,
@@ -45,9 +45,10 @@ pub fn view() -> Html {
         bw = BORDER_WIDTH,
         br = BORDER_RADIUS,
     };
+
     html! {
         <div align="center" class={style}>
-            <span>
+            <div id="text_wrap">
                 <Icon
                     mask={IconMask::GitHub}
                     scale={1.5}
@@ -62,8 +63,7 @@ pub fn view() -> Html {
                     domain={Url::External("https://github.com/simbleau/resume/actions")}
                     display={html!("automated") }
                 />
-            </span>
-            <br />
+            </div>
             <iframe
                 src="https://docs.google.com/viewer?url=https://github.com/simbleau/resume/releases/download/latest/resume.pdf&embedded=true"
                 width="800"
