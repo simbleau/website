@@ -49,6 +49,7 @@ pub fn icon(props: &Props) -> Html {
             display: inline-block;
             text-align: center;
             vertical-align: middle;
+            text-decoration: none;
         }
         @media (min-width: 768px) {
             & {
