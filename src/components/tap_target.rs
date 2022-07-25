@@ -74,14 +74,16 @@ pub fn view(props: &Props) -> Html {
     let style = css!(
         r#"
         & {
-            display:block;
+            display: inline-block;
+            border: 0;
+            border-radius: 50%;
+            padding: 0;
+            align-items: center;
+            justify-content: center;
             cursor:pointer;
 
             width: ${bgw};
             height: ${bgh};
-            border: 0;
-            border-radius: 50%;
-            text-align:center;
 
             transition: background-color 0.5s;
             background-color: ${bgc};
