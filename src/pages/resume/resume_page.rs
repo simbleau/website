@@ -31,45 +31,38 @@ pub fn view() -> Html {
                 border-radius: ${br};
             }
         }
-        "#,
-        fg1 = theme.fg1,
-        bw = BORDER_WIDTH,
-        br = BORDER_RADIUS,
-    };
-    let style2 = css! {
-        r#"
-        & {
+        & > span {
             margin: 5px 0;
             display: inline-flex;
             align-items: center;
             vertical-align: middle;
         }
-        & > * {
-            margin: 0 2px;
+        & > span > * {
+            margin: 0 5px;
         }
-        "#
+        "#,
+        fg1 = theme.fg1,
+        bw = BORDER_WIDTH,
+        br = BORDER_RADIUS,
     };
     html! {
         <div align="center" class={style}>
-            <div class={style2}>
+            <span>
                 <Icon
                     mask={IconMask::GitHub}
                     scale={1.5}
                 />
-                <span>
-                    {" This résumé is "}
-                    <Hyperlink
-                        domain={Url::External("https://github.com/simbleau/resume")}
-                        display={html!("source controlled") }
-                    />
-                    {" and "}
-                    <Hyperlink
-                        domain={Url::External("https://github.com/simbleau/resume/actions")}
-                        display={html!("automated") }
-                    />
-                    {"."}
-                </span>
-            </div>
+                {" This résumé is "}
+                <Hyperlink
+                    domain={Url::External("https://github.com/simbleau/resume")}
+                    display={html!("source controlled") }
+                />
+                {" and "}
+                <Hyperlink
+                    domain={Url::External("https://github.com/simbleau/resume/actions")}
+                    display={html!("automated") }
+                />
+            </span>
             <br />
             <iframe
                 src="https://docs.google.com/viewer?url=https://github.com/simbleau/resume/releases/download/latest/resume.pdf&embedded=true"
