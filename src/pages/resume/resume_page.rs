@@ -1,6 +1,8 @@
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
+use crate::components::{Hyperlink, Url};
+use crate::style::icons::{Icon, IconMask};
 use crate::style::themes::use_theme;
 
 const BORDER_WIDTH: &str = "2px";
@@ -34,8 +36,41 @@ pub fn view() -> Html {
         bw = BORDER_WIDTH,
         br = BORDER_RADIUS,
     };
+    let style2 = css! {
+        r#"
+        & {
+            margin: 5px 0;
+            display: inline-flex;
+            align-items: center;
+            vertical-align: middle;
+        }
+        & > * {
+            margin: 0 2px;
+        }
+        "#
+    };
     html! {
         <div align="center" class={style}>
+            <div class={style2}>
+                <Icon
+                    mask={IconMask::GitHub}
+                    scale={1.5}
+                />
+                <span>
+                    {" This résumé is "}
+                    <Hyperlink
+                        domain={Url::External("https://github.com/simbleau/resume")}
+                        display={html!("source controlled") }
+                    />
+                    {" and "}
+                    <Hyperlink
+                        domain={Url::External("https://github.com/simbleau/resume/actions")}
+                        display={html!("automated") }
+                    />
+                    {"."}
+                </span>
+            </div>
+            <br />
             <iframe
                 src="https://docs.google.com/viewer?url=https://github.com/simbleau/resume/releases/download/latest/resume.pdf&embedded=true"
                 width="800"

@@ -70,6 +70,9 @@ pub fn view(props: &Props) -> Html {
 
     let style = css! {
         r#"
+        & {
+            display: inline;
+        }
         a {
             display: inline-flex;
             align-items: center;
