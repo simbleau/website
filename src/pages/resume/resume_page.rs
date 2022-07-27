@@ -1,4 +1,7 @@
+use log::info;
 use stylist::yew::styled_component;
+use wasm_bindgen::JsCast;
+use web_sys::HtmlIFrameElement;
 use yew::prelude::*;
 
 use crate::components::{Hyperlink, Url};
@@ -23,6 +26,7 @@ pub fn view() -> Html {
             border-left: 0;
             border-right: 0;
             width: 100%;
+            display:none;
         }
         @media (min-width: calc(800px + ${bw} + ${bw})) {
             iframe {
@@ -42,6 +46,17 @@ pub fn view() -> Html {
         bw = BORDER_WIDTH,
         br = BORDER_RADIUS,
     };
+
+    let make_vis = Callback::from(|e: Event| {
+        let input = e
+            .target()
+            .and_then(|t| t.dyn_into::<HtmlIFrameElement>().ok())
+            .expect("Unable to get iFrame");
+        input
+            .set_attribute("style", "display: block")
+            .expect("Unable to make iFrame visible!");
+        info!("Loaded!");
+    });
 
     html! {
         <div align="center" class={style}>
@@ -64,6 +79,7 @@ pub fn view() -> Html {
             </div>
             <br />
             <iframe
+                onload={make_vis}
                 src="https://docs.google.com/viewer?url=https://github.com/simbleau/resume/releases/download/latest/resume.pdf&embedded=true"
                 width="800"
                 height="500"

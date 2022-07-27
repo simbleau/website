@@ -38,4 +38,5 @@ version = "0.3.59"
 features = [
     "Storage",
     "HtmlInputElement",
+    "HtmlIFrameElement",
 ]
