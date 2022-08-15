@@ -42,6 +42,7 @@ pub fn view() -> Html {
         iframe {
             border: 0;
             display:none;
+            width: inherit;
         }
         #text_wrap {
             margin: 5px;
