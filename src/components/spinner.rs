@@ -43,14 +43,10 @@ pub fn spinner() -> Html {
         & > svg path {
             fill-opacity: 0;
         }
-        & > svg > #head {
-            stroke: ${bg2};
-        }
         & > svg > #track {
             stroke: ${fg1};
         }
         "#,
-        bg2 = theme.bg2,
         fg1 = theme.fg1,
     };
 
@@ -78,10 +74,6 @@ pub fn spinner() -> Html {
                     stroke-width={STROKE_WIDTH.to_string()}
                     viewBox={view_box}
                 >
-                    <path
-                        id="head"
-                        d={spinner_track.clone()}
-                    />
                     <path
                         id="track"
                         d={spinner_track}
