@@ -52,7 +52,6 @@ pub fn footer() -> Html {
                 <br />
                 <small>
                     <Hyperlink
-                        icon={IconMask::PenToSquare}
                         domain={Url::External("https://github.com/simbleau/website")}
                         display={html!("Edit on GitHub")}
                     />
