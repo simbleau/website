@@ -3,7 +3,7 @@ use yew::prelude::*;
 
 use crate::style::colors::Color;
 use crate::style::icons::{Icon, IconMask};
-use crate::style::themes::{use_theme, ThemeChoice};
+use crate::style::themes::use_theme;
 
 const MIN_BG_SIZE: &str = "32px";
 const MIN_FG_SIZE: &str = "16px";

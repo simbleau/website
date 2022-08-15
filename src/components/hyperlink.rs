@@ -49,7 +49,7 @@ fn view_route_link(props: &RouteLinkProps) -> Html {
     html! {
         <Link<Route> to={ props.route }>
             if let Some(mask) = props.icon {
-                <Icon {mask} />
+                <Icon mask={mask} />
             }
             { props.display.clone() }
         </Link<Route>>
