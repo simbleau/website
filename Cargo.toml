@@ -39,4 +39,5 @@ features = [
     "Storage",
     "HtmlInputElement",
     "HtmlIFrameElement",
+    "Element",
 ]

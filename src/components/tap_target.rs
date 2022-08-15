@@ -29,10 +29,7 @@ pub fn view(props: &Props) -> Html {
         Some(c) => c,
         None => theme.fg1,
     };
-    let fgc_hover = match theme.kind() {
-        ThemeChoice::Dark => fgc.lighten(0.2),
-        ThemeChoice::Light => fgc.darken(0.2),
-    };
+    let fgc_hover = fgc.highlight(theme.kind(), 0.2);
 
     // Sizing - Background
     let bgh = format!("max({}, calc({} * 1.25))", MIN_BG_SIZE, theme.fs);
