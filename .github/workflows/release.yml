@@ -16,7 +16,7 @@ jobs:
           version: "latest"
       - name: Trunk Build
         run: |
-          trunk build --release --public-url ${{ env.PUBLIC_URL }}
+          trunk build --release
       # Docker build
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
