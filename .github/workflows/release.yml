@@ -4,33 +4,19 @@ on:
   push:
     branches: [main]
 
-env:
-  TOOLCHAIN: nightly
-
 jobs:
   docker_push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      # Pull website
-      - name: Build cache
-        id: cache-build
-        uses: actions/cache@v3
+      - name: Install Trunk
+        uses: jetli/trunk-action@v0.1.0
         with:
-          path: ./dist
-          key: dist-${{ hashFiles('./src') }}
-      # Install cargo deps
-      - name: Trunk build
-        if: steps.cache-build.outputs.cache-hit != 'true'
+          version: "latest"
+      - name: Trunk Build
         run: |
-          rustup update $TOOLCHAIN
-          rustup default $TOOLCHAIN
-          cargo install trunk
-          cargo build --release --target wasm32-unknown-unknown --verbose
-          trunk build --release
-
+          trunk build --release --public-url ${{ env.PUBLIC_URL }}
       # Docker build
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
