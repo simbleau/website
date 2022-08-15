@@ -12,3 +12,6 @@ pub use hyperlink::{Hyperlink, Url};
 
 mod nav_link;
 pub use nav_link::NavLink;
+
+mod spinner;
+pub use spinner::Spinner;

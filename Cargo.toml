@@ -37,5 +37,5 @@ wee_alloc = "0.4.5"
 version = "0.3.59"
 features = [
     "Storage",
-    "HtmlInputElement",
+    "Element",
 ]

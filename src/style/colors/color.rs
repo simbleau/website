@@ -1,6 +1,9 @@
 use std::fmt;
 
-use crate::style::colors::{OpaqueColor, TransparentColor};
+use crate::style::{
+    colors::{OpaqueColor, TransparentColor},
+    themes::ThemeChoice,
+};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum Color {
@@ -51,6 +54,13 @@ impl Color {
         match self {
             Color::Opaque(_) => 1.0,
             Color::Transparent(c) => c.alpha,
+        }
+    }
+
+    pub fn highlight(&self, theme: ThemeChoice, a: f32) -> Color {
+        match theme {
+            ThemeChoice::Dark => self.lighten(a),
+            ThemeChoice::Light => self.darken(a),
         }
     }
 
