@@ -3,41 +3,22 @@ use yew::prelude::*;
 
 use crate::style::themes::use_theme;
 
-const R: f32 = 45.0;
-const PATH_LENGTH: f32 = 280.0;
-const SPINNER_MIN_SIZE: f32 = 10.0;
-const STROKE_WIDTH: f32 = 4.0;
-const MIN_STROKE_WIDTH: f32 = 16.0;
-pub const SPINNER_SIZE_STANDARD: f32 = 50.0;
-
-#[derive(Clone, PartialEq, Properties)]
-pub struct SpinnerProps {
-    #[prop_or_default]
-    pub class: Classes,
-    #[prop_or(SPINNER_SIZE_STANDARD)]
-    pub size: f32,
-    #[prop_or(0.25)]
-    pub value: f32,
-}
+const R: f32 = 10.0;
+const STROKE_WIDTH: f32 = 3.0;
+pub const SPINNER_SIZE: f32 = 50.0;
 
 #[styled_component(Spinner)]
-pub fn spinner(props: &SpinnerProps) -> Html {
+pub fn spinner() -> Html {
     let theme = use_theme();
 
     let spinner = css! {
         r#"
         & {
-            -webkit-box-align:center;
-            -ms-flex-align:center;
             align-items:center;
-            display:-webkit-box;
-            display:-ms-flexbox;
+            vertical-align:middle;
             display:flex;
-            -webkit-box-pack:center;
-            -ms-flex-pack:center;
             justify-content:center;
             overflow:visible;
-            vertical-align:middle;
         }
         "#
     };
@@ -45,33 +26,26 @@ pub fn spinner(props: &SpinnerProps) -> Html {
     let spinner_animation = css! {
         r#"
         & {
-            -webkit-animation:pt-spinner-animation 500ms linear infinite;
             animation:pt-spinner-animation 500ms linear infinite;
         }
-
         @keyframes pt-spinner-animation{
             from{
-                -webkit-transform:rotate(0deg);
-                        transform:rotate(0deg);
+                transform:rotate(0deg);
             }
             to{
-                -webkit-transform:rotate(360deg);
-                        transform:rotate(360deg);
+                transform:rotate(360deg);
             }
         }
 
         & > svg {
             display: block;
         }
-
         & > svg path {
             fill-opacity: 0;
         }
-
         & > svg > #head {
             stroke: ${bg2};
         }
-
         & > svg > #track {
             stroke: ${fg1};
         }
@@ -80,11 +54,8 @@ pub fn spinner(props: &SpinnerProps) -> Html {
         fg1 = theme.fg1,
     };
 
-    let size = f32::max(SPINNER_MIN_SIZE, props.size);
-    let stroke_width =
-        f32::min(MIN_STROKE_WIDTH, (STROKE_WIDTH * 100.0) / size);
     let view_box = {
-        let radius = R + stroke_width / 2.00;
+        let radius = R + STROKE_WIDTH / 2.00;
         let view_box_x = 50.00 - radius;
         let view_box_width = radius * 2.00;
         format!(
@@ -97,22 +68,14 @@ pub fn spinner(props: &SpinnerProps) -> Html {
         R = R,
         R2 = R * 2.0,
     );
-    let stroke_offset = PATH_LENGTH - PATH_LENGTH * props.value.clamp(0.0, 1.0);
 
     html! {
-        <div
-            class={classes!(
-                spinner,
-                props.class.clone(),
-            )}
-        >
-            <div
-                class={classes!(spinner_animation)}
-            >
+        <div class={spinner}>
+            <div class={spinner_animation}>
                 <svg
-                    width={size.to_string()}
-                    height={size.to_string()}
-                    stroke-width={stroke_width.to_string()}
+                    width={SPINNER_SIZE.to_string()}
+                    height={SPINNER_SIZE.to_string()}
+                    stroke-width={STROKE_WIDTH.to_string()}
                     viewBox={view_box}
                 >
                     <path
@@ -122,9 +85,9 @@ pub fn spinner(props: &SpinnerProps) -> Html {
                     <path
                         id="track"
                         d={spinner_track}
-                        pathLength={PATH_LENGTH.to_string()}
-                        stroke-dasharray={format!("{} {}", PATH_LENGTH, PATH_LENGTH)}
-                        stroke-dashoffset={stroke_offset.to_string()}
+                        pathLength={"1.0"}
+                        stroke-dasharray={"0.25 1.0"}
+                        stroke-dashoffset={0.75}
                     />
                 </svg>
             </div>
