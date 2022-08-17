@@ -42,7 +42,8 @@ pub fn view() -> Html {
         iframe {
             border: 0;
             display:none;
-            width: inherit;
+            width: 100%;
+            height: 100%;
         }
         #text_wrap {
             margin: 5px;
@@ -103,15 +104,13 @@ pub fn view() -> Html {
                     <Spinner />
                     <br />
                     <Hyperlink
-                        domain={Url::External("https://github.com/simbleau/resume/releases/download/latest/resume.pdf")}
+                        domain={Url::External("https://simbleau.github.io/resume")}
                         display={html!("Not loading?")}
                     />
                 </div>
                 <iframe
                     onload={show_resume}
-                    src="https://docs.google.com/viewer?url=https://github.com/simbleau/resume/releases/download/latest/resume.pdf&embedded=true"
-                    width="800"
-                    height="500"
+                    src="https://simbleau.github.io/resume/embed.html"
                 />
             </div>
         </div>
