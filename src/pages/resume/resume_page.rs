@@ -4,6 +4,7 @@ use web_sys::Element;
 use yew::prelude::*;
 
 use crate::components::{Hyperlink, Spinner, Url};
+use crate::style::colors::Color;
 use crate::style::icons::{Icon, IconMask};
 use crate::style::themes::use_theme;
 
@@ -13,6 +14,8 @@ const BORDER_RADIUS: &str = "5px";
 #[styled_component(ResumePage)]
 pub fn view() -> Html {
     let theme = use_theme();
+
+    let resume_bg = use_state(|| theme.fg1.with_alpha(0.15));
 
     let style = css! {
         r#"
@@ -53,7 +56,7 @@ pub fn view() -> Html {
         }
         "#,
         fg1 = theme.fg1,
-        bg = theme.fg1.with_alpha(0.15),
+        bg = *resume_bg,
         bw = BORDER_WIDTH,
         br = BORDER_RADIUS,
     };
@@ -61,6 +64,7 @@ pub fn view() -> Html {
     let loading_handle = NodeRef::default();
     let show_resume = Callback::from({
         let loading_handle = loading_handle.clone();
+        let resume_bg = resume_bg.clone();
         move |e: Event| {
             let loader = loading_handle
                 .get()
@@ -76,6 +80,7 @@ pub fn view() -> Html {
             resume
                 .set_attribute("style", "display: block")
                 .expect("Could not show resume");
+            resume_bg.set(Color::opaque(0xff, 0xff, 0xff));
         }
     });
 
