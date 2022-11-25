@@ -16,7 +16,7 @@ opt-level = 'z'
 lto = true
 
 [dependencies]
-yew = "0.19.3"
+yew = "0.20.0"
 yew-router = "0.16.0"
 wasm-bindgen = "0.2.83"
 stylist = { version = "0.10.1", features = [ "yew_integration"] }
