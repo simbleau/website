@@ -1,7 +1,18 @@
-FROM nginx as webserver
-COPY ./dist /usr/share/nginx/html
-RUN rm /etc/nginx/conf.d/default.conf
-COPY ./website.nginx.conf /etc/nginx/conf.d/website.conf
+FROM osomahe/rust-trunk:22.05 as builder
 
-ENTRYPOINT ["nginx"]
-CMD ["-g", "daemon off;"]
+# Build
+RUN mkdir /.stage
+COPY index.html /.stage/
+COPY robots.txt /.stage/
+COPY sitemap.xml /.stage/
+COPY Cargo.toml /.stage/
+COPY scss /.stage/scss
+COPY src /.stage/src
+COPY static /.stage/static
+WORKDIR /.stage
+RUN trunk build --release
+
+# Run
+FROM nginx:alpine
+COPY website.nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /.stage/dist/ /usr/share/nginx/html/
