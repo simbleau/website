@@ -2,7 +2,7 @@
     font-family: 'Roboto';
     src: local("Roboto"),
         url("/static/fonts/Roboto.woff2");
-    font-display: swap
+    font-display: swap;
 }
 
 @font-face {
@@ -10,7 +10,7 @@
     src: local("Roboto-Italic"),
         url("/static/fonts/Roboto-Italic.woff2");
     font-style: italic;
-    font-display: swap
+    font-display: swap;
 }
 
 @font-face {
@@ -18,10 +18,5 @@
     src: local("Roboto-Bold"),
         url("/static/fonts/Roboto-Bold.woff2");
     font-weight: bold;
-    font-display: swap
-}
-
-html {
-    text-rendering: optimizeLegibility;
-    font-family: "Roboto", system-ui, -apple-system;
+    font-display: swap;
 }
