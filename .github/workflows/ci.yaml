@@ -86,7 +86,7 @@ jobs:
       - name: Setup | Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Setup | Build Docker Image
+      - name: Setup | Build Docker Image
         uses: docker/build-push-action@v3
         with:
           context: .

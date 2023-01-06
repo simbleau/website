@@ -11,16 +11,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup | Get version tag
+      - name: Setup | Get version tag
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
-      - name: Setup | Trunk
-        uses: jetli/trunk-action@v0.2.0
-        with:
-          version: "latest"
-
-      - name: Build | Trunk
-        run: trunk build --release
 
       - name: Setup | QEMU
         uses: docker/setup-qemu-action@v2

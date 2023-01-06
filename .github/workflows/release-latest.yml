@@ -10,14 +10,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup | Trunk
-        uses: jetli/trunk-action@v0.2.0
-        with:
-          version: "latest"
-
-      - name: Build | Trunk
-        run: trunk build --release
-
       - name: Setup | QEMU
         uses: docker/setup-qemu-action@v2
 
