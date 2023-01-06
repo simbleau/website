@@ -43,4 +43,4 @@ jobs:
             linux/arm64
           push: true
           tags: |
-            simbleau/cddns:${{ env.RELEASE_VERSION }}
+            simbleau/website:${{ env.RELEASE_VERSION }}
