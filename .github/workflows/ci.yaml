@@ -1,0 +1,93 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Toolchain (clippy)
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          default: true
+          components: clippy
+
+      - name: Build | Clippy
+        uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --all-targets -- -D warnings
+
+      - name: Setup | Toolchain (rustfmt)
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          default: true
+          components: rustfmt
+
+      - name: Build | Rustfmt
+        run: cargo fmt -- --check
+
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+
+      - name: Build | Check
+        run: cargo check --all
+
+  test:
+    needs: check # Ensure check is run first.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          profile: minimal
+
+      - name: Build | Test
+        run: cargo test
+
+  trunk:
+    needs: check # Ensure check is run first.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Trunk
+        uses: jetli/trunk-action@v0.2.0
+        with:
+          version: "latest"
+
+      - name: Build | Trunk
+        run: trunk build
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Setup | Build Docker Image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: false
