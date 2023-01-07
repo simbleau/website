@@ -1,7 +1,7 @@
 use crate::components::hyperlink::{ExternalLink, InternalLink};
 use crate::components::IconMask;
 use crate::router::Route;
-use crate::style::themes::BrandChoice;
+use crate::style::themes::ThemeChoice;
 use stylist::yew::styled_component;
 use themer::prelude::*;
 use yew::prelude::*;
@@ -23,7 +23,7 @@ pub struct HyperlinkProps {
 
 #[styled_component(Hyperlink)]
 pub fn view(props: &HyperlinkProps) -> Html {
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
     let style = css! {
         r#"
         & {

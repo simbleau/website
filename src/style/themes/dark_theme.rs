@@ -1,8 +1,8 @@
-use crate::style::themes::BrandTheme;
+use crate::style::themes::ThemeSpec;
 use cssugar::prelude::*;
 use once_cell::sync::Lazy;
 
-pub static DARK_THEME: Lazy<BrandTheme> = Lazy::new(|| BrandTheme {
+pub static DARK_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
     color: Color::from_rgb(0xcc, 0xcc, 0xcc),
     background_color: Color::from_rgb(0x22, 0x22, 0x22),
     link: Color::from_rgb(0x00, 0xaa, 0xff),

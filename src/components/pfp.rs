@@ -1,4 +1,4 @@
-use crate::style::themes::BrandChoice;
+use crate::style::themes::ThemeChoice;
 use stylist::yew::styled_component;
 use themer::prelude::*;
 use yew::{prelude::*, virtual_dom::AttrValue};
@@ -10,7 +10,7 @@ pub struct ProfilePictureProps {
 
 #[styled_component(ProfilePicture)]
 pub fn view(props: &ProfilePictureProps) -> Html {
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
 
     let img_css = css! {
         display: block;

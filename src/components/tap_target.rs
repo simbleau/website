@@ -1,5 +1,5 @@
 use crate::components::{Icon, IconMask};
-use crate::style::themes::BrandChoice;
+use crate::style::themes::ThemeChoice;
 use cssugar::prelude::*;
 use stylist::css;
 use themer::prelude::*;
@@ -23,7 +23,7 @@ pub struct Props {
 
 #[function_component(TapTarget)]
 pub fn view(props: &Props) -> Html {
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
 
     // Coloring
     let bg = match props.background {

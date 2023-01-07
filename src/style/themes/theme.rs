@@ -5,35 +5,35 @@ use themer::prelude::*;
 
 #[theme_key]
 #[derive(Serialize, Deserialize)]
-pub enum BrandChoice {
+pub enum ThemeChoice {
     Light,
     Dark,
 }
 
-impl Default for BrandChoice {
+impl Default for ThemeChoice {
     fn default() -> Self {
         BrowserPreference::get()
             .map(|p| match p {
-                BrowserPreference::Dark => BrandChoice::Dark,
-                BrowserPreference::Light => BrandChoice::Light,
+                BrowserPreference::Dark => ThemeChoice::Dark,
+                BrowserPreference::Light => ThemeChoice::Light,
             })
-            .unwrap_or(BrandChoice::Light)
+            .unwrap_or(ThemeChoice::Light)
     }
 }
 
-impl ThemeKey for BrandChoice {
-    type Theme = BrandTheme;
+impl ThemeKey for ThemeChoice {
+    type Theme = ThemeSpec;
 
     fn theme(&self) -> &'static Self::Theme {
         match self {
-            BrandChoice::Light => &LIGHT_THEME,
-            BrandChoice::Dark => &DARK_THEME,
+            ThemeChoice::Light => &LIGHT_THEME,
+            ThemeChoice::Dark => &DARK_THEME,
         }
     }
 }
 
 #[theme]
-pub struct BrandTheme {
+pub struct ThemeSpec {
     /// Foreground color
     pub color: Color,
     /// Background color

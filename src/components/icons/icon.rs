@@ -1,5 +1,5 @@
 use crate::components::IconMask;
-use crate::style::themes::BrandChoice;
+use crate::style::themes::ThemeChoice;
 use cssugar::prelude::*;
 use stylist::css;
 use themer::prelude::*;
@@ -22,7 +22,7 @@ pub struct Props {
 
 #[function_component(Icon)]
 pub fn icon(props: &Props) -> Html {
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
 
     // Sizing
     let fsh = format!("calc({} * {})", props.scale.unwrap_or(1.0), theme.fs);

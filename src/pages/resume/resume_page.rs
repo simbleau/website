@@ -1,5 +1,5 @@
 use crate::components::{Destination, Hyperlink, IconMask, Spinner};
-use crate::style::themes::BrandChoice;
+use crate::style::themes::ThemeChoice;
 use cssugar::prelude::*;
 use stylist::yew::styled_component;
 use themer::prelude::*;
@@ -12,7 +12,7 @@ const BORDER_RADIUS: Length = Length::Px(5.0);
 
 #[styled_component(ResumePage)]
 pub fn view() -> Html {
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
     let resume_bg = use_state(|| theme.color.alpha(0.15));
 
     let style = css! {

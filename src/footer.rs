@@ -1,6 +1,6 @@
 use crate::components::{Destination, Hyperlink};
 use crate::components::{Icon, IconMask};
-use crate::style::themes::BrandChoice;
+use crate::style::themes::ThemeChoice;
 use cssugar::prelude::*;
 use js_sys::Date;
 use stylist::yew::styled_component;
@@ -12,7 +12,7 @@ pub const FOOTER_PADDING: Length = Length::Px(5.0);
 #[styled_component(Footer)]
 pub fn footer() -> Html {
     let copyright_year = Date::new_0().get_full_year();
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
 
     let css = css!(
         r#"

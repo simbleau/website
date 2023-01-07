@@ -1,5 +1,5 @@
 use crate::components::Spinner;
-use crate::style::themes::BrandChoice;
+use crate::style::themes::ThemeChoice;
 use cssugar::prelude::*;
 use stylist::yew::styled_component;
 use themer::prelude::*;
@@ -18,7 +18,7 @@ pub struct IFrameProps {
 
 #[styled_component(IFrame)]
 pub fn view(props: &IFrameProps) -> Html {
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
 
     let style = css! {
         r#"

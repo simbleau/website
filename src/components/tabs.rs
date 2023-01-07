@@ -1,4 +1,4 @@
-use crate::style::themes::BrandChoice;
+use crate::style::themes::ThemeChoice;
 use std::collections::{hash_map::DefaultHasher, HashMap};
 use std::hash::{Hash, Hasher};
 use std::rc::Rc;
@@ -38,7 +38,7 @@ fn hash<T: Clone + PartialEq + Hash + 'static>(tab: &T) -> u64 {
 pub fn view<T: Clone + PartialEq + Hash + 'static>(
     props: &TabsProps<T>,
 ) -> Html {
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
 
     let tab_refs = Rc::new(
         props

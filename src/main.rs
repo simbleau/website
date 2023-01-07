@@ -5,7 +5,7 @@ use website::header::Header;
 use website::pages::ConstructionPage;
 use website::router::{self, Route};
 use website::style::global::use_global_css;
-use website::style::themes::BrandChoice;
+use website::style::themes::ThemeChoice;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -13,15 +13,15 @@ const UNDER_CONSTRUCTION: bool = false;
 
 #[function_component(Root)]
 pub fn root() -> Html {
-    let stored_theme = match BrowserPreference::load::<BrandChoice>() {
+    let stored_theme = match BrowserPreference::load::<ThemeChoice>() {
         Some(pref) => pref,
-        None => BrandChoice::default(),
+        None => ThemeChoice::default(),
     };
 
     html! {
-        <ThemeProvider<BrandChoice> theme={stored_theme}>
+        <ThemeProvider<ThemeChoice> theme={stored_theme}>
             <App />
-        </ThemeProvider<BrandChoice>>
+        </ThemeProvider<ThemeChoice>>
     }
 }
 

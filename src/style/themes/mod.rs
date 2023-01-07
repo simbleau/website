@@ -1,5 +1,5 @@
 mod theme;
-pub use theme::{BrandChoice, BrandTheme};
+pub use theme::{ThemeChoice, ThemeSpec};
 
 mod dark_theme;
 pub use dark_theme::DARK_THEME;

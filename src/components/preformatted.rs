@@ -2,7 +2,7 @@ use stylist::yew::styled_component;
 use themer::prelude::*;
 use yew::prelude::*;
 
-use crate::style::themes::BrandChoice;
+use crate::style::themes::ThemeChoice;
 
 #[derive(Properties, PartialEq)]
 pub struct PreformattedProps {
@@ -11,7 +11,7 @@ pub struct PreformattedProps {
 
 #[styled_component(Preformatted)]
 pub fn view(props: &PreformattedProps) -> Html {
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
 
     let pre_css = css! {
         r#"

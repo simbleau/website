@@ -1,4 +1,4 @@
-use super::themes::BrandChoice;
+use super::themes::ThemeChoice;
 use stylist::{css, StyleSource};
 use themer::prelude::*;
 use yew::hook;
@@ -7,7 +7,7 @@ pub const THEME_TRANSITION_SPEED: &str = "3s";
 
 #[hook]
 pub fn use_global_css() -> StyleSource {
-    let theme = use_theme::<BrandChoice>();
+    let theme = use_theme::<ThemeChoice>();
     css!(
         r#"
             html, body {
