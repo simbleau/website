@@ -23,7 +23,7 @@ pub fn theme_switcher() -> Html {
         <TapTarget
             mask={match theme.kind() {
                 BrandChoice::Light => IconMask::Moon,
-                BrandChoice::Dark => IconMask::Brightness
+                BrandChoice::Dark => IconMask::Sun
             }}
             { onclick }
         />

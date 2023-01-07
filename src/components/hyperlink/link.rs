@@ -28,7 +28,6 @@ pub fn view(props: &HyperlinkProps) -> Html {
         r#"
         & {
             display: inline;
-            align-items: center;
         }
         & *[data-id="linkicon"] {
             background-color: ${link};

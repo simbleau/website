@@ -38,20 +38,19 @@ pub fn footer() -> Html {
                     <Icon mask={IconMask::Copyright} fill={theme.color} />
                     { " Spencer C. Imbleau" }
                 </p>
-                {"Made with "}
+                {"made with "}
                 <Icon mask={IconMask::Coffee} fill={theme.color} />
                 {" and a "}
                 <Icon mask={IconMask::Keyboard} fill={theme.color} />
                 {" using " }
                 <Icon mask={IconMask::Rust} fill={theme.color} />
                 <br />
-                <small>
-                    <Hyperlink
-                        to={Destination::External("https://github.com/simbleau/website")}
-                    >
-                    {"Edit on GitHub"}
-                    </Hyperlink>
-                </small>
+                <Hyperlink
+                    icon={IconMask::GitHub}
+                    to={Destination::External("https://github.com/simbleau/website")}
+                >
+                {"view source"}
+                </Hyperlink>
             </div>
         </footer>
     }

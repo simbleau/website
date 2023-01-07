@@ -7,8 +7,8 @@ use wasm_bindgen::JsCast;
 use web_sys::Element;
 use yew::prelude::*;
 
-const BORDER_WIDTH: &str = "2px";
-const BORDER_RADIUS: &str = "5px";
+const BORDER_WIDTH: Length = Length::Px(2.0);
+const BORDER_RADIUS: Length = Length::Px(5.0);
 
 #[styled_component(ResumePage)]
 pub fn view() -> Html {

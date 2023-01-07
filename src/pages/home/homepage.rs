@@ -1,15 +1,11 @@
 use crate::components::IconMask;
+use crate::components::ProfilePicture;
 use crate::components::TapTarget;
-use crate::style::themes::BrandChoice;
-use cssugar::prelude::*;
 use stylist::css;
-use themer::prelude::*;
 use yew::prelude::*;
 
 #[function_component(HomePage)]
 pub fn view() -> Html {
-    let theme = use_theme::<BrandChoice>();
-
     let container_style = css!(
         r#"
             margin: 10px 0 0 0;
@@ -25,29 +21,9 @@ pub fn view() -> Html {
         "#
     );
 
-    let shadow = match theme.kind() {
-        BrandChoice::Dark => BLACK.alpha(0.5),
-        BrandChoice::Light => BLACK.alpha(0.25),
-    };
-    let image_style = css!(
-        r#"
-        width: 300px;
-        height: auto;
-        max-width: 80%;
-        max-height: 300px;
-        border-radius: 50%;
-        box-shadow: 0 0 10px ${shadow};
-        "#,
-        shadow = shadow
-    );
-
     html! {
         <div align="center" class={container_style}>
-            <img    width="300" height="300"
-                    src="/static/images/me.webp"
-                    alt="Spencer C. Imbleau"
-                    class={ image_style }
-            />
+            <ProfilePicture src={"/static/images/me.webp"} />
             <br />
             <div class={ css!("display: inline-flex; & > * {margin: 10px 5px;}") }>
                 <a href="https://www.linkedin.com/in/simbleau/">

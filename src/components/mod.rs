@@ -11,8 +11,8 @@ pub use button::Button;
 mod spinner;
 pub use spinner::Spinner;
 
-mod image;
-pub use image::Image;
+mod pfp;
+pub use pfp::ProfilePicture;
 
 mod theme_switcher;
 pub use theme_switcher::ThemeSwitcher;
