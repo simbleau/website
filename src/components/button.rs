@@ -1,40 +1,48 @@
+use crate::style::themes::BrandChoice;
 use stylist::css;
+use themer::prelude::*;
 use yew::prelude::*;
-
-use crate::style::themes::use_theme;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
     pub onclick: Callback<MouseEvent>,
-    pub inner_text: fn() -> Html,
+    pub children: Children,
+    pub class: Option<Classes>,
 }
 
 #[function_component(Button)]
-pub fn button(props: &Props) -> Html {
-    let theme = use_theme();
+pub fn view(props: &Props) -> Html {
+    let theme = use_theme::<BrandChoice>();
 
     let style = css!(
         r#"
-            width: 2em;
-            height: 2em;
-            display:block;
+        & {
             border: 0;
-            border-radius: 50%;
-            background-color: ${bg};
+            border-radius: 5px;
+
+            border: 1px solid ${fg};
+            background: none;
+
+            text-align: center;
             color: ${fg};
             padding: 10px;
             cursor:pointer;
+        }
+
+        &:hover {
+            background: ${bg};
+        }
         "#,
-        bg = theme.fg1,
-        fg = theme.bg1,
+        fg = theme.color,
+        bg = theme.color.alpha(0.1),
     );
 
     html! {
         <button
-            class={style}
+            class={classes!(props.class.clone(), style)}
             onclick={&props.onclick}
         >
-        { (props.inner_text)() }
+        { props.children.clone() }
         </button>
     }
 }

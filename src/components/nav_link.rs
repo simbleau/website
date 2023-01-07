@@ -1,21 +1,20 @@
+use crate::components::{Destination, Icon, IconMask};
+use crate::router::Route;
+use crate::style::themes::BrandChoice;
 use stylist::yew::styled_component;
+use themer::prelude::*;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-use crate::components::hyperlink::Url;
-use crate::style::icons::Icon;
-use crate::style::icons::IconMask;
-use crate::{router::Route, style::themes::use_theme};
-
 #[derive(Properties, PartialEq)]
 pub struct Props {
-    pub domain: Url,
-    pub display: Html,
+    pub to: Destination,
+    pub children: Children,
 }
 
 #[styled_component(NavLink)]
 pub fn view(props: &Props) -> Html {
-    let theme = use_theme();
+    let theme = use_theme::<BrandChoice>();
 
     let style = css! {
         r#"
@@ -30,40 +29,40 @@ pub fn view(props: &Props) -> Html {
             width: 0%;
 
             transition: width 0.2s ease-out, background-color 0.5s;
-            background-color: ${ac1};
+            background-color: ${link};
         }
         &:hover > #underline {
             width: 100%;
-            background-color: ${ac2};
+            background-color: ${link_hover};
         }
         & > div > i {
             vertical-align: baseline;
             margin-left: 3px;
 
-            background-color: ${ac1};
+            background-color: ${link};
         }
         &:hover > div > i {
-            background-color: ${ac2};
+            background-color: ${link_hover};
         }
         "#,
-        ac1 = theme.ac1,
-        ac2 = theme.ac2,
+        link = theme.link,
+        link_hover = theme.link_hover,
     };
 
-    match &props.domain {
-        Url::Local(route) => html! {
+    match &props.to {
+        Destination::Internal(route) => html! {
             <Link<Route> to={ *route }>
                 <div class={style}>
-                    { props.display.clone() }
+                    { props.children.clone() }
                     <div id="underline" />
                 </div>
             </Link<Route>>
         },
-        Url::External(url) => html! {
+        Destination::External(url) => html! {
             <a href={ *url }>
                 <div class={style}>
                     <div>
-                        { props.display.clone() }
+                        { props.children.clone() }
                         <Icon
                             mask={ IconMask::Share }
                             scale={ 0.75 }

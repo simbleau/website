@@ -1,13 +1,13 @@
-use stylist::css;
-use yew::prelude::*;
-
+use crate::components::IconMask;
 use crate::components::TapTarget;
-use crate::style::icons::IconMask;
-use crate::style::themes::use_theme;
+use crate::style::themes::BrandChoice;
+use stylist::css;
+use themer::prelude::*;
+use yew::prelude::*;
 
 #[function_component(HomePage)]
 pub fn view() -> Html {
-    let theme = use_theme();
+    let theme = use_theme::<BrandChoice>();
 
     let container_style = css!(
         r#"
@@ -25,8 +25,8 @@ pub fn view() -> Html {
     );
 
     let shadow = match theme.kind() {
-        crate::style::themes::ThemeChoice::Dark => "rgba(0,0,0,0.5)",
-        crate::style::themes::ThemeChoice::Light => "rgba(0,0,0,0.25)",
+        BrandChoice::Dark => "rgba(0,0,0,0.5)",
+        BrandChoice::Light => "rgba(0,0,0,0.25)",
     };
     let image_style = css!(
         r#"
@@ -50,13 +50,13 @@ pub fn view() -> Html {
             <br />
             <div class={ css!("display: inline-flex; & > * {margin: 10px 5px;}") }>
                 <a href="https://www.linkedin.com/in/simbleau/">
-                    <TapTarget accessibility={"LinkedIn"} mask={IconMask::LinkedIn} />
+                    <TapTarget mask={IconMask::LinkedIn} />
                 </a>
                 <a href="https://www.twitter.com/spencerimbleau/">
-                    <TapTarget accessibility={"Twitter"} mask={IconMask::Twitter} />
+                    <TapTarget mask={IconMask::Twitter} />
                 </a>
                 <a href="https://www.github.com/simbleau/">
-                    <TapTarget accessibility={"GitHub"} mask={IconMask::GitHub} />
+                    <TapTarget mask={IconMask::GitHub} />
                 </a>
             </div>
         </div>

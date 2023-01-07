@@ -1,45 +1,50 @@
-use stylist::css;
 use stylist::yew::Global;
+use themer::prelude::*;
+use website::footer::Footer;
+use website::header::Header;
+use website::pages::ConstructionPage;
+use website::router::{self, Route};
+use website::style::global::use_global_css;
+use website::style::themes::BrandChoice;
 use yew::prelude::*;
 use yew_router::prelude::*;
-
-use website::footer::{Footer, FOOTER_HEIGHT};
-use website::header::Header;
-use website::pages::construction::ConstructionPage;
-use website::router;
-use website::style::global;
-use website::style::themes::ThemeProvider;
 
 const UNDER_CONSTRUCTION: bool = false;
 
 #[function_component(Root)]
 pub fn root() -> Html {
+    let stored_theme = match BrowserPreference::load::<BrandChoice>() {
+        Some(pref) => pref,
+        None => BrandChoice::default(),
+    };
+
     html! {
-        <ThemeProvider>
+        <ThemeProvider<BrandChoice> theme={stored_theme}>
             <App />
-        </ThemeProvider>
+        </ThemeProvider<BrandChoice>>
     }
 }
 
 #[function_component(App)]
 fn app() -> Html {
+    // Apply global CSS
+    let global_css = use_global_css();
+
     html! {
-        <>
-        <Global css={ global::css() } />
-        if UNDER_CONSTRUCTION {
-            <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
-        } else {
-            <BrowserRouter>
-                <main>
-                    <Header />
-                    <div id="content" class={ css!("padding-bottom: ${fh};", fh = FOOTER_HEIGHT) }>
-                        <Switch<router::Route> render={Switch::render(router::switch)} />
-                    </div>
-                    <Footer />
-                </main>
-            </BrowserRouter>
-        }
-        </>
+        <BrowserRouter>
+            <Global css={global_css} />
+            if UNDER_CONSTRUCTION {
+                <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
+            } else {
+                    <main>
+                        <Header />
+                        <div id="content">
+                            <Switch<Route> render={router::switch} />
+                        </div>
+                        <Footer />
+                    </main>
+            }
+        </BrowserRouter>
     }
 }
 
@@ -52,5 +57,5 @@ fn main() {
         std::panic::set_hook(Box::new(console_error_panic_hook::hook));
     }
 
-    yew::start_app::<Root>();
+    yew::Renderer::<Root>::new().render();
 }

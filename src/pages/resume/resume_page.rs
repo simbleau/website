@@ -1,21 +1,21 @@
+use crate::{
+    components::{Destination, Hyperlink, Icon, IconMask, Spinner},
+    style::themes::BrandChoice,
+};
+use cssugar::prelude::*;
 use stylist::yew::styled_component;
+use themer::prelude::*;
 use wasm_bindgen::JsCast;
 use web_sys::Element;
 use yew::prelude::*;
-
-use crate::components::{Hyperlink, Spinner, Url};
-use crate::style::colors::Color;
-use crate::style::icons::{Icon, IconMask};
-use crate::style::themes::use_theme;
 
 const BORDER_WIDTH: &str = "2px";
 const BORDER_RADIUS: &str = "5px";
 
 #[styled_component(ResumePage)]
 pub fn view() -> Html {
-    let theme = use_theme();
-
-    let resume_bg = use_state(|| theme.fg1.with_alpha(0.15));
+    let theme = use_theme::<BrandChoice>();
+    let resume_bg = use_state(|| theme.color.alpha(0.15));
 
     let style = css! {
         r#"
@@ -24,8 +24,8 @@ pub fn view() -> Html {
             min-height: 500px;
             height: 75vh;
             max-height: 12in;
-            border-top: ${bw} solid ${fg1};
-            border-bottom: ${bw} solid ${fg1};
+            border-top: ${bw} solid ${border};
+            border-bottom: ${bw} solid ${border};
             border-left: 0;
             border-right: 0;
             width: 100%;
@@ -38,7 +38,7 @@ pub fn view() -> Html {
         @media (min-width: calc(800px + ${bw} + ${bw})) {
             #resume-ctr {
                 width: 800px;
-                border: ${bw} solid ${fg1};
+                border: ${bw} solid ${border};
                 border-radius: ${br};
             }
         }
@@ -55,7 +55,7 @@ pub fn view() -> Html {
             text-align: center;
         }
         "#,
-        fg1 = theme.fg1,
+        border = theme.color,
         bg = *resume_bg,
         bw = BORDER_WIDTH,
         br = BORDER_RADIUS,
@@ -64,7 +64,6 @@ pub fn view() -> Html {
     let loading_handle = NodeRef::default();
     let show_resume = Callback::from({
         let loading_handle = loading_handle.clone();
-        let resume_bg = resume_bg.clone();
         move |e: Event| {
             let loader = loading_handle
                 .get()
@@ -80,28 +79,27 @@ pub fn view() -> Html {
             resume
                 .set_attribute("style", "display: block")
                 .expect("Could not show resume");
-            resume_bg.set(Color::opaque(0xff, 0xff, 0xff));
+            resume_bg.set(WHITE);
         }
     });
 
     html! {
         <div align="center" class={style}>
             <div id="text_wrap">
-                <Icon
-                    mask={IconMask::GitHub}
-                    scale={1.5}
-                    class={css!("margin-right: 3px;")}
-                />
                 {"This résumé is "}
                 <Hyperlink
-                    domain={Url::External("https://github.com/simbleau/resume")}
-                    display={html!("source controlled") }
-                />
+                    icon={IconMask::GitHub}
+                    to={Destination::External("https://github.com/simbleau/resume")}
+                >
+                    {"source controlled"}
+                </Hyperlink>
                 {" and "}
                 <Hyperlink
-                    domain={Url::External("https://github.com/simbleau/resume/actions")}
-                    display={html!("automated") }
-                />
+                    to={Destination::External("https://github.com/simbleau/resume/actions")}
+                >
+                    {"automated"}
+                </Hyperlink>
+                {"."}
             </div>
             <br />
             <div id="resume-ctr">
@@ -109,9 +107,10 @@ pub fn view() -> Html {
                     <Spinner />
                     <br />
                     <Hyperlink
-                        domain={Url::External("https://simbleau.github.io/resume")}
-                        display={html!("Not loading?")}
-                    />
+                        to={Destination::External("https://simbleau.github.io/resume")}
+                    >
+                        {"Not loading?"}
+                    </Hyperlink>
                 </div>
                 <iframe
                     onload={show_resume}

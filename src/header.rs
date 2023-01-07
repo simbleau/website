@@ -1,37 +1,34 @@
+use crate::components::ThemeSwitcher;
+use crate::navigation::Navigation;
+use cssugar::prelude::*;
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
-use crate::components::ThemeSwitcher;
-use crate::navigation::Navigation;
-
-pub const HEADER_PADDING: &str = "5px";
+pub const HEADER_PADDING: Length = Length::Px(5.0);
 
 #[styled_component(Header)]
 pub fn header() -> Html {
-    let header_css = css!(
-        r#"
-            width: 100%;
-            padding-top: ${header_padding};
-            padding-bottom: ${header_padding};
+    let header_css = css! {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 100%;
+    };
 
-            ul {
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-            }
+    let list_css = css! {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
 
-            li {
-                padding: ${header_padding};
-                display: inline-block;
-            }
-        "#,
-        header_padding = HEADER_PADDING,
-    );
+        & li {
+            padding: 5px;
+            display: inline-block;
+        }
+    };
 
     html! {
         <header class={ header_css }>
             <div id="nav-wrapper" align="center">
-                <ul>
+                <ul class={list_css}>
                     <li><Navigation /></li>
                     <li><ThemeSwitcher /></li>
                 </ul>

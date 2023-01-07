@@ -1,60 +1,56 @@
+use crate::components::{Destination, Hyperlink};
+use crate::components::{Icon, IconMask};
+use crate::style::themes::BrandChoice;
+use cssugar::prelude::*;
+use js_sys::Date;
 use stylist::yew::styled_component;
+use themer::prelude::*;
 use yew::prelude::*;
 
-use crate::components::{Hyperlink, Url};
-use crate::style::{
-    icons::{Icon, IconMask},
-    themes::use_theme,
-};
-
-pub const FOOTER_HEIGHT: &str = "150px";
-pub const FOOTER_PADDING: &str = "5px";
+pub const FOOTER_PADDING: Length = Length::Px(5.0);
 
 #[styled_component(Footer)]
 pub fn footer() -> Html {
-    let theme = use_theme();
+    let copyright_year = Date::new_0().get_full_year();
+    let theme = use_theme::<BrandChoice>();
 
     let css = css!(
         r#"
-            /* Anchor to bottom */
-            position: absolute;
-            bottom: 0;
+            /* Sizing */
+            padding-top: ${padding};
+            padding-bottom: ${padding};
             width: 100%;
-            height: ${footer_height};
 
             /* Center footer line */
             display: flex;
             justify-content: center;
             align-items: center;
-
-            /* Styling */
-            padding-top: ${footer_padding};
-            padding-bottom: ${footer_padding};
         "#,
-        footer_height = FOOTER_HEIGHT,
-        footer_padding = FOOTER_PADDING,
+        padding = FOOTER_PADDING,
     );
 
     html! {
         <footer class={ css }>
             <div id="footer_wrap" align="center">
                 <p>
-                    { "2022 " }
-                    <Icon mask={IconMask::Copyright} fill={theme.fg1} />
+                    { copyright_year }
+                    { " " }
+                    <Icon mask={IconMask::Copyright} fill={theme.color} />
                     { " Spencer C. Imbleau" }
                 </p>
                 {"Made with "}
-                <Icon mask={IconMask::Coffee} fill={theme.fg1} />
+                <Icon mask={IconMask::Coffee} fill={theme.color} />
                 {" and a "}
-                <Icon mask={IconMask::Keyboard} fill={theme.fg1} />
+                <Icon mask={IconMask::Keyboard} fill={theme.color} />
                 {" using " }
-                <Icon mask={IconMask::Rust} fill={theme.fg1} />
+                <Icon mask={IconMask::Rust} fill={theme.color} />
                 <br />
                 <small>
                     <Hyperlink
-                        domain={Url::External("https://github.com/simbleau/website")}
-                        display={html!("Edit on GitHub")}
-                    />
+                        to={Destination::External("https://github.com/simbleau/website")}
+                    >
+                    {"Edit on GitHub"}
+                    </Hyperlink>
                 </small>
             </div>
         </footer>

@@ -1,12 +1,14 @@
+use crate::components::IconMask;
+use crate::style::themes::BrandChoice;
+use cssugar::prelude::*;
 use stylist::css;
+use themer::prelude::*;
 use yew::prelude::*;
-
-use crate::style::colors::Color;
-use crate::style::icons::IconMask;
-use crate::style::themes::use_theme;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
+    #[prop_or_default]
+    pub data_id: Option<AttrValue>,
     pub mask: IconMask,
     #[prop_or_default]
     pub fill: Option<Color>,
@@ -20,7 +22,7 @@ pub struct Props {
 
 #[function_component(Icon)]
 pub fn icon(props: &Props) -> Html {
-    let theme = use_theme();
+    let theme = use_theme::<BrandChoice>();
 
     // Sizing
     let fsh = format!("calc({} * {})", props.scale.unwrap_or(1.0), theme.fs);
@@ -89,7 +91,7 @@ pub fn icon(props: &Props) -> Html {
         }
         "#,
         mask = props.mask,
-        fill = props.fill.unwrap_or(theme.fg1),
+        fill = props.fill.unwrap_or(theme.color),
     );
 
     let mask_hover_style = props.hover_fill.map(|fill| {
@@ -104,7 +106,9 @@ pub fn icon(props: &Props) -> Html {
     });
 
     html! {
-        <i  class={
+        <i
+            data-id={props.data_id.clone()}
+            class={
                 classes!(
                     icon_style,
                     mask_style,

@@ -1,30 +1,29 @@
+use crate::components::{IconMask, TapTarget};
+use crate::style::themes::BrandChoice;
+use themer::prelude::*;
 use yew::prelude::*;
-
-use crate::components::TapTarget;
-use crate::style::icons::IconMask;
-use crate::style::themes::{use_theme, ThemeChoice};
 
 #[function_component(ThemeSwitcher)]
 pub fn theme_switcher() -> Html {
-    let theme = use_theme();
+    let theme = use_theme::<BrandChoice>();
 
-    let onclick = Callback::from({
+    let onclick = {
         let theme = theme.clone();
         let other = match theme.kind() {
-            ThemeChoice::Light => ThemeChoice::Dark,
-            ThemeChoice::Dark => ThemeChoice::Light,
+            BrandChoice::Light => BrandChoice::Dark,
+            BrandChoice::Dark => BrandChoice::Light,
         };
-        move |_| {
+        Callback::from(move |_| {
             theme.set(other);
-        }
-    });
+            _ = BrowserPreference::save(other);
+        })
+    };
 
     html! {
         <TapTarget
-            accessibility={ "Switch Theme" }
             mask={match theme.kind() {
-                ThemeChoice::Light => IconMask::Moon,
-                ThemeChoice::Dark => IconMask::Brightness
+                BrandChoice::Light => IconMask::Moon,
+                BrandChoice::Dark => IconMask::Brightness
             }}
             { onclick }
         />

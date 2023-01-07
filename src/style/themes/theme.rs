@@ -1,22 +1,54 @@
-use gloo_storage::Storage;
+use crate::style::themes::{DARK_THEME, LIGHT_THEME};
+use cssugar::prelude::*;
+use serde::{Deserialize, Serialize};
+use themer::prelude::*;
 
-use super::ThemeChoice;
-use crate::style::colors::Color;
+#[theme_key]
+#[derive(Serialize, Deserialize)]
+pub enum BrandChoice {
+    Light,
+    Dark,
+}
 
-#[derive(Debug, Clone)]
-pub struct Theme {
-    /// Foreground color 1
-    pub fg1: Color,
-    /// Foreground color 2
-    pub fg2: Color,
-    /// Background color 1
-    pub bg1: Color,
-    /// Background color 2
-    pub bg2: Color,
-    /// Accent color 1
-    pub ac1: Color,
-    /// Accent color 2
-    pub ac2: Color,
+impl Default for BrandChoice {
+    fn default() -> Self {
+        BrowserPreference::get()
+            .map(|p| match p {
+                BrowserPreference::Dark => BrandChoice::Dark,
+                BrowserPreference::Light => BrandChoice::Light,
+            })
+            .unwrap_or(BrandChoice::Light)
+    }
+}
+
+impl ThemeKey for BrandChoice {
+    type Theme = BrandTheme;
+
+    fn theme(&self) -> &'static Self::Theme {
+        match self {
+            BrandChoice::Light => &LIGHT_THEME,
+            BrandChoice::Dark => &DARK_THEME,
+        }
+    }
+}
+
+#[theme]
+pub struct BrandTheme {
+    /// Foreground color
+    pub color: Color,
+    /// Background color
+    pub background_color: Color,
+    /// Link color
+    pub link: Color,
+    /// Link hover color
+    pub link_hover: Color,
+    /// Header color
+    pub header_color: Color,
+
+    // Fonts
+    pub header_font: &'static str,
+    pub body_font: &'static str,
+    pub mono_font: &'static str,
 
     /// Font size - default
     pub fs: &'static str,
@@ -31,34 +63,4 @@ pub struct Theme {
     pub fw: &'static str,
     /// Font width - headers
     pub fwh: &'static str,
-}
-
-impl Theme {
-    /// Get the browser's theme preference through a med ia query.
-    pub fn get_preference() -> ThemeChoice {
-        match gloo_storage::LocalStorage::get("theme") {
-            Ok(preference) => {
-                // Get saved theme from local storage
-                preference
-            }
-            Err(_) => {
-                // No local storage preference found, query the browser for a
-                // preference
-                match web_sys::window()
-                    .and_then(|w| {
-                        w.match_media("(prefers-color-scheme: dark)").ok()
-                    })
-                    .flatten()
-                    .map(|m| m.matches())
-                {
-                    // Browser prefers dark theme
-                    Some(true) => ThemeChoice::Dark,
-                    // Browser prefers light theme
-                    Some(false) => ThemeChoice::Light,
-                    // Browser was not queryable
-                    None => ThemeChoice::default(),
-                }
-            }
-        }
-    }
 }
