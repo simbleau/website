@@ -1,10 +1,8 @@
 use crate::components::{
     Destination, Hyperlink, IFrame, IconMask, IFRAME_BORDER_WIDTH,
 };
-use crate::style::themes::ThemeChoice;
 use cssugar::prelude::*;
 use stylist::yew::styled_component;
-use themer::prelude::*;
 use yew::prelude::*;
 
 const PDF_MIN_HEIGHT: Length = Length::Px(500.0);
@@ -39,20 +37,20 @@ pub fn view() -> Html {
     html! {
         <div align="center">
             <div id="text_wrap">
-                {"This résumé is "}
+                {"this résumé is "}
                 <Hyperlink
-                    icon={IconMask::GitHub}
+                    icon={IconMask::Git}
                     to={Destination::External("https://github.com/simbleau/resume")}
                 >
                     {"source controlled"}
                 </Hyperlink>
                 {" and "}
                 <Hyperlink
+                    icon={IconMask::Robot}
                     to={Destination::External("https://github.com/simbleau/resume/actions")}
                 >
                     {"automated"}
                 </Hyperlink>
-                {"."}
             </div>
             <br />
             <IFrame
