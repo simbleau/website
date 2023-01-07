@@ -1,46 +1,48 @@
-<div align="center">
+# <img src="static/logo.svg" width="20px" height="20px"/> Spencer C. Imbleau's Website
+A repository containing the source code for my website.
 
-<img src="static/logo.svg" width="144px" height="144px"/>
-
-# Spencer C. Imbleau's Website
-[![build](https://img.shields.io/github/workflow/status/simbleau/website/build?style=for-the-badge&logo=github)](https://github.com/simbleau/website/actions/workflows/build.yml)
-[![sponsor me](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)](https://github.com/sponsors/simbleau)
-[![buy me a coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/simbleau)
-
-<h3>To view the website, click <a href="https://spencer.imbleau.com">here</a>.</h3>
-
-</div>
+**To view the website, [click here](https://spencer.imbleau.com).**\
+**To see how I deploy with Kubernetes at home, [click here](https://github.com/simbleau/home-ops/tree/main/charts/my-website).**
 
 ---
+[![last release](https://img.shields.io/github/release-date/simbleau/website?logo=github&label=Last%20Release)](https://github.com/simbleau/resume/releases)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/simbleau/website/ci.yml?logo=github&label=CI)](https://github.com/simbleau/website/actions/workflows/ci.yml)
 
-# 🤖 GitOps
-- Builds are tested using [GitHub Actions](https://github.com/simbleau/website/actions/workflows/build.yml)
-- Builds are released using [GitHub Actions](https://github.com/simbleau/website/actions/workflows/build.yml) to [DockerHub](https://hub.docker.com/r/simbleau/website).
-- [FluxCD](https://fluxcd.io/) monitors DockerHub's [`simbleau/website:latest`](https://hub.docker.com/r/simbleau/website/tags?name=latest) and automatically upgrades on [my home infrastructure](https://github.com/simbleau/home-ops).
-
+# 🤖 Deployment
+- Code is tested using [GitHub Actions](https://github.com/simbleau/website/actions/workflows/ci.yml)
+Deployment is automated by [GitHub Actions](https://github.com/simbleau/website/actions).
+- Pushes to `main` trigger a new [`latest`](https://github.com/simbleau/website/releases/tag/latest) release and [DockerHub image](https://hub.docker.com/r/simbleau/website/tags).
+- Manually pushed [releases](https://github.com/simbleau/website/releases) also upload a correspondingly tagged [DockerHub image](https://hub.docker.com/r/simbleau/website/tags).
 
 # 🔧 Development
-## Dependencies
-- [Rust](https://www.rust-lang.org/)
-- [trunk](https://trunkrs.dev/) (`cargo install trunk`)
-- [wasm32-unkown-unknown](https://yew.rs/docs/getting-started/introduction#install-webassembly-target) (`rustup target add wasm32-unknown-unknown`)
-## Serving
-- Serve: `trunk serve --port 8080`
-- Preview: [`http://localhost:8080/`](http://localhost:8080/) (✅ Hot-reloading)
+- **Dependencies**
+  - [Rust](https://www.rust-lang.org/)
+  - [Trunk](https://trunkrs.dev/) (`cargo install trunk`)
+- **Serve**:
+  ```bash
+  trunk serve --open
+  ```
 
 # 🌐 Serving
 ## Option 1: [Docker](https://docker.com) (Recommended)
 [![Docker AMD64 Image](https://badgen.net/docker/size/simbleau/website/latest/amd64?icon=docker&label=amd64)](https://hub.docker.com/r/simbleau/website/tags)
 [![Docker ARM64 Image](https://badgen.net/docker/size/simbleau/website/latest/arm64?icon=docker&label=arm64v8)](https://hub.docker.com/r/simbleau/website/tags)\
-[![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/simbleau/website/latest?label=version%20%28latest%29)](https://hub.docker.com/r/simbleau/website/tags)\
-Quick setup: `docker run -p 80:80 simbleau/website:latest`
-## Option 2: Trunk + nginx
-### Dependencies
-- [Rust](https://www.rust-lang.org/)
-- [trunk](https://trunkrs.dev/) (`cargo install trunk`)
-- [wasm32-unkown-unknown](https://yew.rs/docs/getting-started/introduction#install-webassembly-target) (`rustup target add wasm32-unknown-unknown`)
-### Serving
-- `trunk build --release` generates the `dist/` folder
+[![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/simbleau/website/latest?label=version%20%28latest%29)](https://hub.docker.com/r/simbleau/website/tags)
+
+- **Pull**:
+  ```bash
+  docker pull simbleau/website:latest
+  ```
+- **Run**:
+  ```bash
+  docker run -p 80:80 simbleau/website:latest
+  ```
+
+## Option 2: Manual
+- **Build** *(generates a `dist/` folder)*:
+  ```bash
+  trunk build --release
+  ```
 - Serve the `dist/` folder with a web server such as [nginx](https://www.nginx.com/)
   - Note: [`website.nginx.conf`](website.nginx.conf) is the nginx configuration that the Docker image uses
 
