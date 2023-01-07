@@ -28,7 +28,7 @@ jobs:
           openssl dgst -sha256 -r dist.tar.gz | awk '{print $1}' > dist.tar.gz.sha256
           openssl dgst -sha256 -r dist.zip | awk '{print $1}' > dist.zip.sha256
 
-      - name: Release | Upload
+      - name: Release | Tagged
         uses: softprops/action-gh-release@v1
         with:
           fail_on_unmatched_files: true
