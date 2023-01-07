@@ -28,12 +28,23 @@ jobs:
           openssl dgst -sha256 -r dist.tar.gz | awk '{print $1}' > dist.tar.gz.sha256
           openssl dgst -sha256 -r dist.zip | awk '{print $1}' > dist.zip.sha256
 
-      - name: Release | Upload
+      # Replace latest release
+      - name: Clean | Latest
+        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        with:
+          delete_release: true
+          tag_name: latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release | Latest
         uses: softprops/action-gh-release@v1
         with:
-          name: "Latest"
           tag_name: "latest"
-          body: "The latest dist/ compilation of my website."
+          name: My Website
+          body: "The latest distributable compilation, usually denoted `public/` or `dist/`, of my website."
+          draft: false
+          prerelease: false
           fail_on_unmatched_files: true
           files: |
             dist.tar.gz
