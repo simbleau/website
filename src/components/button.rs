@@ -1,40 +1,45 @@
+use crate::style::themes::ThemeChoice;
+use cssugar::prelude::*;
 use stylist::css;
+use themer::prelude::*;
 use yew::prelude::*;
 
-use crate::style::themes::use_theme;
+const BUTTON_BORDER_RADIUS: Length = Length::Px(5.0);
+const BUTTON_PADDING: Length = Length::Px(10.0);
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
     pub onclick: Callback<MouseEvent>,
-    pub inner_text: fn() -> Html,
+    pub children: Children,
+    pub class: Option<Classes>,
 }
 
 #[function_component(Button)]
-pub fn button(props: &Props) -> Html {
-    let theme = use_theme();
+pub fn view(props: &Props) -> Html {
+    let theme = use_theme::<ThemeChoice>();
 
     let style = css!(
-        r#"
-            width: 2em;
-            height: 2em;
-            display:block;
-            border: 0;
-            border-radius: 50%;
-            background-color: ${bg};
-            color: ${fg};
-            padding: 10px;
+        & {
+            border-radius: ${BUTTON_BORDER_RADIUS};
+            border: 1px solid ${theme.color};
+            background: none;
+
+            text-align: center;
+            color: ${theme.color};
+            padding: ${BUTTON_PADDING};
             cursor:pointer;
-        "#,
-        bg = theme.fg1,
-        fg = theme.bg1,
+        }
+        &:hover {
+            background: ${theme.color.alpha(0.1)};
+        }
     );
 
     html! {
         <button
-            class={style}
+            class={classes!(props.class.clone(), style)}
             onclick={&props.onclick}
         >
-        { (props.inner_text)() }
+        { props.children.clone() }
         </button>
     }
 }

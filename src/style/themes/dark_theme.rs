@@ -1,15 +1,16 @@
+use crate::style::themes::ThemeSpec;
+use cssugar::prelude::*;
 use once_cell::sync::Lazy;
 
-use super::Theme;
-use crate::style::colors::Color;
-
-pub static DARK_THEME: Lazy<Theme> = Lazy::new(|| Theme {
-    fg1: Color::opaque(0xcc, 0xcc, 0xcc),
-    fg2: Color::opaque(0xdd, 0xdd, 0xdd),
-    bg1: Color::opaque(0x22, 0x22, 0x22),
-    bg2: Color::opaque(0x30, 0x30, 0x30),
-    ac1: Color::opaque(0x00, 0xaa, 0xff),
-    ac2: Color::opaque(0x00, 0xcf, 0xff),
+pub static DARK_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
+    color: Color::from_rgb(0xcc, 0xcc, 0xcc),
+    background_color: Color::from_rgb(0x22, 0x22, 0x22),
+    link: Color::from_rgb(0x00, 0xaa, 0xff),
+    link_hover: Color::from_rgb(0x00, 0xcf, 0xff),
+    header_color: Color::from_rgb(0xcc, 0xcc, 0xcc),
+    header_font: "Roboto",
+    body_font: "Roboto",
+    mono_font: "Roboto",
     fs: "1rem",
     fsm: "1.04rem",
     fst: "1.08rem",

@@ -1,7 +1,8 @@
 use stylist::yew::styled_component;
+use themer::prelude::*;
 use yew::prelude::*;
 
-use crate::style::themes::use_theme;
+use crate::style::themes::ThemeChoice;
 
 const R: f32 = 10.0;
 const STROKE_WIDTH: f32 = 3.0;
@@ -9,7 +10,7 @@ pub const SPINNER_SIZE: f32 = 50.0;
 
 #[styled_component(Spinner)]
 pub fn spinner() -> Html {
-    let theme = use_theme();
+    let theme = use_theme::<ThemeChoice>();
 
     let spinner = css! {
         r#"
@@ -44,10 +45,10 @@ pub fn spinner() -> Html {
             fill-opacity: 0;
         }
         & > svg > #track {
-            stroke: ${fg1};
+            stroke: ${stroke};
         }
         "#,
-        fg1 = theme.fg1,
+        stroke = theme.color,
     };
 
     let view_box = {
@@ -55,8 +56,7 @@ pub fn spinner() -> Html {
         let view_box_x = 50.00 - radius;
         let view_box_width = radius * 2.00;
         format!(
-            "{:.2} {:.2} {:.2} {:.2}",
-            view_box_x, view_box_x, view_box_width, view_box_width,
+            "{view_box_x:.2} {view_box_x:.2} {view_box_width:.2} {view_box_width:.2}"
         )
     };
     let spinner_track = format!(

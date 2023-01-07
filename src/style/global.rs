@@ -1,10 +1,13 @@
+use super::themes::ThemeChoice;
 use stylist::{css, StyleSource};
+use themer::prelude::*;
+use yew::hook;
 
-use crate::style::themes::use_theme;
-pub const THEME_TRANSITION_SPEED: &str = "0.5s";
+pub const THEME_TRANSITION_SPEED: &str = "3s";
 
-pub fn css() -> StyleSource<'static> {
-    let theme = use_theme();
+#[hook]
+pub fn use_global_css() -> StyleSource {
+    let theme = use_theme::<ThemeChoice>();
     css!(
         r#"
             html, body {
@@ -20,12 +23,10 @@ pub fn css() -> StyleSource<'static> {
                 font-size: ${fs};
 
                 /* Theme Application */
-                transition: background-color ${transition_speed},
-                            font-size ${transition_speed};
-                            width: ${transition_speed};
-                            height: ${transition_speed};
-                background-color: ${bg1};
-                color: ${fg1};
+                transition-property: background-color, font-size, width, height;
+                transition-duration: 250ms;
+                background-color: ${background_color};
+                color: ${color};
             }
 
             @media (min-width: 768px) {
@@ -51,40 +52,60 @@ pub fn css() -> StyleSource<'static> {
             h4,
             h5,
             h6 {
-                color: ${fg2};
+                color: ${header_color};
                 font-weight: ${fwh};
             }
 
             /* Links */
             a {
-                color: ${ac1};
+                color: ${link};
                 text-decoration:none;
             }
             a:hover {
-                color: ${ac2};
-                text-decoration:underline;
+                color: ${link_hover};
+                text-decoration: underline;
             }
 
             h1 a,
             h2 a,
-            main nav a,
             h1 a:hover,
-            h2 a:hover,
-            main nav a:hover {
-                text-decoration:none
+            h2 a:hover {
+                text-decoration:none;
+            }
+
+            /* Fonts */
+            html,
+            body {
+                text-rendering: optimizeLegibility;
+                font-family: ${body_font};
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: ${header_font};
+            }
+
+            .preformatted {
+                font-family: ${mono_font};
             }
         "#,
-        bg1 = theme.bg1,
-        fg1 = theme.fg1,
-        fg2 = theme.fg2,
-        ac1 = theme.ac1,
-        ac2 = theme.ac2,
+        color = theme.color,
+        background_color = theme.background_color,
+        link = theme.link,
+        link_hover = theme.link_hover,
+        header_color = theme.header_color,
+        body_font = theme.body_font,
+        header_font = theme.header_font,
+        mono_font = theme.mono_font,
         fs = theme.fs,
         fsm = theme.fsm,
         fst = theme.fst,
         fsd = theme.fsd,
         fw = theme.fw,
         fwh = theme.fwh,
-        transition_speed = THEME_TRANSITION_SPEED,
     )
 }
