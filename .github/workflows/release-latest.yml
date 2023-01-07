@@ -4,6 +4,45 @@ on:
     branches: [main]
 
 jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Trunk
+        uses: jetli/trunk-action@v0.2.0
+        with:
+          version: "latest"
+
+      - name: Build | Trunk
+        run: trunk build --release
+
+      - name: Release | Prepare artifacts
+        run: |
+          tar czvf dist.tar.gz dist
+          zip -9 -r dist.zip dist
+
+      - name: Release | Create checksums
+        run: |
+          openssl dgst -sha256 -r dist.tar.gz | awk '{print $1}' > dist.tar.gz.sha256
+          openssl dgst -sha256 -r dist.zip | awk '{print $1}' > dist.zip.sha256
+
+      - name: Release | Upload
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "Latest"
+          tag_name: "latest"
+          body: "The latest dist/ compilation of my website."
+          fail_on_unmatched_files: true
+          files: |
+            dist.tar.gz
+            dist.tar.gz.sha256
+            dist.zip
+            dist.zip.sha256
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   dockerhub:
     runs-on: ubuntu-latest
     steps:
