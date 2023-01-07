@@ -1,8 +1,8 @@
-FROM ubuntu:latest as builder
+FROM ubuntu:22.04 as builder
 
 # Install dependencies
 RUN apt-get update
-RUN apt-get install -y curl build-essential libssl-dev cmake pkg-config openssl
+RUN apt-get install -y curl build-essential libssl-dev cmake pkg-config openssl binaryen
 
 # Install Rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -33,5 +33,8 @@ RUN trunk build --release
 
 # Run
 FROM nginx:alpine
-COPY website.nginx.conf /etc/nginx/nginx.conf
+# Copy dist/
 COPY --from=builder /.stage/dist/ /usr/share/nginx/html/
+# Apply server config
+RUN rm /etc/nginx/conf.d/default.conf
+COPY website.nginx.conf /etc/nginx/conf.d/website.conf
