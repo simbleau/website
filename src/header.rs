@@ -5,12 +5,13 @@ use stylist::yew::styled_component;
 use yew::prelude::*;
 
 pub const HEADER_PADDING: Length = Length::Px(5.0);
+pub const HEADER_ITEM_PADDING: Length = Length::Px(5.0);
 
 #[styled_component(Header)]
 pub fn header() -> Html {
     let header_css = css! {
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: ${HEADER_PADDING};
+        padding-bottom: ${HEADER_PADDING};
         width: 100%;
     };
 
@@ -20,7 +21,7 @@ pub fn header() -> Html {
         margin: 0;
 
         & li {
-            padding: 5px;
+            padding: ${HEADER_ITEM_PADDING};
             display: inline-block;
         }
     };

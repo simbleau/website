@@ -1,7 +1,11 @@
 use crate::style::themes::BrandChoice;
+use cssugar::prelude::*;
 use stylist::css;
 use themer::prelude::*;
 use yew::prelude::*;
+
+const BUTTON_BORDER_RADIUS: Length = Length::Px(5.0);
+const BUTTON_PADDING: Length = Length::Px(10.0);
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -15,26 +19,19 @@ pub fn view(props: &Props) -> Html {
     let theme = use_theme::<BrandChoice>();
 
     let style = css!(
-        r#"
         & {
-            border: 0;
-            border-radius: 5px;
-
-            border: 1px solid ${fg};
+            border-radius: ${BUTTON_BORDER_RADIUS};
+            border: 1px solid ${theme.color};
             background: none;
 
             text-align: center;
-            color: ${fg};
-            padding: 10px;
+            color: ${theme.color};
+            padding: ${BUTTON_PADDING};
             cursor:pointer;
         }
-
         &:hover {
-            background: ${bg};
+            background: ${theme.color.alpha(0.1)};
         }
-        "#,
-        fg = theme.color,
-        bg = theme.color.alpha(0.1),
     );
 
     html! {

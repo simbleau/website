@@ -1,6 +1,7 @@
 use crate::components::IconMask;
 use crate::components::TapTarget;
 use crate::style::themes::BrandChoice;
+use cssugar::prelude::*;
 use stylist::css;
 use themer::prelude::*;
 use yew::prelude::*;
@@ -25,8 +26,8 @@ pub fn view() -> Html {
     );
 
     let shadow = match theme.kind() {
-        BrandChoice::Dark => "rgba(0,0,0,0.5)",
-        BrandChoice::Light => "rgba(0,0,0,0.25)",
+        BrandChoice::Dark => BLACK.alpha(0.5),
+        BrandChoice::Light => BLACK.alpha(0.25),
     };
     let image_style = css!(
         r#"
