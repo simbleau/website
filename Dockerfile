@@ -1,22 +1,19 @@
-FROM ubuntu:22.04 as builder
+FROM ubuntu as builder
 
 # Install dependencies
 RUN apt-get update
-RUN apt-get install -y curl build-essential libssl-dev cmake pkg-config openssl binaryen
+RUN apt-get install -y curl build-essential openssl pkg-config binaryen
 
 # Install Rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
-RUN rustup target add wasm32-unknown-unknown
-RUN rustup install nightly
 
 # Install Trunk
-RUN cargo install wasm-bindgen-cli
 RUN cargo install trunk
 
 # Stage
 RUN mkdir /.stage
-# Build matter
+# Cargo matter
 COPY Cargo.toml /.stage/
 COPY rust-toolchain.toml /.stage/
 # Web matter
