@@ -7,8 +7,8 @@ use wasm_bindgen::JsCast;
 use web_sys::Element;
 use yew::prelude::*;
 
-const BORDER_WIDTH: Length = Length::Px(2.0);
-const BORDER_RADIUS: Length = Length::Px(5.0);
+pub const BORDER_WIDTH: Length = Length::Px(2.0);
+pub const BORDER_RADIUS: Length = Length::Px(5.0);
 
 #[derive(Properties, PartialEq)]
 pub struct IFrameProps {
@@ -19,35 +19,29 @@ pub struct IFrameProps {
 #[styled_component(IFrame)]
 pub fn view(props: &IFrameProps) -> Html {
     let theme = use_theme::<ThemeChoice>();
+    let border = theme.color;
+    let border_bg = theme.color.alpha(0.15);
+    let ctr_css = css! {
+        background-color: ${border_bg};
+        border-width: ${BORDER_WIDTH};
+        border-style: solid;
+        border-color: ${border};
+        border-radius: ${BORDER_RADIUS};
+        overflow: hidden;
 
-    let style = css! {
-        r#"
-        #iframe-ctr {
-            background-color: ${border_bg};
-            height: 100%;
-            width: 100%;
-            border: ${border_width} solid ${border};
-            border-radius: ${border_radius};
-            overflow: hidden;
+        /* For spinner centering */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    };
 
-            /* For spinner centering */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        iframe {
-            border: 0;
-            display:none;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-        }
-        "#,
-        border = theme.color,
-        border_bg = theme.color.alpha(0.15),
-        border_width = BORDER_WIDTH,
-        border_radius = BORDER_RADIUS,
+    let iframe_css = css! {
+        border: 0;
+        display:none;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
     };
 
     let loading_handle = NodeRef::default();
@@ -70,22 +64,19 @@ pub fn view(props: &IFrameProps) -> Html {
     });
 
     html! {
-        <div align="center" class={classes!(props.class.clone(), style)}>
-            <div id="iframe-ctr">
-                <div ref={loading_handle}>
-                    <Spinner />
-                    <br />
-                    <a href={ props.src }>
-                    {"Not loading?"}
-                    </a>
-                </div>
-                <iframe
-                    onload={ show }
-                    src={ props.src }
-                    width="100%"
-                    height="100%"
-                />
+        <div class={classes!(props.class.clone(), ctr_css)}>
+            <div ref={loading_handle}>
+                <Spinner />
+                <br />
+                <a href={ props.src }>
+                {"Not loading?"}
+                </a>
             </div>
+            <iframe
+                onload={ show }
+                src={ props.src }
+                class={iframe_css}
+            />
         </div>
     }
 }

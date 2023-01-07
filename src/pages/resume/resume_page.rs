@@ -1,88 +1,43 @@
-use crate::components::{Destination, Hyperlink, IconMask, Spinner};
+use crate::components::{
+    Destination, Hyperlink, IFrame, IconMask, IFRAME_BORDER_WIDTH,
+};
 use crate::style::themes::ThemeChoice;
 use cssugar::prelude::*;
 use stylist::yew::styled_component;
 use themer::prelude::*;
-use wasm_bindgen::JsCast;
-use web_sys::Element;
 use yew::prelude::*;
 
-const BORDER_WIDTH: Length = Length::Px(2.0);
-const BORDER_RADIUS: Length = Length::Px(5.0);
+const PDF_MIN_HEIGHT: Length = Length::Px(500.0);
+const PDF_HEIGHT: Length = Length::Vh(75.0);
+const PDF_MAX_HEIGHT: Length = Length::In(12.0);
+const PDF_WIDTH: Length = Length::Vw(100.0);
+const PDF_MAX_WIDTH: Length = Length::Px(800.0);
 
 #[styled_component(ResumePage)]
 pub fn view() -> Html {
-    let theme = use_theme::<ThemeChoice>();
-    let resume_bg = use_state(|| theme.color.alpha(0.15));
-
-    let style = css! {
+    let resume_css = css! {
         r#"
-        #resume-ctr {
-            background-color: ${bg};
-            min-height: 500px;
-            height: 75vh;
-            max-height: 12in;
-            border-top: ${bw} solid ${border};
-            border-bottom: ${bw} solid ${border};
-            border-left: 0;
-            border-right: 0;
-            width: 100%;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        @media (min-width: calc(800px + ${bw} + ${bw})) {
-            #resume-ctr {
-                width: 800px;
-                border: ${bw} solid ${border};
-                border-radius: ${br};
+            @media not screen and (min-width: ${min_width}) {
+                border-left: 0 !important;
+                border-right: 0 !important;
+                border-radius: 0 !important;
             }
-        }
-        iframe {
-            border: 0;
-            display:none;
-            width: 100%;
-            height: 100%;
-        }
-        #text_wrap {
-            margin: 5px;
-            display: inline-block;
-            vertical-align: middle;
-            text-align: center;
-        }
+            width: ${PDF_WIDTH};
+            max-width: ${PDF_MAX_WIDTH};
+            min-height: ${PDF_MIN_HEIGHT};
+            height: ${PDF_HEIGHT};
+            max-height: ${PDF_MAX_HEIGHT};
         "#,
-        border = theme.color,
-        bg = *resume_bg,
-        bw = BORDER_WIDTH,
-        br = BORDER_RADIUS,
+        min_width = PDF_MAX_WIDTH + IFRAME_BORDER_WIDTH + IFRAME_BORDER_WIDTH,
+        PDF_WIDTH = PDF_WIDTH,
+        PDF_MAX_WIDTH = PDF_MAX_WIDTH,
+        PDF_MIN_HEIGHT = PDF_MIN_HEIGHT,
+        PDF_HEIGHT = PDF_HEIGHT,
+        PDF_MAX_HEIGHT = PDF_MAX_HEIGHT,
     };
 
-    let loading_handle = NodeRef::default();
-    let show_resume = Callback::from({
-        let loading_handle = loading_handle.clone();
-        move |e: Event| {
-            let loader = loading_handle
-                .get()
-                .and_then(|t| t.dyn_into::<Element>().ok())
-                .expect("Could not get loading handle");
-            loader
-                .set_attribute("style", "display: none")
-                .expect("Could not hide loader");
-            let resume = e
-                .target()
-                .and_then(|t| t.dyn_into::<Element>().ok())
-                .expect("Unable to get iFrame");
-            resume
-                .set_attribute("style", "display: block")
-                .expect("Could not show resume");
-            resume_bg.set(WHITE);
-        }
-    });
-
     html! {
-        <div align="center" class={style}>
+        <div align="center">
             <div id="text_wrap">
                 {"This résumé is "}
                 <Hyperlink
@@ -100,21 +55,10 @@ pub fn view() -> Html {
                 {"."}
             </div>
             <br />
-            <div id="resume-ctr">
-                <div ref={loading_handle}>
-                    <Spinner />
-                    <br />
-                    <Hyperlink
-                        to={Destination::External("https://simbleau.github.io/resume")}
-                    >
-                        {"Not loading?"}
-                    </Hyperlink>
-                </div>
-                <iframe
-                    onload={show_resume}
-                    src="https://simbleau.github.io/resume/embed.html"
-                />
-            </div>
+            <IFrame
+                class={classes!(resume_css)}
+                src="https://simbleau.github.io/resume/embed.html"
+            />
         </div>
     }
 }

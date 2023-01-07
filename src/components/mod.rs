@@ -29,6 +29,8 @@ pub use transition::Transition;
 
 mod iframe;
 pub use iframe::IFrame;
+pub use iframe::BORDER_RADIUS as IFRAME_BORDER_RADIUS;
+pub use iframe::BORDER_WIDTH as IFRAME_BORDER_WIDTH;
 
 mod carousel;
 pub use carousel::Carousel;
