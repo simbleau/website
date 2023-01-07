@@ -1,7 +1,5 @@
-use crate::{
-    components::{Destination, Hyperlink, Icon, IconMask, Spinner},
-    style::themes::BrandChoice,
-};
+use crate::components::{Destination, Hyperlink, IconMask, Spinner};
+use crate::style::themes::BrandChoice;
 use cssugar::prelude::*;
 use stylist::yew::styled_component;
 use themer::prelude::*;
