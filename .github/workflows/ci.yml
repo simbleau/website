@@ -80,7 +80,7 @@ jobs:
       - name: Post Setup | Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: Distributable
+          name: dist
           path: dist/
 
   docker-ci:
