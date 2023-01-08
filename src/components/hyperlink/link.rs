@@ -25,19 +25,15 @@ pub struct HyperlinkProps {
 pub fn view(props: &HyperlinkProps) -> Html {
     let theme = use_theme::<ThemeChoice>();
     let style = css! {
-        r#"
         & {
-            display: inline;
+            display: inline-block;
         }
         & *[data-id="linkicon"] {
-            background-color: ${link};
+            background-color: ${theme.link};
         }
         &:hover *[data-id="linkicon"] {
-            background-color: ${link_hover};
+            background-color: ${theme.link_hover};
         }
-        "#,
-        link = theme.link,
-        link_hover = theme.link_hover,
     };
 
     html! {
