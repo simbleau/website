@@ -21,7 +21,7 @@ jobs:
       - name: Post Setup | Upload dist
         uses: actions/upload-artifact@v2
         with:
-          path: ./dist
+          path: ./dist/
 
   release:
     needs: build
@@ -32,8 +32,8 @@ jobs:
 
       - name: Setup | Download dist
         uses: actions/download-artifact@v2
-        with:
-          path: ./dist
+      - name: Setup | Place dist
+        run: mv ./artifact/ ./dist/
 
       - name: Release | Prepare artifacts
         run: |
@@ -69,8 +69,8 @@ jobs:
 
       - name: Setup | Download dist
         uses: actions/download-artifact@v2
-        with:
-          path: ./dist
+      - name: Setup | Place dist
+        run: mv ./artifact/ ./dist/
 
       - name: Setup | QEMU
         uses: docker/setup-qemu-action@v2

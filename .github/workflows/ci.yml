@@ -80,7 +80,7 @@ jobs:
       - name: Post Setup | Upload dist
         uses: actions/upload-artifact@v2
         with:
-          path: ./dist
+          path: ./dist/
 
   docker-ci:
     needs: build
@@ -91,8 +91,8 @@ jobs:
 
       - name: Setup | Download dist
         uses: actions/download-artifact@v2
-        with:
-          path: ./dist
+      - name: Setup | Place dist
+        run: mv ./artifact/ ./dist/
 
       - name: Setup | Docker Buildx
         uses: docker/setup-buildx-action@v2

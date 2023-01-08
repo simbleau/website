@@ -33,7 +33,6 @@ jobs:
       - name: Setup | Download dist
         uses: actions/download-artifact@v2
       - name: Setup | Place dist
-        shell: bash
         run: mv ./artifact/ ./dist/
 
       - name: Release | Prepare artifacts
@@ -80,8 +79,8 @@ jobs:
 
       - name: Setup | Download dist
         uses: actions/download-artifact@v2
-        with:
-          path: ./dist
+      - name: Setup | Place dist
+        run: mv ./artifact/ ./dist/
 
       - name: Setup | QEMU
         uses: docker/setup-qemu-action@v2
