@@ -6,7 +6,8 @@ use stylist::yew::styled_component;
 use yew::prelude::*;
 
 const PDF_MIN_HEIGHT: Length = Length::Px(500.0);
-const PDF_HEIGHT: Length = Length::Vh(75.0);
+const PDF_HEIGHT: Length = Length::Vh(100.0);
+const PDF_HEIGHT_PADDING: Length = Length::Px(250.0);
 const PDF_MAX_HEIGHT: Length = Length::In(12.0);
 const PDF_WIDTH: Length = Length::Vw(100.0);
 const PDF_MAX_WIDTH: Length = Length::Px(800.0);
@@ -30,7 +31,7 @@ pub fn view() -> Html {
         PDF_WIDTH = PDF_WIDTH,
         PDF_MAX_WIDTH = PDF_MAX_WIDTH,
         PDF_MIN_HEIGHT = PDF_MIN_HEIGHT,
-        PDF_HEIGHT = PDF_HEIGHT,
+        PDF_HEIGHT = PDF_HEIGHT - PDF_HEIGHT_PADDING,
         PDF_MAX_HEIGHT = PDF_MAX_HEIGHT,
     };
 
