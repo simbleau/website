@@ -18,11 +18,10 @@ jobs:
       - name: Build | Trunk
         run: trunk build --release
 
-      - name: Post Setup | Upload artifacts
+      - name: Post Setup | Upload dist
         uses: actions/upload-artifact@v2
         with:
-          name: dist
-          path: dist/
+          path: ./dist/
 
   release:
     needs: build
@@ -31,8 +30,10 @@ jobs:
       - name: Setup | Checkout
         uses: actions/checkout@v3
 
-      - name: Setup | Artifacts
+      - name: Setup | Download dist
         uses: actions/download-artifact@v2
+        with:
+          path: ./dist/
 
       - name: Release | Prepare artifacts
         run: |

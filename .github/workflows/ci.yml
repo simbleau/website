@@ -77,11 +77,10 @@ jobs:
       - name: Build | Trunk
         run: trunk build
 
-      - name: Post Setup | Upload artifacts
+      - name: Post Setup | Upload dist
         uses: actions/upload-artifact@v2
         with:
-          name: Distributable
-          path: dist/
+          path: ./dist/
 
   docker-ci:
     needs: build
@@ -90,10 +89,9 @@ jobs:
       - name: Setup | Checkout
         uses: actions/checkout@v3
 
-      - name: Setup | Artifacts
+      - name: Setup | Download dist
         uses: actions/download-artifact@v2
         with:
-          name: Distributable
           path: ./dist/
 
       - name: Setup | Docker Buildx
