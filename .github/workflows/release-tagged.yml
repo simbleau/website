@@ -4,19 +4,36 @@ on:
     tags: ["v*"]
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Setup | Checkout
         uses: actions/checkout@v3
 
       - name: Setup | Trunk
-        uses: jetli/trunk-action@v0.3.0
+        uses: jetli/trunk-action@v0.4.0
         with:
           version: "latest"
 
       - name: Build | Trunk
         run: trunk build --release
+
+      - name: Post Setup | Upload dist
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./dist/
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Download dist
+        uses: actions/download-artifact@v2
+        with:
+          path: ./dist/
 
       - name: Release | Prepare artifacts
         run: |
@@ -40,7 +57,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  docker:
+  dockerhub:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -48,6 +66,9 @@ jobs:
 
       - name: Setup | Get version tag
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Setup | Artifacts
+        uses: actions/download-artifact@v2
 
       - name: Setup | QEMU
         uses: docker/setup-qemu-action@v2
@@ -65,6 +86,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          file: ./CI.Dockerfile
           platforms: |
             linux/amd64
             linux/arm64
