@@ -21,7 +21,7 @@ jobs:
       - name: Post Setup | Upload dist
         uses: actions/upload-artifact@v2
         with:
-          path: ./dist
+          path: ./dist/
 
   release:
     needs: build
