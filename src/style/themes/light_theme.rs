@@ -6,7 +6,7 @@ pub static LIGHT_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
     color: Color::from_rgb(0x21, 0x25, 0x29),
     background_color: Color::from_rgb(0xf8, 0xf9, 0xfa),
     link: Color::from_rgb(0x00, 0x33, 0xdd),
-    link_hover: Color::from_rgb(0x0d, 0x6e, 0xfd),
+    link_hover: Color::from_rgb(0x00, 0x33, 0xdd).lighten(0.3),
     header_color: Color::from_rgb(0x00, 0x33, 0xdd),
     header_font: "Roboto",
     body_font: "Roboto",
