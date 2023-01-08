@@ -21,7 +21,8 @@ pub fn header() -> Html {
         margin: 0;
 
         & li {
-            padding: ${HEADER_ITEM_PADDING};
+            padding-left: ${HEADER_ITEM_PADDING};
+            padding-right: ${HEADER_ITEM_PADDING};
             display: inline-block;
         }
     };
