@@ -32,6 +32,9 @@ jobs:
 
       - name: Setup | Download dist
         uses: actions/download-artifact@v2
+      - name: Setup | Place dist
+        shell: bash
+        run: mv ./artifact/ ./dist/
 
       - name: Release | Prepare artifacts
         run: |
