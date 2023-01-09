@@ -19,7 +19,7 @@ jobs:
         run: trunk build --release
 
       - name: Post Setup | Upload dist
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: ./dist/
 
