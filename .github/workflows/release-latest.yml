@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup | Download dist
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
       - name: Setup | Place dist
         run: mv ./artifact/ ./dist/
 
@@ -79,7 +79,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup | Download dist
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
       - name: Setup | Place dist
         run: mv ./artifact/ ./dist/
 
