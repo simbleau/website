@@ -19,16 +19,17 @@ pub fn view(props: &Props) -> Html {
     let theme = use_theme::<ThemeChoice>();
 
     let style = css!(
-        & {
-            border-radius: ${BUTTON_BORDER_RADIUS};
-            border: 1px solid ${theme.color};
-            background: none;
+        cursor:pointer;
+        padding: ${BUTTON_PADDING};
+        text-align: center;
 
-            text-align: center;
-            color: ${theme.color};
-            padding: ${BUTTON_PADDING};
-            cursor:pointer;
-        }
+        border-radius: ${BUTTON_BORDER_RADIUS};
+        border-width: 1px;
+        border-style: solid;
+        border-color: ${theme.color};
+
+        color: ${theme.color};
+        background: none;
         &:hover {
             background: ${theme.color.alpha(0.1)};
         }
