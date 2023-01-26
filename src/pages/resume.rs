@@ -1,6 +1,4 @@
-use crate::components::{
-    Destination, Hyperlink, IFrame, IconMask, IFRAME_BORDER_WIDTH,
-};
+use accessible_ui::prelude::*;
 use cssugar::prelude::*;
 use stylist::yew::styled_component;
 use yew::prelude::*;
@@ -12,8 +10,8 @@ const PDF_MAX_HEIGHT: Length = Length::In(12.0);
 const PDF_WIDTH: Length = Length::Vw(100.0);
 const PDF_MAX_WIDTH: Length = Length::Px(800.0);
 
-#[styled_component(ResumePage)]
-pub fn view() -> Html {
+#[styled_component]
+pub fn ResumePage() -> Html {
     let resume_css = css! {
         r#"
             @media not screen and (min-width: ${min_width}) {
@@ -39,19 +37,19 @@ pub fn view() -> Html {
         <div align="center">
             <div id="text_wrap">
                 {"this résumé is "}
-                <Hyperlink
+                <ExternalLink
                     icon={IconMask::Git}
-                    to={Destination::External("https://github.com/simbleau/resume")}
+                    to={"https://github.com/simbleau/resume"}
                 >
                     {"source controlled"}
-                </Hyperlink>
+                </ExternalLink>
                 {" and "}
-                <Hyperlink
+                <ExternalLink
                     icon={IconMask::Robot}
-                    to={Destination::External("https://github.com/simbleau/resume/actions")}
+                    to={"https://github.com/simbleau/resume/actions"}
                 >
                     {"automated"}
-                </Hyperlink>
+                </ExternalLink>
             </div>
             <br />
             <IFrame

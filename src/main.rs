@@ -1,15 +1,13 @@
+use accessible_ui::prelude::*;
 use stylist::yew::Global;
 use themer::prelude::*;
 use website::footer::Footer;
 use website::header::Header;
-use website::pages::ConstructionPage;
 use website::router::{self, Route};
 use website::style::global::use_global_css;
 use website::style::themes::ThemeChoice;
 use yew::prelude::*;
 use yew_router::prelude::*;
-
-const UNDER_CONSTRUCTION: bool = false;
 
 #[function_component(Root)]
 pub fn root() -> Html {
@@ -29,22 +27,29 @@ pub fn root() -> Html {
 fn app() -> Html {
     // Apply global CSS
     let global_css = use_global_css();
+    let theme = use_theme::<ThemeChoice>();
+
+    let accessible_ui = AuiSpec {
+        color: theme.color,
+        background_color: theme.background_color,
+        link: theme.link,
+        link_hover: theme.link_hover,
+        header_color: theme.header_color,
+    };
 
     html! {
-        <BrowserRouter>
-            <Global css={global_css} />
-            if UNDER_CONSTRUCTION {
-                <ConstructionPage message={"You shall not pass!"} end={"July 2022".to_string()} />
-            } else {
-                    <main>
-                        <Header />
-                        <div id="content">
-                            <Switch<Route> render={router::switch} />
-                        </div>
-                        <Footer />
-                    </main>
-            }
-        </BrowserRouter>
+        <ContextProvider<AuiSpec> context={ accessible_ui } >
+            <BrowserRouter>
+                <Global css={global_css} />
+                <main>
+                    <Header />
+                    <div id="content">
+                        <Switch<Route> render={router::switch} />
+                    </div>
+                    <Footer />
+                </main>
+            </BrowserRouter>
+        </ContextProvider<AuiSpec>>
     }
 }
 

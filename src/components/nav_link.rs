@@ -1,76 +1,62 @@
-use crate::components::{Destination, Icon, IconMask};
 use crate::router::Route;
 use crate::style::themes::ThemeChoice;
+use accessible_ui::prelude::*;
 use stylist::yew::styled_component;
 use themer::prelude::*;
 use yew::prelude::*;
-use yew_router::prelude::*;
+
+#[derive(PartialEq)]
+pub enum NavDestination {
+    Internal(Route),
+    External(AttrValue),
+}
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
-    pub to: Destination,
+    pub to: NavDestination,
     pub children: Children,
 }
 
-#[styled_component(NavLink)]
-pub fn view(props: &Props) -> Html {
+#[styled_component]
+pub fn NavLink(props: &Props) -> Html {
     let theme = use_theme::<ThemeChoice>();
 
-    let style = css! {
-        r#"
-        & {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-bottom: 5px;
-        }
-        & > #underline {
+    let link_css = css! {
+        & > a > span > #underline {
             height: 3px;
             width: 0%;
 
             transition: width 0.2s ease-out, background-color 0.5s;
-            background-color: ${link};
+            background-color: ${theme.link};
         }
-        &:hover > #underline {
+        &:hover > a > span > #underline {
             width: 100%;
-            background-color: ${link_hover};
+            background-color: ${theme.link_hover};
         }
-        & > div > i {
-            vertical-align: baseline;
-            margin-left: 3px;
+    };
 
-            background-color: ${link};
-        }
-        &:hover > div > i {
-            background-color: ${link_hover};
-        }
-        "#,
-        link = theme.link,
-        link_hover = theme.link_hover,
+    let underline_ctr_style = css! {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     };
 
     match &props.to {
-        Destination::Internal(route) => html! {
-            <Link<Route> to={ *route }>
-                <div class={style}>
+        NavDestination::Internal(route) => html! {
+            <InternalLink<Route> to={*route} class={link_css}>
+                <span class={underline_ctr_style}>
                     { props.children.clone() }
                     <div id="underline" />
-                </div>
-            </Link<Route>>
+                </span>
+            </InternalLink<Route>>
         },
-        Destination::External(url) => html! {
-            <a href={ *url }>
-                <div class={style}>
-                    <div>
-                        { props.children.clone() }
-                        <Icon
-                            mask={ IconMask::Share }
-                            scale={ 0.75 }
-                        />
-                    </div>
+        NavDestination::External(url) => html! {
+            <ExternalLink to={url}class={link_css}>
+                <span class={underline_ctr_style}>
+                    { props.children.clone() }
                     <div id="underline" />
-                </div>
-            </a>
+                </span>
+            </ExternalLink>
         },
     }
 }
