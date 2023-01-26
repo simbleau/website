@@ -1,22 +1,21 @@
+use crate::router::Route;
+use accessible_ui::prelude::*;
 use stylist::yew::styled_component;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-use crate::components::Button;
-use crate::router::Route;
-
 #[derive(Properties, PartialEq, Eq)]
 pub struct ConstructionProps {
-    #[prop_or("Under Construction!".to_string())]
-    pub title: String,
-    #[prop_or("Pardon my dust.".to_string())]
-    pub message: String,
+    #[prop_or(AttrValue::Static("Under Construction!"))]
+    pub title: AttrValue,
+    #[prop_or(AttrValue::Static("Pardon my dust."))]
+    pub message: AttrValue,
     #[prop_or_default]
     pub end: Option<String>,
 }
 
-#[styled_component(Construction)]
-pub fn view(props: &ConstructionProps) -> Html {
+#[styled_component]
+pub fn Construction(props: &ConstructionProps) -> Html {
     let nav = use_navigator().unwrap();
     let onclick = Callback::from(move |_| nav.push(&Route::Home));
 

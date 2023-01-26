@@ -8,8 +8,8 @@ pub struct ProfilePictureProps {
     pub src: AttrValue,
 }
 
-#[styled_component(ProfilePicture)]
-pub fn view(props: &ProfilePictureProps) -> Html {
+#[styled_component]
+pub fn ProfilePicture(props: &ProfilePictureProps) -> Html {
     let theme = use_theme::<ThemeChoice>();
 
     let img_css = css! {
@@ -22,17 +22,17 @@ pub fn view(props: &ProfilePictureProps) -> Html {
             object-fit: scale-down;
 
             /* Outline */
-            border: solid 3px ${color};
-            box-shadow: 0 0 15px ${shadow_normal};
-            transition-property: border, background, box-shadow, width, height;
-            transition-duration: 0.5s;
+            border: solid 3px ${border};
+            box-shadow: 0 0 15px ${shadow};
+            transition-property: border, box-shadow, width, height;
+            transition-duration: 0.25s;
             &:hover {
-                border: solid 3px ${shadow_normal};
+                border: solid 3px ${shadow};
                 box-shadow: 0 0 25px ${shadow_hover};
             }
         "#,
-        color = theme.color,
-        shadow_normal = theme.color.alpha(0.2),
+        border = theme.color,
+        shadow = theme.color.alpha(0.2),
         shadow_hover = theme.color.alpha(0.5),
     };
 

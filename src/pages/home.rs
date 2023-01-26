@@ -1,11 +1,10 @@
-use crate::components::IconMask;
 use crate::components::ProfilePicture;
-use crate::components::TapTarget;
-use stylist::css;
+use accessible_ui::prelude::*;
+use stylist::yew::styled_component;
 use yew::prelude::*;
 
-#[function_component(HomePage)]
-pub fn view() -> Html {
+#[styled_component]
+pub fn HomePage() -> Html {
     let container_style = css!(
         r#"
             margin: 10px 0 0 0;

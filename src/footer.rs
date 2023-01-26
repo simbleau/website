@@ -1,6 +1,5 @@
-use crate::components::{Destination, Hyperlink};
-use crate::components::{Icon, IconMask};
 use crate::style::themes::ThemeChoice;
+use accessible_ui::prelude::*;
 use cssugar::prelude::*;
 use js_sys::Date;
 use stylist::yew::styled_component;
@@ -45,12 +44,12 @@ pub fn footer() -> Html {
                 {" using " }
                 <Icon mask={IconMask::Rust} fill={theme.color} />
                 <br />
-                <Hyperlink
+                <ExternalLink
                     icon={IconMask::GitHub}
-                    to={Destination::External("https://github.com/simbleau/website")}
+                    to={AttrValue::Static("https://github.com/simbleau/website")}
                 >
-                {"view source"}
-                </Hyperlink>
+                    {"view source"}
+                </ExternalLink>
             </div>
         </footer>
     }
