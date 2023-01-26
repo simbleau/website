@@ -5,7 +5,7 @@ A repository containing the source code for my website.
 **To see how I deploy with Kubernetes at home, [click here](https://github.com/simbleau/home-ops/tree/main/charts/my-website).**
 
 ---
-[![last release](https://img.shields.io/github/release-date/simbleau/website?logo=github&label=Last%20Release)](https://github.com/simbleau/resume/releases)
+[![last release](https://img.shields.io/github/release-date/simbleau/website?logo=github&label=Last%20Release)](https://github.com/simbleau/website/releases)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/simbleau/website/ci.yml?logo=github&label=CI)](https://github.com/simbleau/website/actions/workflows/ci.yml)
 
 # 🤖 Deployment
