@@ -28,8 +28,8 @@ pub fn HomePage() -> Html {
                 <a href="https://www.linkedin.com/in/simbleau/">
                     <TapTarget mask={IconMask::LinkedIn} />
                 </a>
-                <a href="https://www.twitter.com/spencerimbleau/">
-                    <TapTarget mask={IconMask::Twitter} />
+                <a rel="me" href="https://mastodon.online/@scim">
+                    <TapTarget mask={IconMask::Mastodon} />
                 </a>
                 <a href="https://www.github.com/simbleau/">
                     <TapTarget mask={IconMask::GitHub} />

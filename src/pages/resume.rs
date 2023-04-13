@@ -9,6 +9,8 @@ const PDF_HEIGHT_PADDING: Length = Length::Px(250.0);
 const PDF_MAX_HEIGHT: Length = Length::In(12.0);
 const PDF_WIDTH: Length = Length::Vw(100.0);
 const PDF_MAX_WIDTH: Length = Length::Px(800.0);
+const IFRAME_BORDER_WIDTH: Length =
+    accessible_ui::components::iframe::BORDER_WIDTH;
 
 #[styled_component]
 pub fn ResumePage() -> Html {
