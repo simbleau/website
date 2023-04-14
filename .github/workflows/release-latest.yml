@@ -60,8 +60,6 @@ jobs:
           tag_name: "latest"
           name: My Website
           body: "The latest distributable compilation, usually denoted `public/` or `dist/`, of my website."
-          draft: false
-          prerelease: false
           fail_on_unmatched_files: true
           files: |
             dist.tar.gz
