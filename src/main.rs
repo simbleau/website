@@ -46,7 +46,6 @@ fn app() -> Html {
                     <div id="content">
                         <Switch<Route> render={router::switch} />
                     </div>
-                    <Footer />
                 </main>
             </BrowserRouter>
         </ContextProvider<AuiSpec>>

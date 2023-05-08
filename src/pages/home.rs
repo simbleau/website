@@ -1,4 +1,4 @@
-use crate::components::ProfilePicture;
+use crate::{components::ProfilePicture, footer::Footer};
 use accessible_ui::prelude::*;
 use stylist::yew::styled_component;
 use yew::prelude::*;
@@ -21,6 +21,7 @@ pub fn HomePage() -> Html {
     );
 
     html! {
+        <>
         <div align="center" class={container_style}>
             <ProfilePicture src={"/static/images/me.webp"} />
             <br />
@@ -36,5 +37,7 @@ pub fn HomePage() -> Html {
                 </a>
             </div>
         </div>
+        <Footer />
+        </>
     }
 }

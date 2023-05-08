@@ -5,7 +5,7 @@ use yew::prelude::*;
 
 const PDF_MIN_HEIGHT: Length = Length::Px(500.0);
 const PDF_HEIGHT: Length = Length::Vh(100.0);
-const PDF_HEIGHT_PADDING: Length = Length::Px(250.0);
+const PDF_HEIGHT_PADDING: Length = Length::Px(200.0);
 const PDF_MAX_HEIGHT: Length = Length::In(12.0);
 const PDF_WIDTH: Length = Length::Vw(100.0);
 const PDF_MAX_WIDTH: Length = Length::Px(800.0);
@@ -58,6 +58,13 @@ pub fn ResumePage() -> Html {
                 class={classes!(resume_css)}
                 src="https://simbleau.github.io/resume/embed.html"
             />
+            <br />
+            <ExternalLink
+                to={"https://github.com/simbleau/resume/releases/download/latest/resume.pdf"}
+            >
+                {"click here"}
+            </ExternalLink>
+            {" to download"}
         </div>
     }
 }
