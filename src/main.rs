@@ -1,7 +1,6 @@
 use accessible_ui::prelude::*;
 use stylist::yew::Global;
 use themer::prelude::*;
-use website::footer::Footer;
 use website::header::Header;
 use website::router::{self, Route};
 use website::style::global::use_global_css;
