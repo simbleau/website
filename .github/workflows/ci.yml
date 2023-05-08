@@ -41,7 +41,6 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
-          profile: minimal
 
       - name: Build | Check
         run: cargo check --all
@@ -57,7 +56,6 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
-          profile: minimal
 
       - name: Build | Test
         run: cargo test
