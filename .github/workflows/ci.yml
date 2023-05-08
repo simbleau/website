@@ -12,21 +12,14 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
-          default: true
-          components: clippy
+          override: true
+          components: rustfmt, clippy
 
       - name: Build | Clippy
         uses: actions-rs/cargo@v1
         with:
           command: clippy
           args: -- -D warnings
-
-      - name: Setup | Toolchain (rustfmt)
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly
-          default: true
-          components: rustfmt
 
       - name: Build | Rustfmt
         run: cargo fmt -- --check
