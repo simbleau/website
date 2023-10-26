@@ -1,12 +1,13 @@
-use crate::style::themes::ThemeSpec;
+use crate::{style::themes::ThemeSpec, util::lighten};
+use hex_color::HexColor;
 use once_cell::sync::Lazy;
 
 pub static DARK_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
-    color: "#cccccc",
-    background_color: "#222222",
-    link: "#66bbff",
-    link_hover: "rgba(153, 238, 255, 1)",
-    header_color: "#cccccc",
+    color: HexColor::from_u24(0xcccccc),
+    background_color: HexColor::from_u24(0x222222),
+    link: HexColor::from_u24(0x66bbff),
+    link_hover: { lighten(&HexColor::from_u24(0x66bbff), 1.2) },
+    header_color: HexColor::from_u24(0xcccccc),
     header_font: "Roboto",
     body_font: "Roboto",
     mono_font: "Roboto",

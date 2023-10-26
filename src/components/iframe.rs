@@ -19,8 +19,10 @@ pub struct IFrameProps {
 pub fn view(props: &IFrameProps) -> Html {
     let theme = use_theme::<ThemeChoice>();
 
+    let bg_color = format!("{:#}", theme.color.with_a(u8::MAX / 15));
+
     let ctr_css = css! {
-        background-color: white;
+        background-color: ${bg_color};
         border-width: ${BORDER_WIDTH};
         border-style: solid;
         border-color: ${theme.color};

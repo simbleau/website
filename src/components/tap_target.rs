@@ -1,7 +1,9 @@
 use crate::{
     components::{Icon, IconMask},
     style::themes::ThemeChoice,
+    util::lighten,
 };
+use hex_color::HexColor;
 use stylist::css;
 use themer::yew::use_theme;
 use yew::prelude::*;
@@ -13,9 +15,9 @@ const FG_SIZE: &str = "24px";
 pub struct Props {
     pub mask: IconMask,
     #[prop_or_default]
-    pub color: Option<AttrValue>,
+    pub color: Option<HexColor>,
     #[prop_or_default]
-    pub background: Option<AttrValue>,
+    pub background: Option<HexColor>,
     #[prop_or_default]
     pub onclick: Callback<MouseEvent>,
     #[prop_or_default]
@@ -27,15 +29,21 @@ pub fn view(props: &Props) -> Html {
     let theme = use_theme::<ThemeChoice>();
 
     // Coloring
-    let bg = match props.background.clone() {
+    let bg = match props.background {
         Some(c) => c,
-        // todo: this is a hack to translate #rrggbb to #rrggbb19, ~10% opacity
-        None => AttrValue::Rc(format!("{}19", theme.color).into()),
+        None => theme.color.with_a(20), // 10% opacity
     };
-    let fg = match props.color.clone() {
+    let fg = match props.color {
         Some(c) => c,
-        None => AttrValue::Rc(theme.color.into()),
+        None => theme.color,
     };
+    let bg_hov = lighten(&bg, 0.8);
+    let fg_hov = lighten(&fg, 1.2);
+
+    let fg = format!("{fg:#}");
+    let bg = format!("{bg:#}");
+    let fg_hov = format!("{fg_hov:#}");
+    let bg_hov = format!("{bg_hov:#}");
 
     let style = css! {
         display: inline-block;
@@ -52,9 +60,8 @@ pub fn view(props: &Props) -> Html {
         transition: background-color 0.5s;
         background-color: ${bg};
 
-
         &:hover {
-            background-color: darken(${bg}, 20%); /* TODO fix */
+            background-color: ${bg_hov};
         }
 
         & > i {
@@ -65,7 +72,7 @@ pub fn view(props: &Props) -> Html {
         }
 
         &:hover > i {
-            background: lighten(${fg}, 20%); /* TODO fix */
+            background: ${fg_hov};
             width: ${format!("calc({} * {})", FG_SIZE, IconMask::aspect_ratio(props.mask) * 1.25)};
             height: ${format!("calc({} * {})", FG_SIZE, 1.25)};
         }

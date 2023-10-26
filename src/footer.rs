@@ -30,7 +30,7 @@ pub fn footer() -> Html {
                 <p>
                     { copyright_year }
                     { " " }
-                    <Icon mask={IconMask::Copyright} fill={AttrValue::Static(theme.color)} />
+                    <Icon mask={IconMask::Copyright} fill={theme.color} />
                     { " Spencer C. Imbleau" }
                 </p>
                 {"made with "}

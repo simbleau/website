@@ -1,4 +1,5 @@
 use crate::style::themes::{DARK_THEME, LIGHT_THEME};
+use hex_color::HexColor;
 use serde::{Deserialize, Serialize};
 use themer::{
     browser::BrowserPreference,
@@ -38,15 +39,15 @@ impl ThemeKey for ThemeChoice {
 #[theme]
 pub struct ThemeSpec {
     /// Foreground color
-    pub color: &'static str,
+    pub color: HexColor,
     /// Background color
-    pub background_color: &'static str,
+    pub background_color: HexColor,
     /// Link color
-    pub link: &'static str,
+    pub link: HexColor,
     /// Link hover color
-    pub link_hover: &'static str,
+    pub link_hover: HexColor,
     /// Header color
-    pub header_color: &'static str,
+    pub header_color: HexColor,
 
     // Fonts
     pub header_font: &'static str,

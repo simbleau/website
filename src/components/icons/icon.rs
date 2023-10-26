@@ -2,6 +2,7 @@ use crate::style::themes::ThemeChoice;
 
 use super::IconMask;
 use gloo_utils::window;
+use hex_color::HexColor;
 use stylist::css;
 use themer::yew::use_theme;
 use web_sys::HtmlElement;
@@ -16,9 +17,9 @@ pub struct Props {
 
     pub mask: IconMask,
     #[prop_or_default]
-    pub fill: Option<AttrValue>,
+    pub fill: Option<HexColor>,
     #[prop_or_default]
-    pub hover_fill: Option<AttrValue>,
+    pub hover_fill: Option<HexColor>,
     #[prop_or_default]
     pub scale: Option<f32>,
 }
@@ -72,10 +73,10 @@ pub fn icon(props: &Props) -> Html {
             transition: background 0s;
         "#,
         mask = props.mask,
-        bg = props.fill.clone().unwrap_or(AttrValue::Static(theme.color))
+        bg = props.fill.unwrap_or(theme.color)
     };
 
-    let mask_hover_style = props.hover_fill.clone().map(|fill| {
+    let mask_hover_style = props.hover_fill.map(|fill| {
         css! {
             &:hover {
                 background: ${fill};
