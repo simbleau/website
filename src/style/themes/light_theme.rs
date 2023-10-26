@@ -1,4 +1,4 @@
-use crate::{style::themes::ThemeSpec, util::lighten};
+use crate::style::themes::ThemeSpec;
 use hex_color::HexColor;
 use once_cell::sync::Lazy;
 
