@@ -1,5 +1,3 @@
-#![feature(iter_intersperse)]
-
 pub mod components;
 pub mod footer;
 pub mod header;

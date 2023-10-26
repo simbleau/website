@@ -1,5 +1,7 @@
-use crate::style::themes::ThemeChoice;
-use accessible_ui::prelude::*;
+use crate::{
+    components::{IconMask, TapTarget},
+    style::themes::ThemeChoice,
+};
 use themer::prelude::*;
 use yew::prelude::*;
 

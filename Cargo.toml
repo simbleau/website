@@ -20,26 +20,26 @@ yew = { version = "0.20", features = ["csr"] }
 yew-router = "0.17"
 stylist = { version = "0.12", features = ["yew_integration"] }
 wasm-bindgen = "0.2"
-gloo-utils = "0.1"
-gloo-timers = "0.2"
+gloo-utils = "0.2"
+gloo-timers = "0.3"
 serde = "1.0"
 js-sys = "0.3"
 
 # TODO: Remove when stable
-cssugar = { git = "https://github.com/simbleau/cssugar", rev = "e0c185a961eb3d1873efbb20c3375fda2e7d9a40" }
-# TODO: Remove when stable
 themer = { git = "https://github.com/simbleau/themer", rev = "7cc811a4b1d7a2ca1a3c39ea348e6f5d90d6f03e" }
-# TODO: Remove when stable
-accessible-ui = { git = "https://github.com/simbleau/accessible-ui", rev = "1ffa3ab9849ff2ff63f211a12632af0bbbc747f5" }
 
-# Logging
 console_error_panic_hook = "0.1.7"
 log = "0.4.17"
-console_log = { version = "1.0.0" }
-
-# Optimizations
-once_cell = "1.15.0"
+console_log = { version = "1.0" }
+once_cell = "1.15"
 
 [dependencies.web-sys]
 version = "0.3.60"
-features = ["Screen", "Window", "HtmlInputElement", "Storage", "Element"]
+features = [
+  "CssStyleDeclaration",
+  "Screen",
+  "Window",
+  "HtmlInputElement",
+  "Storage",
+  "Element",
+]

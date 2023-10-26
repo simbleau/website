@@ -1,5 +1,4 @@
 use crate::style::themes::{DARK_THEME, LIGHT_THEME};
-use cssugar::prelude::*;
 use serde::{Deserialize, Serialize};
 use themer::prelude::*;
 
@@ -35,15 +34,15 @@ impl ThemeKey for ThemeChoice {
 #[theme]
 pub struct ThemeSpec {
     /// Foreground color
-    pub color: Color,
+    pub color: &'static str,
     /// Background color
-    pub background_color: Color,
+    pub background_color: &'static str,
     /// Link color
-    pub link: Color,
+    pub link: &'static str,
     /// Link hover color
-    pub link_hover: Color,
+    pub link_hover: &'static str,
     /// Header color
-    pub header_color: Color,
+    pub header_color: &'static str,
 
     // Fonts
     pub header_font: &'static str,

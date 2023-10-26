@@ -18,7 +18,6 @@ pub fn navigation() -> Html {
         ),
         (NavDestination::Internal(Route::Resume), html!({ "Résumé" })),
     ];
-    let separator = html! {{" "}};
 
     let links_css = css! {
         a,a:hover {
@@ -39,7 +38,6 @@ pub fn navigation() -> Html {
                         </li>
                     }
                 })
-                .intersperse(separator)
                 .collect::<Html>()
             }
             </ul>

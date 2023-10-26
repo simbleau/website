@@ -1,17 +1,13 @@
 use crate::components::ThemeSwitcher;
 use crate::navigation::Navigation;
-use cssugar::prelude::*;
 use stylist::yew::styled_component;
 use yew::prelude::*;
-
-pub const HEADER_PADDING: Length = Length::Px(5.0);
-pub const HEADER_ITEM_PADDING: Length = Length::Px(5.0);
 
 #[styled_component(Header)]
 pub fn header() -> Html {
     let header_css = css! {
-        padding-top: ${HEADER_PADDING};
-        padding-bottom: ${HEADER_PADDING};
+        padding-top: 5px;
+        padding-bottom: 5px;
         width: 100%;
     };
 
@@ -21,8 +17,8 @@ pub fn header() -> Html {
         margin: 0;
 
         & li {
-            padding-left: ${HEADER_ITEM_PADDING};
-            padding-right: ${HEADER_ITEM_PADDING};
+            padding-left: 5px;
+            padding-right: 5px;
             display: inline-block;
         }
     };

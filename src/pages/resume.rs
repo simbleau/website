@@ -1,16 +1,14 @@
-use accessible_ui::prelude::*;
-use cssugar::prelude::*;
+use crate::components::{ExternalLink, IFrame, IconMask};
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
-const PDF_MIN_HEIGHT: Length = Length::Px(500.0);
-const PDF_HEIGHT: Length = Length::Vh(100.0);
-const PDF_HEIGHT_PADDING: Length = Length::Px(200.0);
-const PDF_MAX_HEIGHT: Length = Length::In(12.0);
-const PDF_WIDTH: Length = Length::Vw(100.0);
-const PDF_MAX_WIDTH: Length = Length::Px(800.0);
-const IFRAME_BORDER_WIDTH: Length =
-    accessible_ui::components::iframe::BORDER_WIDTH;
+const PDF_MIN_HEIGHT: &str = "500px";
+const PDF_HEIGHT: &str = "100vh";
+const PDF_HEIGHT_PADDING: &str = "200px";
+const PDF_MAX_HEIGHT: &str = "11in";
+const PDF_WIDTH: &str = "100vw";
+const PDF_MAX_WIDTH: &str = "8.5in";
+const IFRAME_BORDER_WIDTH: &str = "2px";
 
 #[styled_component]
 pub fn ResumePage() -> Html {
@@ -27,11 +25,11 @@ pub fn ResumePage() -> Html {
             height: ${PDF_HEIGHT};
             max-height: ${PDF_MAX_HEIGHT};
         "#,
-        min_width = PDF_MAX_WIDTH + IFRAME_BORDER_WIDTH + IFRAME_BORDER_WIDTH,
+        min_width = format!("calc({} + {} + {})", PDF_MAX_WIDTH, IFRAME_BORDER_WIDTH, IFRAME_BORDER_WIDTH),
         PDF_WIDTH = PDF_WIDTH,
         PDF_MAX_WIDTH = PDF_MAX_WIDTH,
         PDF_MIN_HEIGHT = PDF_MIN_HEIGHT,
-        PDF_HEIGHT = PDF_HEIGHT - PDF_HEIGHT_PADDING,
+        PDF_HEIGHT = format!("calc({} - {})", PDF_HEIGHT, PDF_HEIGHT_PADDING),
         PDF_MAX_HEIGHT = PDF_MAX_HEIGHT,
     };
 

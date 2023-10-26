@@ -1,5 +1,4 @@
 use crate::router::Route;
-use accessible_ui::prelude::*;
 use stylist::yew::styled_component;
 use yew::prelude::*;
 use yew_router::prelude::*;
@@ -27,9 +26,9 @@ pub fn Construction(props: &ConstructionProps) -> Html {
                 <p>{ "Expected completion: " } { end }</p>
             }
             <br />
-            <Button onclick={onclick}>
+            <button onclick={onclick}>
                 <h2>{"Return"}</h2>
-            </Button>
+            </button>
         </div>
     }
 }

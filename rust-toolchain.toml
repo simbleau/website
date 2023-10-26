@@ -1,5 +1,5 @@
 # My server runs linux. For compatability, check
 # https://rust-lang.github.io/rustup-components-history/x86_64-unknown-linux-gnu.html
 [toolchain]
-channel = "nightly"
-targets = [ "wasm32-unknown-unknown" ]
+channel = "nightly-2023-06-15"
+targets = ["wasm32-unknown-unknown"]

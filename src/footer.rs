@@ -1,32 +1,28 @@
-use crate::style::themes::ThemeChoice;
-use accessible_ui::prelude::*;
-use cssugar::prelude::*;
+use crate::{
+    components::{ExternalLink, Icon, IconMask},
+    style::themes::ThemeChoice,
+};
 use js_sys::Date;
 use stylist::yew::styled_component;
 use themer::prelude::*;
 use yew::prelude::*;
-
-pub const FOOTER_PADDING: Length = Length::Px(5.0);
 
 #[styled_component(Footer)]
 pub fn footer() -> Html {
     let copyright_year = Date::new_0().get_full_year();
     let theme = use_theme::<ThemeChoice>();
 
-    let css = css!(
-        r#"
-            /* Sizing */
-            padding-top: ${padding};
-            padding-bottom: ${padding};
-            width: 100%;
+    let css = css! {
+        /* Sizing */
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 100%;
 
-            /* Center footer line */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        "#,
-        padding = FOOTER_PADDING,
-    );
+        /* Center footer line */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    };
 
     html! {
         <footer class={ css }>
@@ -34,7 +30,7 @@ pub fn footer() -> Html {
                 <p>
                     { copyright_year }
                     { " " }
-                    <Icon mask={IconMask::Copyright} fill={theme.color} />
+                    <Icon mask={IconMask::Copyright} fill={AttrValue::Static(theme.color)} />
                     { " Spencer C. Imbleau" }
                 </p>
                 {"made with "}

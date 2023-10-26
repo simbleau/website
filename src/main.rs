@@ -1,10 +1,10 @@
-use accessible_ui::prelude::*;
 use stylist::yew::Global;
 use themer::prelude::*;
-use website::header::Header;
-use website::router::{self, Route};
-use website::style::global::use_global_css;
-use website::style::themes::ThemeChoice;
+use website::{
+    header::Header,
+    router::{self, Route},
+    style::{global::use_global_css, themes::ThemeChoice},
+};
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -26,18 +26,15 @@ pub fn root() -> Html {
 fn app() -> Html {
     // Apply global CSS
     let global_css = use_global_css();
-    let theme = use_theme::<ThemeChoice>();
-
-    let accessible_ui = AuiSpec {
-        color: theme.color,
-        background_color: theme.background_color,
-        link: theme.link,
-        link_hover: theme.link_hover,
-        header_color: theme.header_color,
-    };
+    // Get browser's preference
+    let initial_theme =
+        match BrowserPreference::get().unwrap_or(BrowserPreference::Light) {
+            BrowserPreference::Light => ThemeChoice::Light,
+            BrowserPreference::Dark => ThemeChoice::Dark,
+        };
 
     html! {
-        <ContextProvider<AuiSpec> context={ accessible_ui } >
+        <ThemeProvider<ThemeChoice> theme={ initial_theme } >
             <BrowserRouter>
                 <Global css={global_css} />
                 <main>
@@ -47,7 +44,7 @@ fn app() -> Html {
                     </div>
                 </main>
             </BrowserRouter>
-        </ContextProvider<AuiSpec>>
+        </ThemeProvider<ThemeChoice>>
     }
 }
 

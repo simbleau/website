@@ -1,5 +1,7 @@
-use crate::{components::ProfilePicture, footer::Footer};
-use accessible_ui::prelude::*;
+use crate::{
+    components::{IconMask, ProfilePicture, TapTarget},
+    footer::Footer,
+};
 use stylist::yew::styled_component;
 use yew::prelude::*;
 

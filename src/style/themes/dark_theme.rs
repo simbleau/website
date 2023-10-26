@@ -1,13 +1,12 @@
 use crate::style::themes::ThemeSpec;
-use cssugar::prelude::*;
 use once_cell::sync::Lazy;
 
 pub static DARK_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
-    color: Color::from_rgb(0xcc, 0xcc, 0xcc),
-    background_color: Color::from_rgb(0x22, 0x22, 0x22),
-    link: Color::from_rgb(0x66, 0xbb, 0xff),
-    link_hover: Color::from_rgb(0x66, 0xbb, 0xff).lighten(0.2),
-    header_color: Color::from_rgb(0xcc, 0xcc, 0xcc),
+    color: "#cccccc",
+    background_color: "#222222",
+    link: "#66bbff",
+    link_hover: "#40abcf",
+    header_color: "#cccccc",
     header_font: "Roboto",
     body_font: "Roboto",
     mono_font: "Roboto",
