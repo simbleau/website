@@ -8,8 +8,8 @@ use stylist::css;
 use themer::yew::use_theme;
 use yew::prelude::*;
 
-pub const SIZE: &str = "48px";
-const FG_SIZE: &str = "24px";
+const SIZE: &str = "64px";
+const FG_SIZE: &str = "32px";
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
