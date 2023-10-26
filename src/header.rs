@@ -1,5 +1,4 @@
-use crate::components::ThemeSwitcher;
-use crate::navigation::Navigation;
+use crate::{components::ThemeSwitcher, navigation::Navigation};
 use stylist::yew::styled_component;
 use yew::prelude::*;
 

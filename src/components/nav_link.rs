@@ -1,6 +1,8 @@
-use crate::components::{ExternalLink, InternalLink};
-use crate::router::Route;
-use crate::style::themes::ThemeChoice;
+use crate::{
+    components::{ExternalLink, InternalLink},
+    router::Route,
+    style::themes::ThemeChoice,
+};
 use stylist::yew::styled_component;
 use themer::prelude::*;
 use yew::prelude::*;

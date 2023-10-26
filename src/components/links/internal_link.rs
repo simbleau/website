@@ -1,5 +1,7 @@
-use crate::components::IconMask;
-use crate::{components::Icon, style::themes::ThemeChoice};
+use crate::{
+    components::{Icon, IconMask},
+    style::themes::ThemeChoice,
+};
 use stylist::yew::styled_component;
 use themer::yew::use_theme;
 use yew::prelude::*;
