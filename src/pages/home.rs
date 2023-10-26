@@ -28,13 +28,13 @@ pub fn HomePage() -> Html {
             <ProfilePicture src={"/static/images/me.webp"} />
             <br />
             <div class={ css!("display: inline-flex; & > * {margin: 10px 5px;}") }>
-                <a href="https://www.linkedin.com/in/simbleau/">
+                <a href="https://www.linkedin.com/in/simbleau/" target="_blank">
                     <TapTarget mask={IconMask::LinkedIn} />
                 </a>
-                <a rel="me" href="https://mastodon.online/@scim">
+                <a rel="me" href="https://mastodon.online/@scim" target="_blank">
                     <TapTarget mask={IconMask::Mastodon} />
                 </a>
-                <a href="https://www.github.com/simbleau/">
+                <a href="https://www.github.com/simbleau/" target="_blank">
                     <TapTarget mask={IconMask::GitHub} />
                 </a>
             </div>
