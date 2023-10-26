@@ -29,7 +29,8 @@ pub fn view(props: &Props) -> Html {
     // Coloring
     let bg = match props.background.clone() {
         Some(c) => c,
-        None => AttrValue::Rc(format!("darken({}, 90%)", theme.color).into()),
+        // todo: this is a hack to translate #rrggbb to #rrggbb19, ~10% opacity
+        None => AttrValue::Rc(format!("{}19", theme.color).into()),
     };
     let fg = match props.color.clone() {
         Some(c) => c,
@@ -53,7 +54,7 @@ pub fn view(props: &Props) -> Html {
 
 
         &:hover {
-            background-color: darken(${bg}, 20%);
+            background-color: darken(${bg}, 20%); /* TODO fix */
         }
 
         & > i {
@@ -64,7 +65,7 @@ pub fn view(props: &Props) -> Html {
         }
 
         &:hover > i {
-            background: lighten(${fg}, 20%);
+            background: lighten(${fg}, 20%); /* TODO fix */
             width: ${format!("calc({} * {})", FG_SIZE, IconMask::aspect_ratio(props.mask) * 1.25)};
             height: ${format!("calc({} * {})", FG_SIZE, 1.25)};
         }
@@ -72,7 +73,7 @@ pub fn view(props: &Props) -> Html {
 
     html! {
         <button class={ classes!(style, props.class.clone()) }
-                onclick={ props.onclick.clone() }
+            onclick={ props.onclick.clone() }
         >
         <Icon
             mask={ props.mask }

@@ -3,8 +3,6 @@ use stylist::{css, StyleSource};
 use themer::prelude::*;
 use yew::hook;
 
-pub const THEME_TRANSITION_SPEED: &str = "3s";
-
 #[hook]
 pub fn use_global_css() -> StyleSource {
     let theme = use_theme::<ThemeChoice>();

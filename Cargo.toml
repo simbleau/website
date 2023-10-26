@@ -19,14 +19,12 @@ lto = true
 yew = { version = "0.20", features = ["csr"] }
 yew-router = "0.17"
 stylist = { version = "0.12", features = ["yew_integration"] }
+themer = { git = "https://github.com/simbleau/themer", version = "0.2" }
 wasm-bindgen = "0.2"
 gloo-utils = "0.2"
 gloo-timers = "0.3"
 serde = "1.0"
 js-sys = "0.3"
-
-# TODO: Remove when stable
-themer = { git = "https://github.com/simbleau/themer", rev = "7cc811a4b1d7a2ca1a3c39ea348e6f5d90d6f03e" }
 
 console_error_panic_hook = "0.1.7"
 log = "0.4.17"

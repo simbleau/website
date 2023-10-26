@@ -1,10 +1,19 @@
-use stylist::yew::Global;
-use themer::prelude::*;
-use website::{
+mod components;
+mod footer;
+mod header;
+mod navigation;
+mod pages;
+mod router;
+mod style;
+
+use crate::{
     header::Header,
-    router::{self, Route},
+    router::Route,
     style::{global::use_global_css, themes::ThemeChoice},
 };
+use log::info;
+use stylist::yew::Global;
+use themer::prelude::*;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -14,6 +23,7 @@ pub fn root() -> Html {
         Some(pref) => pref,
         None => ThemeChoice::default(),
     };
+    info!("Theme: {stored_theme:?}");
 
     html! {
         <ThemeProvider<ThemeChoice> theme={stored_theme}>
@@ -26,25 +36,16 @@ pub fn root() -> Html {
 fn app() -> Html {
     // Apply global CSS
     let global_css = use_global_css();
-    // Get browser's preference
-    let initial_theme =
-        match BrowserPreference::get().unwrap_or(BrowserPreference::Light) {
-            BrowserPreference::Light => ThemeChoice::Light,
-            BrowserPreference::Dark => ThemeChoice::Dark,
-        };
-
     html! {
-        <ThemeProvider<ThemeChoice> theme={ initial_theme } >
-            <BrowserRouter>
-                <Global css={global_css} />
-                <main>
-                    <Header />
-                    <div id="content">
-                        <Switch<Route> render={router::switch} />
-                    </div>
-                </main>
-            </BrowserRouter>
-        </ThemeProvider<ThemeChoice>>
+        <BrowserRouter>
+            <Global css={global_css} />
+            <main>
+                <Header />
+                <div id="content">
+                    <Switch<Route> render={router::switch} />
+                </div>
+            </main>
+        </BrowserRouter>
     }
 }
 

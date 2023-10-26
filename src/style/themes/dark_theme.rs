@@ -5,7 +5,7 @@ pub static DARK_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
     color: "#cccccc",
     background_color: "#222222",
     link: "#66bbff",
-    link_hover: "#40abcf",
+    link_hover: "rgba(153, 238, 255, 1)",
     header_color: "#cccccc",
     header_font: "Roboto",
     body_font: "Roboto",
