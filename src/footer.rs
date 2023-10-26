@@ -4,7 +4,7 @@ use crate::{
 };
 use js_sys::Date;
 use stylist::yew::styled_component;
-use themer::prelude::*;
+use themer::yew::use_theme;
 use yew::prelude::*;
 
 #[styled_component(Footer)]

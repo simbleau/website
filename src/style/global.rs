@@ -1,6 +1,6 @@
 use super::themes::ThemeChoice;
 use stylist::{css, StyleSource};
-use themer::prelude::*;
+use themer::yew::use_theme;
 use yew::hook;
 
 #[hook]

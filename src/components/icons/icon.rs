@@ -35,28 +35,25 @@ pub fn icon(props: &Props) -> Html {
         let height = height.clone();
         let width = width.clone();
         let icon_ref = icon_ref.clone();
-        use_effect_with_deps(
-            move |icon_ref| {
-                if let Some(element) = icon_ref.cast::<HtmlElement>() {
-                    let computed_height = window()
-                        .get_computed_style(&element)
-                        .unwrap()
-                        .unwrap()
-                        .get_property_value("font-size")
-                        .unwrap();
-                    let computed_width = format!(
-                        "calc({} * {})",
-                        computed_height,
-                        IconMask::aspect_ratio(mask)
-                    );
-                    height.set(computed_height);
-                    width.set(computed_width);
-                }
+        use_effect_with(icon_ref, move |icon_ref| {
+            if let Some(element) = icon_ref.cast::<HtmlElement>() {
+                let computed_height = window()
+                    .get_computed_style(&element)
+                    .unwrap()
+                    .unwrap()
+                    .get_property_value("font-size")
+                    .unwrap();
+                let computed_width = format!(
+                    "calc({} * {})",
+                    computed_height,
+                    IconMask::aspect_ratio(mask)
+                );
+                height.set(computed_height);
+                width.set(computed_width);
+            }
 
-                move || {}
-            },
-            icon_ref,
-        );
+            move || {}
+        });
     }
 
     let icon_style = css! {

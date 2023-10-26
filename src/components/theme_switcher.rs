@@ -3,7 +3,7 @@ use crate::{
     style::themes::ThemeChoice,
 };
 use log::info;
-use themer::prelude::*;
+use themer::{browser::BrowserPreference, yew::use_theme};
 use yew::prelude::*;
 
 #[function_component(ThemeSwitcher)]

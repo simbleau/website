@@ -1,6 +1,6 @@
 use crate::style::themes::ThemeChoice;
 use stylist::yew::styled_component;
-use themer::prelude::*;
+use themer::yew::use_theme;
 use yew::{prelude::*, virtual_dom::AttrValue};
 
 #[derive(Properties, PartialEq)]

@@ -1,6 +1,10 @@
 use crate::style::themes::{DARK_THEME, LIGHT_THEME};
 use serde::{Deserialize, Serialize};
-use themer::prelude::*;
+use themer::{
+    browser::BrowserPreference,
+    macros::{theme, theme_key},
+    traits::ThemeKey,
+};
 
 #[theme_key]
 #[derive(Serialize, Deserialize)]

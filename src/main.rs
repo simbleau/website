@@ -13,7 +13,7 @@ use crate::{
 };
 use log::info;
 use stylist::yew::Global;
-use themer::prelude::*;
+use themer::{browser::BrowserPreference, yew::ThemeProvider};
 use yew::prelude::*;
 use yew_router::prelude::*;
 
