@@ -23,6 +23,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     const BORDER_RADIUS: &str = "5px";
 
     let btn_css = css! {
+        position: relative;
         border-radius: ${BORDER_RADIUS};
         width: ${WIDTH};
         height: ${HEIGHT};
@@ -32,6 +33,29 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         border-width: 3px;
         border-style: solid;
         border-color: ${theme.color};
+    };
+
+    let tooltip_css = css! {
+        & {
+            position: relative;
+        }
+
+        &::before {
+            content: attr(data-tooltip);
+            width: 200px;
+            display: none;
+            position: absolute;
+            background-color: #333;
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            left: 250px;
+            transform: translateX(-50%);
+        }
+
+        &:hover::before {
+            display: block;
+        }
     };
 
     let email_ctr_css = css! {
@@ -99,7 +123,15 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
                     <span>
                         {"Show email"}
                     </span>
+                    <span
+                        class={tooltip_css}
+                        data-tooltip="This helps me fight bots!">
+                        <span style="position: absolute; left: 85px;">
+                            <Icon mask={IconMask::Question} fill={theme.background_color} />
+                        </span>
+                    </span>
                 </button>
+
             </div>
         }
     }
