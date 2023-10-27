@@ -28,10 +28,10 @@ pub fn footer() -> Html {
         <footer class={ css }>
             <div id="footer_wrap" align="center">
                 <p>
-                    { copyright_year }
-                    { " " }
+                    { "copyright " }
                     <Icon mask={IconMask::Copyright} fill={theme.color} />
-                    { " Spencer C. Imbleau" }
+                    { " " }
+                    { copyright_year }
                 </p>
                 {"made with "}
                 <Icon mask={IconMask::Coffee} fill={theme.color} />
