@@ -30,7 +30,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         color: ${theme.background_color};
         cursor: pointer;
         border-width: 3px;
-        border-style: outset solid;
+        border-style: solid;
         border-color: ${theme.color};
     };
 
@@ -49,7 +49,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         border-bottom-width: 3px;
         border-left-width: 3px;
         border-right-width: 0;
-        border-style: outset solid;
+        border-style: solid;
         border-color: ${theme.color};
         box-sizing: border-box;
         vertical-align: baseline;
@@ -63,7 +63,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         height: 100%;
         background_color: ${theme.color.with_a(20)};
         border-width: 3px;
-        border-style: outset solid;
+        border-style: solid;
         border-color: ${theme.color};
         box-sizing: border-box;
         margin: 0;
