@@ -121,7 +121,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
             <div>
                 <button {onclick} class={btn_css}>
                     <span>
-                        {"Show email"}
+                        {"reveal email"}
                     </span>
                     <span
                         class={tooltip_css}
