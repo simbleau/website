@@ -26,8 +26,8 @@ pub fn header() -> Html {
         <header class={ header_css }>
             <div id="nav-wrapper" align="center">
                 <ul class={list_css}>
-                    <li><Navigation /></li>
                     <li><ThemeSwitcher /></li>
+                    <li><Navigation /></li>
                 </ul>
             </div>
         </header>

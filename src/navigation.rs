@@ -10,13 +10,13 @@ pub fn navigation() -> Html {
     // If updating the links, update the sitemap!
     let nav_links: [(NavDestination, Html); 3] = [
         (NavDestination::Internal(Route::Home), html!({ "Home" })),
+        (NavDestination::Internal(Route::Resume), html!({ "Résumé" })),
         (
             NavDestination::External(AttrValue::Static(
                 "https://simbleau.github.io/blog/",
             )),
             html! {{ "Blog" }},
         ),
-        (NavDestination::Internal(Route::Resume), html!({ "Résumé" })),
     ];
 
     let links_css = css! {
