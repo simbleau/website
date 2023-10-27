@@ -20,3 +20,8 @@
     font-weight: bold;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Lego';
+    src: url("/static/fonts/Lego/legothick.ttf");
+}

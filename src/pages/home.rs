@@ -26,7 +26,7 @@ pub fn HomePage() -> Html {
         <>
         <div align="center" class={container_style}>
             <ProfilePicture src={"/static/images/me.webp"} />
-            <br />
+            <h1>{"Spencer C. Imbleau"}</h1>
             <div class={ css!("display: inline-flex; & > * {margin: 10px 5px;}") }>
                 <a href="https://www.linkedin.com/in/simbleau/" target="_blank">
                     <TapTarget mask={IconMask::LinkedIn} />

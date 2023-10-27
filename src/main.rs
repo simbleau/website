@@ -12,19 +12,42 @@ use crate::{
     router::Route,
     style::{global::use_global_css, themes::ThemeChoice},
 };
-use log::info;
+use log::{info, warn};
 use stylist::yew::Global;
 use themer::{browser::BrowserPreference, yew::ThemeProvider};
+use url::Url;
+use web_sys::window;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
 #[function_component(Root)]
 pub fn root() -> Html {
-    let stored_theme = match BrowserPreference::load::<ThemeChoice>() {
+    // Get stored theme
+    let mut stored_theme = match BrowserPreference::load::<ThemeChoice>() {
         Some(pref) => pref,
         None => ThemeChoice::default(),
     };
     info!("Theme: {stored_theme:?}");
+
+    // Override with theme from query string
+    let query_string_theme = window()
+        .and_then(|w| w.location().href().ok())
+        .and_then(|href| Url::parse(&href).ok())
+        .and_then(|url| {
+            url.query_pairs()
+                .find(|(k, _v)| k == "theme")
+                .map(|(_k, v)| v.to_string())
+        });
+    if let Some(theme) = query_string_theme.as_deref() {
+        match theme {
+            "lego" => {
+                stored_theme = ThemeChoice::Lego;
+            }
+            theme => {
+                warn!("unrecognized theme: {theme}");
+            }
+        };
+    }
 
     html! {
         <ThemeProvider<ThemeChoice> theme={stored_theme}>

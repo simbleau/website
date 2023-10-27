@@ -2,11 +2,11 @@ use crate::style::themes::ThemeSpec;
 use hex_color::HexColor;
 use once_cell::sync::Lazy;
 
-pub static LIGHT_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
-    color: HexColor::from_u24(0x212529),
-    background_color: HexColor::from_u24(0xf8f9fa),
-    link: HexColor::from_u24(0x0033dd),
-    link_hover: HexColor::from_u24(0x4C7FFF),
+pub static LEGO_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
+    color: HexColor::from_u24(0xFFD700),
+    background_color: HexColor::from_u24(0xDA291C),
+    link: HexColor::from_u24(0xFFFFFF),
+    link_hover: HexColor::from_u24(0x000000),
     body_font: "Roboto",
     mono_font: "Roboto",
     fs: "1rem",

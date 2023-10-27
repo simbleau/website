@@ -1,4 +1,4 @@
-use crate::style::themes::{DARK_THEME, LIGHT_THEME};
+use crate::style::themes::{DARK_THEME, LEGO_THEME, LIGHT_THEME};
 use hex_color::HexColor;
 use serde::{Deserialize, Serialize};
 use themer::{
@@ -12,6 +12,7 @@ use themer::{
 pub enum ThemeChoice {
     Light,
     Dark,
+    Lego,
 }
 
 impl Default for ThemeChoice {
@@ -32,6 +33,7 @@ impl ThemeKey for ThemeChoice {
         match self {
             ThemeChoice::Light => &LIGHT_THEME,
             ThemeChoice::Dark => &DARK_THEME,
+            ThemeChoice::Lego => &LEGO_THEME,
         }
     }
 }
@@ -46,11 +48,8 @@ pub struct ThemeSpec {
     pub link: HexColor,
     /// Link hover color
     pub link_hover: HexColor,
-    /// Header color
-    pub header_color: HexColor,
 
     // Fonts
-    pub header_font: &'static str,
     pub body_font: &'static str,
     pub mono_font: &'static str,
 

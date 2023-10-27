@@ -50,7 +50,6 @@ pub fn use_global_css() -> StyleSource {
             h4,
             h5,
             h6 {
-                color: ${header_color};
                 font-weight: ${fwh};
             }
 
@@ -78,15 +77,6 @@ pub fn use_global_css() -> StyleSource {
                 font-family: ${body_font};
             }
 
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                font-family: ${header_font};
-            }
-
             .preformatted {
                 font-family: ${mono_font};
             }
@@ -95,9 +85,7 @@ pub fn use_global_css() -> StyleSource {
         background_color = theme.background_color,
         link = theme.link,
         link_hover = theme.link_hover,
-        header_color = theme.header_color,
         body_font = theme.body_font,
-        header_font = theme.header_font,
         mono_font = theme.mono_font,
         fs = theme.fs,
         fsm = theme.fsm,

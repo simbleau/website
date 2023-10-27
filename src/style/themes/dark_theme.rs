@@ -7,8 +7,6 @@ pub static DARK_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
     background_color: HexColor::from_u24(0x222222),
     link: HexColor::from_u24(0x66bbff),
     link_hover: { lighten(&HexColor::from_u24(0x66bbff), 1.2) },
-    header_color: HexColor::from_u24(0xcccccc),
-    header_font: "Roboto",
     body_font: "Roboto",
     mono_font: "Roboto",
     fs: "1rem",

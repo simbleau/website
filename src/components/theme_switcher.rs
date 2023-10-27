@@ -15,6 +15,7 @@ pub fn theme_switcher() -> Html {
             let other = match theme.kind() {
                 ThemeChoice::Light => ThemeChoice::Dark,
                 ThemeChoice::Dark => ThemeChoice::Light,
+                _ => ThemeChoice::default(),
             };
             info!("Theme set: {other:?}");
             theme.set(other);
@@ -26,7 +27,8 @@ pub fn theme_switcher() -> Html {
         <TapTarget
             mask={match theme.kind() {
                 ThemeChoice::Light => IconMask::Moon,
-                ThemeChoice::Dark => IconMask::Sun
+                ThemeChoice::Dark => IconMask::Sun,
+                ThemeChoice::Lego => IconMask::Lego,
             }}
             { onclick }
         />
