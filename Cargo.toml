@@ -39,6 +39,8 @@ web-sys = { version = "0.3", features = [
   "Storage",
   "Location",
   "Element",
+  "Navigator",
+  "Clipboard",
 ] }
 
 [dev-dependencies]

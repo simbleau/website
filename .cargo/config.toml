@@ -2,3 +2,7 @@
 # Workaround for QEMU killing GitHub Actions on `cargo build`.
 # Without this feature, GitHub Actions runs out of memory and dies.
 git-fetch-with-cli = true
+
+# Need unstable APIs for Clipboard API
+[target.'cfg(target_family = "wasm")']
+rustflags = ["--cfg=web_sys_unstable_apis"]
