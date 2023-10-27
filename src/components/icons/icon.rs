@@ -20,8 +20,6 @@ pub struct Props {
     pub fill: Option<HexColor>,
     #[prop_or_default]
     pub hover_fill: Option<HexColor>,
-    #[prop_or_default]
-    pub scale: Option<f32>,
 }
 
 #[function_component(Icon)]

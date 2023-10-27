@@ -24,3 +24,6 @@ pub use iframe::IFrame;
 
 mod spinner;
 pub use spinner::Spinner;
+
+mod email_button;
+pub use email_button::EmailButton;

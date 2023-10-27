@@ -13,27 +13,24 @@ pub fn ProfilePicture(props: &ProfilePictureProps) -> Html {
     let theme = use_theme::<ThemeChoice>();
 
     let img_css = css! {
-        r#"
-            border-radius: 50%;
-            width: 300px;
-            max-width: 600px;
-            height: 300px;
-            max-height: 600px;
-            object-fit: scale-down;
+        border-radius: 50%;
+        width: 300px;
+        max-width: 600px;
+        height: 300px;
+        max-height: 600px;
+        object-fit: scale-down;
 
-            /* Outline */
-            border: solid 3px ${border};
-        "#,
-        border = theme.color,
+        /* Outline */
+        border: solid 3px ${theme.color};
     };
 
     html! {
-            <img
-                alt="Spencer C. Imbleau"
-                width="300px"
-                height="300px"
-                class={img_css}
-                src={ props.src.clone() }
-            />
+        <img
+            alt="Spencer C. Imbleau"
+            width="300px"
+            height="300px"
+            class={img_css}
+            src={ props.src.clone() }
+        />
     }
 }

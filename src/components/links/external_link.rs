@@ -55,7 +55,6 @@ pub fn view(props: &ExternalLinkProps) -> Html {
                     data_aui_id="linkicon"
                     mask={ IconMask::Share }
                     class={classes!(css!("align-self: baseline; margin-left: 3px;"))}
-                    scale={ 0.75 }
                 />
             </a>
         </div>
