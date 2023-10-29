@@ -1,6 +1,5 @@
-use crate::components::EmailButton;
 use crate::{
-    components::{IconMask, ProfilePicture, TapTarget},
+    components::{EmailButton, IconMask, ProfilePicture, TapTarget},
     footer::Footer,
 };
 use stylist::yew::styled_component;

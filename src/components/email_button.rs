@@ -1,7 +1,7 @@
-use crate::util::lighten;
 use crate::{
     components::{Icon, IconMask},
     style::themes::ThemeChoice,
+    util::lighten,
 };
 use stylist::yew::styled_component;
 use themer::yew::use_theme;
@@ -26,7 +26,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
 
     // I assemble the email like this because there are bots on GitHub that
     // scrape emails, too. Less common that web crawlers, but they still exist.
-    // In other words, I don't want my 'example@domain.com' anywhere in the source.
+    // In other words, I don't want my 'example@domain.com' anywhere.
     let real_email = format!("{}@{}", props.user, props.domain);
 
     let btn_css = css! {
