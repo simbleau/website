@@ -17,7 +17,7 @@ jobs:
         uses: Swatinem/rust-cache@v2.7.1
 
       - name: Build | Clippy
-        run: cargo clippy -- -D warnings
+        run: RUSTFLAGS=--cfg=web_sys_unstable_apis cargo clippy -- -D warnings
 
       - name: Build | Rustfmt
         run: cargo fmt --all -- --check
