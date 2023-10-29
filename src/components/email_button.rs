@@ -9,19 +9,25 @@ use yew::prelude::*;
 
 #[derive(Properties, PartialEq, Eq)]
 pub struct EmailButtonProps {
-    pub email: AttrValue,
+    pub user: AttrValue,
+    pub domain: AttrValue,
 }
 
 #[styled_component]
 pub fn EmailButton(props: &EmailButtonProps) -> Html {
-    let theme = use_theme::<ThemeChoice>();
-    let email = use_state(|| "".to_string());
-    let visible = use_state(|| false);
-
     const WIDTH: &str = "300px";
     const COPY_BUTTON_WIDTH: &str = "50px";
     const HEIGHT: &str = "40px";
     const BORDER_RADIUS: &str = "5px";
+
+    let theme = use_theme::<ThemeChoice>();
+    let email = use_state(|| "".to_string());
+    let visible = use_state(|| false);
+
+    // I assemble the email like this because there are bots on GitHub that
+    // scrape emails, too. Less common that web crawlers, but they still exist.
+    // In other words, I don't want my 'example@domain.com' anywhere in the source.
+    let real_email = format!("{}@{}", props.user, props.domain);
 
     let btn_css = css! {
         position: relative;
@@ -121,7 +127,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     };
 
     let onreveal = {
-        let put_email = props.email.clone();
+        let put_email = real_email.clone();
         let email = email.clone();
         let visible = visible.clone();
         Callback::from(move |_| {
@@ -131,7 +137,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     };
 
     let oncopy = {
-        let put_email = props.email.clone().to_string();
+        let put_email = real_email.clone();
         Callback::from(move |_| {
             let clipboard = web_sys::window()
                 .expect("window")
