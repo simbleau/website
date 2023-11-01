@@ -3,7 +3,7 @@ use crate::{
     style::themes::ThemeChoice,
     util::lighten,
 };
-use stylist::yew::styled_component;
+use stylist::yew::{styled_component, use_media_query};
 use themer::yew::use_theme;
 use yew::prelude::*;
 
@@ -20,6 +20,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     const HEIGHT: &str = "40px";
     const BORDER_RADIUS: &str = "5px";
 
+    let is_mobile = use_media_query("(max-width: 768px)");
     let theme = use_theme::<ThemeChoice>();
     let email = use_state(|| "".to_string());
     let visible = use_state(|| false);
@@ -48,6 +49,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         }
 
         & > #wrapper {
+            cursor: help;
             position: absolute;
             left: 75px;
             top: -10px;
@@ -65,11 +67,12 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
             width: 200px;
             display: none;
             position: absolute;
-            background-color: #333;
-            color: #fff;
-            padding: 5px;
+            background-color: ${theme.color};
+            color: ${theme.background_color};
+            padding: 10px;
             border-radius: 5px;
-            left: 250px;
+            left: 230px;
+            top: -40px;
             transform: translateX(-50%);
         }
 
@@ -170,17 +173,19 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
                     <span>
                         {"reveal email"}
                     </span>
-                    <span
-                        class={tooltip_css}
-                        data-tooltip="This helps me fight bots!">
-                        <span id="wrapper">
-                            <Icon
-                                mask={IconMask::Question}
-                                fill={theme.background_color}
-                                data_aui_id={"help"}
-                            />
+                    if !is_mobile {
+                        <span
+                            class={tooltip_css}
+                            data-tooltip="This helps me fight bots!">
+                            <span id="wrapper">
+                                <Icon
+                                    mask={IconMask::Question}
+                                    fill={theme.background_color}
+                                    data_aui_id={"help"}
+                                />
+                            </span>
                         </span>
-                    </span>
+                    }
                 </button>
 
             </div>
