@@ -9,9 +9,9 @@ pub static LIGHT_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
     link_hover: HexColor::from_u24(0x4C7FFF),
     body_font: "Roboto",
     mono_font: "Roboto",
-    fsm: "1rem",
-    fst: "1.08rem",
-    fsd: "1.2rem",
+    fsm: "1.2rem",
+    fst: "1.4rem",
+    fsd: "1.6rem",
     fw: "400",
     fwh: "700",
 });

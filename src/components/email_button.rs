@@ -19,8 +19,9 @@ pub struct EmailButtonProps {
 pub fn EmailButton(props: &EmailButtonProps) -> Html {
     const WIDTH: &str = "300px";
     const COPY_BUTTON_WIDTH: &str = "50px";
-    const HEIGHT: &str = "40px";
-    const BORDER_RADIUS: &str = "5px";
+    const HEIGHT: &str = "50px";
+    const BORDER_RADIUS: &str = "10px";
+    const BORDER_WIDTH: &str = "3px";
 
     let is_mobile = use_media_query("(max-width: 768px)");
     let theme = use_theme::<ThemeChoice>();
@@ -40,9 +41,11 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         background-color: ${theme.color};
         color: ${theme.background_color};
         cursor: pointer;
-        border-width: 3px;
-        border-style: solid;
-        border-color: ${theme.color};
+        border: 0;
+
+        &:hover {
+            background-color: ${lighten(&theme.color, 1.2)};
+        }
     };
 
     let tooltip_css = css! {
@@ -96,9 +99,9 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         border-bottom-left-radius: ${BORDER_RADIUS};
         width: ${format!("calc(100% - {})", COPY_BUTTON_WIDTH)};
         height: 100%;
-        border-top-width: 3px;
-        border-bottom-width: 3px;
-        border-left-width: 3px;
+        border-top-width: ${BORDER_WIDTH};
+        border-bottom-width: ${BORDER_WIDTH};
+        border-left-width: ${BORDER_WIDTH};
         border-right-width: 0;
         border-style: solid;
         border-color: ${theme.color};
@@ -115,7 +118,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         border-bottom-right-radius: ${BORDER_RADIUS};
         width: ${COPY_BUTTON_WIDTH};
         height: 100%;
-        border-width: 3px;
+        border-width: ${BORDER_WIDTH};
         border-style: solid;
         border-color: ${theme.color};
         box-sizing: border-box;
@@ -190,7 +193,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
                     if !is_mobile {
                         <span
                             class={tooltip_css}
-                            data-tooltip="This helps me fight bots!">
+                            data-tooltip="an anti-spam measure">
                             <span id="wrapper">
                                 <Icon
                                     mask={IconMask::Question}

@@ -68,7 +68,6 @@ fn App() -> Html {
     };
     let content_container_css = css! {
         align-self: center;
-        width: 100%;
         max-width: 1000px;
     };
 

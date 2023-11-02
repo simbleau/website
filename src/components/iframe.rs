@@ -6,9 +6,6 @@ use yew::prelude::*;
 
 use crate::{components::Spinner, style::themes::ThemeChoice};
 
-pub const BORDER_WIDTH: &str = "2px";
-pub const BORDER_RADIUS: &str = "5px";
-
 #[derive(Properties, PartialEq)]
 pub struct IFrameProps {
     pub class: Option<Classes>,
@@ -18,6 +15,9 @@ pub struct IFrameProps {
 #[styled_component(IFrame)]
 pub fn view(props: &IFrameProps) -> Html {
     let theme = use_theme::<ThemeChoice>();
+
+    pub const BORDER_WIDTH: &str = "3px";
+    pub const BORDER_RADIUS: &str = "10px";
 
     let bg_color = format!("{:#}", theme.color.with_a(u8::MAX / 15));
 

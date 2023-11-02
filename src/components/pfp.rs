@@ -12,6 +12,8 @@ pub struct ProfilePictureProps {
 pub fn ProfilePicture(props: &ProfilePictureProps) -> Html {
     let theme = use_theme::<ThemeChoice>();
 
+    const BORDER_WIDTH: &str = "3px";
+
     let img_css = css! {
         border-radius: 50%;
         width: 300px;
@@ -21,7 +23,9 @@ pub fn ProfilePicture(props: &ProfilePictureProps) -> Html {
         object-fit: scale-down;
 
         /* Outline */
-        border: solid 3px ${theme.color};
+        border-width: ${BORDER_WIDTH};
+        border-style: solid;
+        border-color: ${theme.color};
     };
 
     html! {

@@ -20,6 +20,7 @@ pub fn navigation() -> Html {
     ];
 
     let links_css = css! {
+        padding: 0;
         a,a:hover {
             text-decoration:none;
         }
