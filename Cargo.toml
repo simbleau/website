@@ -41,9 +41,6 @@ web-sys = { version = "0.3", features = [
   "Navigator",
   "Clipboard",
 ] }
-js-sys = "0.3"
-futures-util = "0.3"
-wasm-bindgen-futures = "0.4"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3"

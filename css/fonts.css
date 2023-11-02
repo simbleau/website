@@ -1,4 +1,28 @@
 @font-face {
+    font-family: 'Barlow';
+    src: local("Barlow-Regular"),
+        url("/static/fonts/Barlow/Barlow-Regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: local("Barlow-Italic"),
+        url("/static/fonts/Barlow/Barlow-Italic.ttf");
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: local("Barlow-Bold"),
+        url("/static/fonts/Barlow/Barlow-Bold.ttf");
+    font-weight: bold;
+    font-display: swap;
+}
+
+
+@font-face {
     font-family: 'Roboto';
     src: local("Roboto"),
         url("/static/fonts/Roboto/Roboto.woff2") format("woff2");
