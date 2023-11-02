@@ -3,10 +3,8 @@ use crate::{
     style::themes::ThemeChoice,
     util::lighten,
 };
-use futures_util::FutureExt;
 use stylist::yew::{styled_component, use_media_query};
 use themer::yew::use_theme;
-use wasm_bindgen_futures::JsFuture;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq, Eq)]
@@ -18,7 +16,6 @@ pub struct EmailButtonProps {
 #[styled_component]
 pub fn EmailButton(props: &EmailButtonProps) -> Html {
     const WIDTH: &str = "300px";
-    const COPY_BUTTON_WIDTH: &str = "50px";
     const HEIGHT: &str = "50px";
     const BORDER_RADIUS: &str = "10px";
     const BORDER_WIDTH: &str = "3px";
@@ -34,6 +31,8 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     let real_email = format!("{}@{}", props.user, props.domain);
 
     let btn_css = css! {
+        font-family: inherit;
+        font-size: inherit;
         position: relative;
         border-radius: ${BORDER_RADIUS};
         width: ${WIDTH};
@@ -56,12 +55,12 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         & > #wrapper {
             cursor: help;
             position: absolute;
-            left: 75px;
-            top: -10px;
-            border: 1px solid green;
+            left: -30px;
+            top: 50%;
             text-align: center;
             align-items: center;
             display: inline-flex;
+            transform: translateX(-50%) translateY(-50%);
         }
         & > #wrapper > *[data-aui-id="help"] {
             margin: 10px;
@@ -76,8 +75,8 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
             color: ${theme.background_color};
             padding: 10px;
             border-radius: 5px;
-            left: 230px;
-            top: -40px;
+            left: 120px;
+            top: -30px;
             transform: translateX(-50%);
         }
 
@@ -86,52 +85,21 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         }
     };
 
-    let email_ctr_css = css! {
+    let email_input_css = css! {
+        font-family: inherit;
+        font-size: 18px;
+        background-color: ${theme.background_color};
+        color: ${theme.color};
+        border-radius: ${BORDER_RADIUS};
         width: ${WIDTH};
         height: ${HEIGHT};
         box-sizing: border-box;
-    };
-
-    let email_input_css = css! {
-        background-color: ${theme.background_color};
-        color: ${theme.color};
-        border-top-left-radius: ${BORDER_RADIUS};
-        border-bottom-left-radius: ${BORDER_RADIUS};
-        width: ${format!("calc(100% - {})", COPY_BUTTON_WIDTH)};
-        height: 100%;
-        border-top-width: ${BORDER_WIDTH};
-        border-bottom-width: ${BORDER_WIDTH};
-        border-left-width: ${BORDER_WIDTH};
-        border-right-width: 0;
+        display: flex;
+        border: ${BORDER_WIDTH};
         border-style: solid;
         border-color: ${theme.color};
-        box-sizing: border-box;
         vertical-align: baseline;
         text-align: center;
-        margin: 0;
-    };
-
-    let copy_button_css = css! {
-        background-color: ${theme.background_color};
-        color: ${theme.color};
-        border-top-right-radius: ${BORDER_RADIUS};
-        border-bottom-right-radius: ${BORDER_RADIUS};
-        width: ${COPY_BUTTON_WIDTH};
-        height: 100%;
-        border-width: ${BORDER_WIDTH};
-        border-style: solid;
-        border-color: ${theme.color};
-        box-sizing: border-box;
-        margin: 0;
-
-        &:hover {
-            background-color: ${lighten(&theme.background_color, 1.2)};
-            color: ${lighten(&theme.color, 1.2)};
-        }
-
-        &:hover *[data-aui-id="copy"] {
-            background: ${lighten(&theme.color, 1.2)};
-        }
     };
 
     let onreveal = {
@@ -144,67 +112,33 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         })
     };
 
-    let oncopy = {
-        let put_email = real_email.clone();
-        Callback::from(move |_| {
-            let Some(clipboard) =
-                web_sys::window().expect("window").navigator().clipboard()
-            else {
-                // TODO: Error toast
-                return;
-            };
-            let copy_task = JsFuture::from(clipboard.write_text(&put_email))
-                .then(|result| async move {
-                    match result {
-                        Ok(_) => {
-                            // Successfully copied to clipboard
-                            // TODO: Success toast
-                        }
-                        Err(err) => {
-                            // TODO: Error toast
-                        }
-                    }
-                });
-            wasm_bindgen_futures::spawn_local(copy_task);
-        })
-    };
-
     html! {
         if *visible {
-            <div class={email_ctr_css}>
-                <input
-                    class={email_input_css}
-                    value={email.to_string()}
-                    readonly=true
-                />
-                <button
-                    onclick={oncopy}
-                    class={copy_button_css}
-                >
-                    <Icon mask={IconMask::CopyToClipboard} data_aui_id={"copy"} />
-                </button>
-            </div>
+            <input
+                class={email_input_css}
+                value={email.to_string()}
+                readonly=true
+            />
         } else {
             <div>
                 <button onclick={onreveal} class={btn_css}>
                     <span>
                         {"reveal email"}
                     </span>
-                    if !is_mobile {
-                        <span
-                            class={tooltip_css}
-                            data-tooltip="an anti-spam measure">
-                            <span id="wrapper">
-                                <Icon
-                                    mask={IconMask::Question}
-                                    fill={theme.background_color}
-                                    data_aui_id={"help"}
-                                />
-                            </span>
-                        </span>
-                    }
                 </button>
-
+                if !is_mobile {
+                    <span
+                        class={tooltip_css}
+                        data-tooltip="an anti-spam measure">
+                        <span id="wrapper">
+                            <Icon
+                                mask={IconMask::Question}
+                                fill={theme.background_color}
+                                data_aui_id={"help"}
+                            />
+                        </span>
+                    </span>
+                }
             </div>
         }
     }
