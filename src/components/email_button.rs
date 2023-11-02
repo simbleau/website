@@ -3,8 +3,10 @@ use crate::{
     style::themes::ThemeChoice,
     util::lighten,
 };
+use futures_util::FutureExt;
 use stylist::yew::{styled_component, use_media_query};
 use themer::yew::use_theme;
+use wasm_bindgen_futures::JsFuture;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq, Eq)]
@@ -142,13 +144,25 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     let oncopy = {
         let put_email = real_email.clone();
         Callback::from(move |_| {
-            let clipboard = web_sys::window()
-                .expect("window")
-                .navigator()
-                .clipboard()
-                .unwrap();
-            // Todo: pop an info/error toast depending on result
-            _ = clipboard.write_text(&put_email);
+            let Some(clipboard) =
+                web_sys::window().expect("window").navigator().clipboard()
+            else {
+                // TODO: Error toast
+                return;
+            };
+            let copy_task = JsFuture::from(clipboard.write_text(&put_email))
+                .then(|result| async move {
+                    match result {
+                        Ok(_) => {
+                            // Successfully copied to clipboard
+                            // TODO: Success toast
+                        }
+                        Err(err) => {
+                            // TODO: Error toast
+                        }
+                    }
+                });
+            wasm_bindgen_futures::spawn_local(copy_task);
         })
     };
 
