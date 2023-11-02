@@ -4,7 +4,7 @@ use yew::prelude::*;
 
 const PDF_MIN_HEIGHT: &str = "500px";
 const PDF_HEIGHT: &str = "100vh";
-const PDF_HEIGHT_PADDING: &str = "200px";
+const PDF_HEIGHT_PADDING: &str = "220px";
 const PDF_MAX_HEIGHT: &str = "11in";
 const PDF_WIDTH: &str = "100vw";
 const PDF_MAX_WIDTH: &str = "8.5in";
@@ -34,8 +34,8 @@ pub fn ResumePage() -> Html {
     };
 
     html! {
-        <div align="center">
-            <div id="text_wrap">
+        <>
+            <div>
                 {"this résumé is "}
                 <ExternalLink
                     icon={IconMask::Git}
@@ -57,12 +57,14 @@ pub fn ResumePage() -> Html {
                 src="https://simbleau.github.io/resume/embed.html"
             />
             <br />
-            <ExternalLink
-                to={"https://github.com/simbleau/resume/releases/download/latest/resume.pdf"}
-            >
-                {"click here"}
-            </ExternalLink>
-            {" to download"}
-        </div>
+            <div>
+                <ExternalLink
+                    to={"https://github.com/simbleau/resume/releases/download/latest/resume.pdf"}
+                >
+                    {"click here"}
+                </ExternalLink>
+                {" to download"}
+            </div>
+        </>
     }
 }

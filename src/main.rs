@@ -13,7 +13,7 @@ use crate::{
     style::{global::use_global_css, themes::ThemeChoice},
 };
 use log::{info, warn};
-use stylist::yew::Global;
+use stylist::yew::{styled_component, Global};
 use themer::{browser::BrowserPreference, yew::ThemeProvider};
 use url::Url;
 use web_sys::window;
@@ -56,16 +56,29 @@ pub fn root() -> Html {
     }
 }
 
-#[function_component(App)]
-fn app() -> Html {
+#[styled_component]
+fn App() -> Html {
     // Apply global CSS
     let global_css = use_global_css();
+
+    let main_container_css = css! {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+    };
+    let content_container_css = css! {
+        align-self: center;
+        width: 100%;
+        max-width: 1000px;
+    };
+
     html! {
         <BrowserRouter>
-            <Global css={global_css} />
-            <main>
+            <Global css={global_css.0} />
+            <Global css={global_css.1} />
+            <main class={main_container_css}>
                 <Header />
-                <div id="content">
+                <div id="content" align="center" class={content_container_css}>
                     <Switch<Route> render={router::switch} />
                 </div>
             </main>

@@ -5,8 +5,7 @@ use yew::prelude::*;
 #[styled_component(Header)]
 pub fn header() -> Html {
     let header_css = css! {
-        padding-top: 5px;
-        padding-bottom: 5px;
+        margin-bottom: 20px;
         width: 100%;
     };
 

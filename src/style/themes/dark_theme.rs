@@ -9,10 +9,9 @@ pub static DARK_THEME: Lazy<ThemeSpec> = Lazy::new(|| ThemeSpec {
     link_hover: { lighten(&HexColor::from_u24(0x3399FF), 1.2) },
     body_font: "Roboto",
     mono_font: "Roboto",
-    fs: "1rem",
-    fsm: "1.04rem",
+    fsm: "1rem",
     fst: "1.08rem",
-    fsd: "1.12rem",
+    fsd: "1.2rem",
     fw: "400",
     fwh: "700",
 });

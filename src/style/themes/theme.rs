@@ -53,9 +53,7 @@ pub struct ThemeSpec {
     pub body_font: &'static str,
     pub mono_font: &'static str,
 
-    /// Font size - default
-    pub fs: &'static str,
-    /// Font size - mobile
+    /// Font size - mobile (default)
     pub fsm: &'static str,
     /// Font size - tablet
     pub fst: &'static str,

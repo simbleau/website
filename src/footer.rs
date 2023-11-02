@@ -2,37 +2,21 @@ use crate::{
     components::{ExternalLink, Icon, IconMask},
     style::themes::ThemeChoice,
 };
-use js_sys::Date;
 use stylist::yew::styled_component;
 use themer::yew::use_theme;
 use yew::prelude::*;
 
 #[styled_component(Footer)]
 pub fn footer() -> Html {
-    let copyright_year = Date::new_0().get_full_year();
     let theme = use_theme::<ThemeChoice>();
 
-    let css = css! {
-        /* Sizing */
-        padding-top: 5px;
-        padding-bottom: 5px;
-        width: 100%;
-
-        /* Center footer line */
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    let footer_css = css! {
+        margin-top: 20px;
     };
 
     html! {
-        <footer class={ css }>
-            <div id="footer_wrap" align="center">
-                <p>
-                    { "copyright " }
-                    <Icon mask={IconMask::Copyright} fill={theme.color} />
-                    { " " }
-                    { copyright_year }
-                </p>
+        <footer>
+            <div class={footer_css}>
                 {"made with "}
                 <Icon mask={IconMask::Coffee} fill={theme.color} />
                 {" and a "}

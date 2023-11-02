@@ -9,7 +9,6 @@ use yew::prelude::*;
 pub fn HomePage() -> Html {
     let container_style = css!(
         r#"
-            margin: 10px 0 0 0;
             animation: size-anim 0.5s ease;
             @keyframes size-anim {
                 from {
@@ -23,13 +22,12 @@ pub fn HomePage() -> Html {
     );
 
     html! {
-        <>
         <div align="center" class={container_style}>
             <ProfilePicture src={"/static/images/me.webp"} />
             <h1>{"Spencer C. Imbleau"}</h1>
             <EmailButton user={"spencer"} domain={"imbleau.com"} />
             <br/>
-            <div class={ css!("display: inline-flex; & > * {margin: 10px 5px;}") }>
+            <div class={ css!("display: inline-flex; & > * {margin: 0 10px;}") }>
                 <a href="https://www.linkedin.com/in/simbleau/" target="_blank">
                     <TapTarget mask={IconMask::LinkedIn} />
                 </a>
@@ -40,8 +38,7 @@ pub fn HomePage() -> Html {
                     <TapTarget mask={IconMask::GitHub} />
                 </a>
             </div>
+            <Footer />
         </div>
-        <Footer />
-        </>
     }
 }
