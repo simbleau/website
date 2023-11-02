@@ -50,6 +50,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     let tooltip_css = css! {
         & {
             position: relative;
+            font-size: 24px;
         }
 
         & > #wrapper {
@@ -76,8 +77,8 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
             padding: 10px;
             border-radius: 5px;
             left: 120px;
-            top: -30px;
-            transform: translateX(-50%);
+            top: -0px;
+            transform: translateX(-50%) translateY(-100%);
         }
 
         &:hover::before {
@@ -129,7 +130,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
                 if !is_mobile {
                     <span
                         class={tooltip_css}
-                        data-tooltip="an anti-spam measure">
+                        data-tooltip="my email is shy">
                         <span id="wrapper">
                             <Icon
                                 mask={IconMask::Question}
