@@ -4,7 +4,7 @@ use yew::prelude::*;
 
 const PDF_MIN_HEIGHT: &str = "500px";
 const PDF_HEIGHT: &str = "100vh";
-const PDF_HEIGHT_PADDING: &str = "250px";
+const PDF_HEIGHT_PADDING: &str = "270px";
 const PDF_MAX_HEIGHT: &str = "11in";
 const PDF_WIDTH: &str = "100vw";
 const PDF_MAX_WIDTH: &str = "8.5in";

@@ -64,7 +64,10 @@ fn App() -> Html {
     let main_container_css = css! {
         display: flex;
         flex-direction: column;
-        margin: 10px;
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 30px;
     };
     let content_container_css = css! {
         align-self: center;
