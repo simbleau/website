@@ -13,7 +13,7 @@ pub fn navigation() -> Html {
         (NavDestination::Internal(Route::Resume), html!({ "résumé" })),
         (
             NavDestination::External(AttrValue::Static(
-                "https://simbleau.github.io/blog/",
+                "https://simbleau.github.io/",
             )),
             html! {{ "blog" }},
         ),
