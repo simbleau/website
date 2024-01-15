@@ -1,7 +1,6 @@
 use crate::{
     components::{Icon, IconMask},
     style::themes::ThemeChoice,
-    util::lighten,
 };
 use stylist::yew::{styled_component, use_media_query};
 use themer::yew::use_theme;
@@ -37,13 +36,13 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         border-radius: ${BORDER_RADIUS};
         width: ${WIDTH};
         height: ${HEIGHT};
-        background-color: ${theme.color};
-        color: ${theme.background_color};
+        background-color: ${theme.color.display_rgb()};
+        color: ${theme.background_color.display_rgb()};
         cursor: pointer;
         border: 0;
 
         &:hover {
-            background-color: ${lighten(&theme.color, 1.2)};
+            background-color: ${ theme.color.scale(1.5).display_rgb() };
         }
     };
 
@@ -72,8 +71,8 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
             width: 200px;
             display: none;
             position: absolute;
-            background-color: ${theme.color};
-            color: ${theme.background_color};
+            background-color: ${theme.color.display_rgb()};
+            color: ${theme.background_color.display_rgb()};
             padding: 10px;
             border-radius: 5px;
             left: 120px;
@@ -89,8 +88,8 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     let email_input_css = css! {
         font-family: inherit;
         font-size: 18px;
-        background-color: ${theme.background_color};
-        color: ${theme.color};
+        background-color: ${theme.background_color.display_rgb()};
+        color: ${theme.color.display_rgb()};
         border-radius: ${BORDER_RADIUS};
         width: ${WIDTH};
         height: ${HEIGHT};
@@ -98,7 +97,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
         display: flex;
         border: ${BORDER_WIDTH};
         border-style: solid;
-        border-color: ${theme.color};
+        border-color: ${theme.color.display_rgb()};
         vertical-align: baseline;
         text-align: center;
     };

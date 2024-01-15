@@ -1,6 +1,6 @@
 # Spencer C. Imbleau's Website
 
-A repository containing the source code for my website.
+The source code for my website.
 
 **To view the website, [click here](https://spencer.imbleau.com).**
 
@@ -12,7 +12,7 @@ A repository containing the source code for my website.
 
 - Code is tested using [GitHub Actions](https://github.com/simbleau/website/actions/workflows/ci.yml)
 Deployment is automated by [GitHub Actions](https://github.com/simbleau/website/actions).
-- Pushes to `main` trigger a new [`latest`](https://github.com/simbleau/website/releases/tag/latest) release and deploay to AWS.
+- Pushes to `main` trigger a new [`latest`](https://github.com/simbleau/website/releases/tag/latest) release and deploy to AWS S3 + Cloudfront.
 
 ## 🔧 Development
 

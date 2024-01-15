@@ -19,13 +19,14 @@ pub fn view(props: &IFrameProps) -> Html {
     pub const BORDER_WIDTH: &str = "3px";
     pub const BORDER_RADIUS: &str = "10px";
 
-    let bg_color = format!("{:#}", theme.color.with_a(u8::MAX / 15));
+    let bg_color =
+        format!("{:#}", theme.color.with_a(u8::MAX / 15).display_rgba());
 
     let ctr_css = css! {
         background-color: ${bg_color};
         border-width: ${BORDER_WIDTH};
         border-style: solid;
-        border-color: ${theme.color};
+        border-color: ${theme.color.display_rgb()};
         border-radius: ${BORDER_RADIUS};
         overflow: hidden;
 

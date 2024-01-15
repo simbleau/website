@@ -1,15 +1,11 @@
 use crate::{
     components::{Icon, IconMask},
     style::themes::ThemeChoice,
-    util::lighten,
 };
 use hex_color::HexColor;
-use stylist::css;
+use stylist::{css, yew::use_media_query};
 use themer::yew::use_theme;
 use yew::prelude::*;
-
-const SIZE: &str = "64px";
-const FG_SIZE: &str = "32px";
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -28,6 +24,13 @@ pub struct Props {
 pub fn view(props: &Props) -> Html {
     let theme = use_theme::<ThemeChoice>();
 
+    let is_mobile = use_media_query("(max-width: 992px)");
+    let (size, fg_size) = if is_mobile {
+        ("48px", "24px")
+    } else {
+        ("64px", "32px")
+    };
+
     // Coloring
     let bg = match props.background {
         Some(c) => c,
@@ -37,13 +40,8 @@ pub fn view(props: &Props) -> Html {
         Some(c) => c,
         None => theme.color,
     };
-    let bg_hov = lighten(&bg, 0.8);
-    let fg_hov = lighten(&fg, 1.2);
-
-    let fg = format!("{fg:#}");
-    let bg = format!("{bg:#}");
-    let fg_hov = format!("{fg_hov:#}");
-    let bg_hov = format!("{bg_hov:#}");
+    let bg_hov = bg.scale(0.8).display_rgba();
+    let fg_hov = fg.scale(1.2).display_rgba();
 
     let style = css! {
         display: inline-block;
@@ -54,11 +52,11 @@ pub fn view(props: &Props) -> Html {
         justify-content: center;
         cursor:pointer;
 
-        width: ${SIZE};
-        height: ${SIZE};
+        width: ${size};
+        height: ${size};
 
         transition: background-color 0.5s;
-        background-color: ${bg};
+        background-color: ${bg.display_rgba()};
 
         &:hover {
             background-color: ${bg_hov};
@@ -66,15 +64,15 @@ pub fn view(props: &Props) -> Html {
 
         & > i {
             transition: width 0.25s, height 0.25s;
-            background: ${fg};
-            width: ${format!("calc({} * {})", FG_SIZE, IconMask::aspect_ratio(props.mask))};
-            height: ${FG_SIZE};
+            background: ${fg.display_rgba()};
+            width: ${format!("calc({} * {})", fg_size, IconMask::aspect_ratio(props.mask))};
+            height: ${fg_size};
         }
 
         &:hover > i {
             background: ${fg_hov};
-            width: ${format!("calc({} * {})", FG_SIZE, IconMask::aspect_ratio(props.mask) * 1.25)};
-            height: ${format!("calc({} * {})", FG_SIZE, 1.25)};
+            width: ${format!("calc({} * {})", fg_size, IconMask::aspect_ratio(props.mask) * 1.25)};
+            height: ${format!("calc({} * {})", fg_size, 1.25)};
         }
     };
 

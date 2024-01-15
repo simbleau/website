@@ -1,11 +1,8 @@
-use crate::style::themes::ThemeChoice;
-
 use super::IconMask;
-use gloo_utils::window;
+use crate::style::themes::ThemeChoice;
 use hex_color::HexColor;
 use stylist::css;
 use themer::yew::use_theme;
-use web_sys::HtmlElement;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
@@ -26,44 +23,16 @@ pub struct Props {
 pub fn icon(props: &Props) -> Html {
     let theme = use_theme::<ThemeChoice>();
 
-    let height = use_state(|| "1em".to_string());
-    let width = use_state(|| "1em".to_string());
-    let icon_ref = use_node_ref();
-    {
-        let mask = props.mask;
-        let height = height.clone();
-        let width = width.clone();
-        let icon_ref = icon_ref.clone();
-        use_effect_with(icon_ref, move |icon_ref| {
-            if let Some(element) = icon_ref.cast::<HtmlElement>() {
-                let computed_height = window()
-                    .get_computed_style(&element)
-                    .unwrap()
-                    .unwrap()
-                    .get_property_value("font-size")
-                    .unwrap();
-                let computed_width = format!(
-                    "calc({} * {})",
-                    computed_height,
-                    IconMask::aspect_ratio(mask)
-                );
-                height.set(computed_height);
-                width.set(computed_width);
-            }
-
-            move || {}
-        });
-    }
-
     let icon_style = css! {
-        width: ${*width};
-        height: ${*height};
+        height: 0.8rem;
+        width: ${
+            format!("calc(0.8rem * {})", IconMask::aspect_ratio(props.mask))
+        };
         display: inline-block;
         text-align: center;
         vertical-align: middle;
         text-decoration: none;
     };
-
     let mask_style = css! {
         r#"
             -webkit-mask:url("${mask}");
@@ -71,20 +40,19 @@ pub fn icon(props: &Props) -> Html {
             transition: background 0s;
         "#,
         mask = props.mask,
-        bg = props.fill.unwrap_or(theme.color)
+        bg = props.fill.unwrap_or(theme.color).display_rgba()
     };
 
     let mask_hover_style = props.hover_fill.map(|fill| {
         css! {
             &:hover {
-                background: ${fill};
+                background: ${fill.display_rgba()};
             }
         }
     });
 
     html! {
         <i
-            ref={icon_ref}
             data-aui-id={props.data_aui_id.clone()}
             class={
                 classes!(

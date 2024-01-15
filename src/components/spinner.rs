@@ -43,7 +43,7 @@ pub fn spinner() -> Html {
             stroke: ${stroke};
         }
     "#,
-    stroke = theme.color
+    stroke = theme.color.display_rgb()
     };
 
     let view_box = {

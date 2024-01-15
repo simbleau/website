@@ -27,10 +27,10 @@ pub fn view(props: &ExternalLinkProps) -> Html {
             display: inline-block;
         }
         & *[data-aui-id="linkicon"] {
-            background-color: ${theme.link};
+            background-color: ${theme.link.display_rgb()};
         }
         &:hover *[data-aui-id="linkicon"] {
-            background-color: ${theme.link_hover};
+            background-color: ${theme.link_hover.display_rgb()};
         }
     };
 

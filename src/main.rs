@@ -5,7 +5,6 @@ mod navigation;
 mod pages;
 mod router;
 mod style;
-mod util;
 
 use crate::{
     header::Header,

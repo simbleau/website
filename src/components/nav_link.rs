@@ -29,11 +29,11 @@ pub fn NavLink(props: &Props) -> Html {
             width: 0%;
 
             transition: width 0.2s ease-out, background-color 0.5s;
-            background-color: ${theme.link};
+            background-color: ${theme.link.display_rgb()};
         }
         &:hover > a > span > #underline {
             width: 100%;
-            background-color: ${theme.link_hover};
+            background-color: ${theme.link_hover.display_rgb()};
         }
     };
 

@@ -10,7 +10,7 @@ pub fn use_global_css() -> (StyleSource, StyleSource) {
     let is_mobile = use_media_query("(max-width: 992px)");
     let is_tablet = use_media_query("(max-width: 1200px)");
 
-    // FIXME: https://github.com/futursolo/stylist-rs/issues/147
+    // FIXME: after https://github.com/futursolo/stylist-rs/issues/147
     let buggy_css = css! {
         r#"
             a:hover {
@@ -18,7 +18,7 @@ pub fn use_global_css() -> (StyleSource, StyleSource) {
                 text-decoration: underline;
             }
         "#,
-        link_hover = theme.link_hover
+        link_hover = theme.link_hover.display_rgb()
     };
 
     let global_css = css! {
@@ -44,8 +44,8 @@ pub fn use_global_css() -> (StyleSource, StyleSource) {
         /* Theme Application */
         transition-property: background-color, font-size, width, height;
         transition-duration: 250ms;
-        background-color: ${theme.background_color};
-        color: ${theme.color};
+        background-color: ${theme.background_color.display_rgb()};
+        color: ${theme.color.display_rgb()};
 
         /* Headers */
         h1,
@@ -59,7 +59,7 @@ pub fn use_global_css() -> (StyleSource, StyleSource) {
 
         /* Links */
         a {
-            color: ${theme.link};
+            color: ${theme.link.display_rgb()};
             text-decoration:none;
         }
 

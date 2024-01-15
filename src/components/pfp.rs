@@ -25,7 +25,7 @@ pub fn ProfilePicture(props: &ProfilePictureProps) -> Html {
         /* Outline */
         border-width: ${BORDER_WIDTH};
         border-style: solid;
-        border-color: ${theme.color};
+        border-color: ${theme.color.display_rgb()};
     };
 
     html! {
