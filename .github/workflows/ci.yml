@@ -14,7 +14,7 @@ jobs:
           components: clippy,rustfmt
 
       - name: Rust Cache
-        uses: Swatinem/rust-cache@v2.7.1
+        uses: Swatinem/rust-cache@v2.7.3
 
       - name: Build | Clippy
         run: RUSTFLAGS=--cfg=web_sys_unstable_apis cargo clippy -- -D warnings
@@ -34,7 +34,7 @@ jobs:
           targets: wasm32-unknown-unknown
 
       - name: Rust Cache
-        uses: Swatinem/rust-cache@v2.7.1
+        uses: Swatinem/rust-cache@v2.7.3
 
       - name: Build | Check (wasm)
         run: cargo check --target wasm32-unknown-unknown
@@ -55,7 +55,7 @@ jobs:
         uses: jetli/wasm-pack-action@v0.4.0
 
       - name: Rust Cache
-        uses: Swatinem/rust-cache@v2.7.1
+        uses: Swatinem/rust-cache@v2.7.3
 
       - name: Build | Test (wasm)
         run: wasm-pack test --node
@@ -78,7 +78,7 @@ jobs:
           targets: wasm32-unknown-unknown
 
       - name: Rust Cache
-        uses: Swatinem/rust-cache@v2.7.1
+        uses: Swatinem/rust-cache@v2.7.3
 
       - name: Build | Trunk
         run: trunk build
