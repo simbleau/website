@@ -1,30 +1,44 @@
-# Spencer C. Imbleau's Website
+<div align="center">
 
-The source code for my website.
+# Spencer C. Imbleau's Website
 
 **To view the website, [click here](https://spencer.imbleau.com).**
 
----
 [![last release](https://img.shields.io/github/release-date/simbleau/website?logo=github&label=Last%20Release)](https://github.com/simbleau/website/releases)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/simbleau/website/ci.yml?logo=github&label=CI)](https://github.com/simbleau/website/actions/workflows/ci.yml)
 
-## 🤖 Deployment
+</div>
 
-- Code is tested using [GitHub Actions](https://github.com/simbleau/website/actions/workflows/ci.yml)
-Deployment is automated by [GitHub Actions](https://github.com/simbleau/website/actions).
-- Pushes to `main` trigger a new [`latest`](https://github.com/simbleau/website/releases/tag/latest) release and deploy to AWS S3 + Cloudfront.
+## About
+
+My website is written in Rust with a frontend framework called [Yew](https://yew.rs), compiled to WebAssembly. Code is tested using [GitHub Actions](https://github.com/simbleau/website/actions/workflows/ci.yml) and deployment is automated through CI/CD with Terraform. Cutting a new [release](https://github.com/simbleau/website/releases/tag/latest) will deploy to prod (AWS).
 
 ## 🔧 Development
 
 - **Dependencies**
   - [Rust](https://www.rust-lang.org/)
   - [Trunk](https://trunkrs.dev/) (`cargo install trunk`)
+  - `wasm32-unknown-unknown` (`rustup target add wasm32-unknown-unknown`)
+
 - **Serve**:
 
   ```bash
   trunk serve --open
   ```
 
-## 🔏 License
+## License
 
-This project is dual-licensed under both [Apache 2.0](LICENSE-APACHE) and [MIT](LICENSE-MIT) licenses.
+Licensed under either of
+
+- Apache License, Version 2.0
+   ([LICENSE-APACHE](LICENSE-APACHE) or <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT license
+   ([LICENSE-MIT](LICENSE-MIT) or <http://opensource.org/licenses/MIT>)
+
+at your option
+
+## Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
+dual licensed as above, without any additional terms or conditions.
