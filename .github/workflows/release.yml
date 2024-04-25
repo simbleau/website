@@ -50,16 +50,16 @@ jobs:
           role-duration-seconds: 3600
           role-session-name: GitHubActions
 
-      - name: Terraform Init
+      - name: Setup | Terraform
         uses: hashicorp/setup-terraform@v3
         env:
           TF_ACTION_WORKING_DIR: 'terraform'
 
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      - name: Terraform | Apply
+        run: |
+          cd terraform
+          terraform init
+          terraform apply -auto-approve
 
       - name: Deploy | S3
         run: |
