@@ -7,6 +7,12 @@ terraform {
   }
 
   required_version = ">= 1.8.0"
+
+  backend "s3" {
+    bucket = "imbleau-terraform-state"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+  }
 }
 
 provider "aws" {
