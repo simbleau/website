@@ -188,6 +188,22 @@ resource "cloudflare_record" "web_distribution_cn" {
   proxied = "false"
 }
 
+resource "cloudflare_record" "web_distribution_naked_aws" {
+  zone_id = local.zone
+  name    = "aws"
+  value   = "192.0.2.1"
+  type    = "A"
+  proxied = "true"
+}
+
+resource "cloudflare_record" "web_distribution_aws" {
+  zone_id = local.zone
+  name    = "www.aws"
+  value   = "192.0.2.1"
+  type    = "A"
+  proxied = "true"
+}
+
 resource "cloudflare_ruleset" "redirect_rules" {
   zone_id = local.zone
   kind    = "zone"
