@@ -56,7 +56,7 @@ jobs:
           TF_ACTION_WORKING_DIR: 'terraform'
 
       - name: Terraform Init
-        run: terraform init terraform
+        run: terraform init
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
