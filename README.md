@@ -11,7 +11,7 @@
 
 ## About
 
-My website is written in Rust with a frontend framework called [Yew](https://yew.rs), compiled to WebAssembly. Code is tested using [GitHub Actions](https://github.com/simbleau/website/actions/workflows/ci.yml) and deployment is automated through CI/CD with Terraform. Cutting a new [release](https://github.com/simbleau/website/releases/tag/latest) will deploy to prod (AWS).
+My website is written in Rust with a frontend framework called [Yew](https://yew.rs), compiled to WebAssembly. Code is tested using [GitHub Actions](https://github.com/simbleau/website/actions/workflows/ci.yml) and deployment is automated through CI/CD with Terraform. Pushing to `main` will deploy to prod (AWS) and cutting a new [release](https://github.com/simbleau/website/releases/tag/latest) will attach the optimized `dist/` and sh256 hashes.
 
 ## 🔧 Development
 
