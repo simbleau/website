@@ -1,7 +1,7 @@
 use crate::style::themes::ThemeChoice;
 use stylist::yew::styled_component;
 use themer::yew::use_theme;
-use yew::{prelude::*, virtual_dom::AttrValue};
+use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
 pub struct ProfilePictureProps {
