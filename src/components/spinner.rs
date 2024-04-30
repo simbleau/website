@@ -8,7 +8,7 @@ const STROKE_WIDTH: f32 = 3.0;
 pub const SPINNER_SIZE: f32 = 50.0;
 
 #[styled_component(Spinner)]
-pub fn spinner() -> Html {
+pub fn view() -> Html {
     let theme = use_theme::<ThemeChoice>();
 
     let spinner = css! {

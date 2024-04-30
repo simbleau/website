@@ -10,8 +10,8 @@ const PDF_WIDTH: &str = "100vw";
 const PDF_MAX_WIDTH: &str = "8.5in";
 const IFRAME_BORDER_WIDTH: &str = "2px";
 
-#[styled_component]
-pub fn ResumePage() -> Html {
+#[styled_component(ResumePage)]
+pub fn view() -> Html {
     let resume_css = css! {
         r#"
             @media not screen and (min-width: ${min_width}) {

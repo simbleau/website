@@ -3,7 +3,7 @@ use stylist::yew::styled_component;
 use yew::prelude::*;
 
 #[styled_component(Header)]
-pub fn header() -> Html {
+pub fn view() -> Html {
     let header_css = css! {
         margin-bottom: 20px;
         width: 100%;

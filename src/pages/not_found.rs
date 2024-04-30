@@ -1,7 +1,8 @@
 use crate::components::Construction;
+use stylist::yew::styled_component;
 use yew::prelude::*;
 
-#[function_component]
-pub fn NotFoundPage() -> Html {
+#[styled_component(NotFoundPage)]
+pub fn view() -> Html {
     html! { <Construction title="Yikes" message="How did you get here?" /> }
 }

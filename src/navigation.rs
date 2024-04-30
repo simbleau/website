@@ -6,7 +6,7 @@ use stylist::yew::styled_component;
 use yew::prelude::*;
 
 #[styled_component(Navigation)]
-pub fn navigation() -> Html {
+pub fn view() -> Html {
     // If updating the links, update the sitemap!
     let nav_links: [(NavDestination, Html); 3] = [
         (NavDestination::Internal(Route::Home), html!({ "home" })),

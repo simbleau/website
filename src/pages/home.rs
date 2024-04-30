@@ -5,8 +5,8 @@ use crate::{
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
-#[styled_component]
-pub fn HomePage() -> Html {
+#[styled_component(HomePage)]
+pub fn view() -> Html {
     let container_style = css!(
         r#"
             animation: size-anim 0.5s ease;

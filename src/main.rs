@@ -20,7 +20,7 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 
 #[function_component(Root)]
-pub fn root() -> Html {
+pub fn view() -> Html {
     // Get stored theme
     let mut stored_theme = match BrowserPreference::load::<ThemeChoice>() {
         Some(pref) => pref,
@@ -55,8 +55,8 @@ pub fn root() -> Html {
     }
 }
 
-#[styled_component]
-fn App() -> Html {
+#[styled_component(App)]
+fn view() -> Html {
     // Apply global CSS
     let global_css = use_global_css();
 

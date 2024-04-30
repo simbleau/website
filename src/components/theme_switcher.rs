@@ -7,7 +7,7 @@ use themer::{browser::BrowserPreference, yew::use_theme};
 use yew::prelude::*;
 
 #[function_component(ThemeSwitcher)]
-pub fn theme_switcher() -> Html {
+pub fn view() -> Html {
     let theme = use_theme::<ThemeChoice>();
     let onclick = {
         let theme = theme.clone();
