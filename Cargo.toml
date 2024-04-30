@@ -1,18 +1,22 @@
 [package]
 name = "website"
+description = "Personal website of Spencer C. Imbleau"
 version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/simbleau/website"
+publish = false
+# FIXME: After https://doc.rust-lang.org/cargo/reference/unstable.html#per-package-target
+# forced-target = "wasm32-unknown-unknown"
 
+# In the future, hopefully trunk supports `--profile web-profile`,
+# and we can rename this profile.
+# See: https://github.com/trunk-rs/trunk/issues/605
 [profile.release]
-# less code to include into binary
-panic = 'abort'
-# link time optimization using using whole-program analysis
-lto = true
-# optimization over all codebase ( better optimization, slower build )
-codegen-units = 1
-# optimization for size (aggressive)
 opt-level = 'z'
-# Strip debug symbols and info
+panic = "abort"
+lto = true
+codegen-units = 1
 strip = "debuginfo"
 
 [dependencies]
