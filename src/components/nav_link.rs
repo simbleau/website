@@ -1,10 +1,9 @@
 use crate::{
     components::{ExternalLink, InternalLink},
+    hooks::use_theme,
     router::Route,
-    style::themes::ThemeChoice,
 };
 use stylist::yew::styled_component;
-use themer::yew::use_theme;
 use yew::prelude::*;
 
 #[derive(PartialEq)]
@@ -21,7 +20,7 @@ pub struct Props {
 
 #[styled_component]
 pub fn NavLink(props: &Props) -> Html {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
 
     let link_css = css! {
         & > a > span > #underline {

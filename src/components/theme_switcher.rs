@@ -1,14 +1,14 @@
 use crate::{
     components::{IconMask, TapTarget},
+    hooks::{use_theme, BrowserPreference},
     style::themes::ThemeChoice,
 };
 use log::info;
-use themer::{browser::BrowserPreference, yew::use_theme};
 use yew::prelude::*;
 
 #[function_component(ThemeSwitcher)]
 pub fn view() -> Html {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
     let onclick = {
         let theme = theme.clone();
         Callback::from(move |_| {

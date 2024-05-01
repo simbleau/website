@@ -1,6 +1,5 @@
-use crate::style::themes::ThemeChoice;
+use crate::hooks::use_theme;
 use stylist::yew::styled_component;
-use themer::yew::use_theme;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
@@ -10,7 +9,7 @@ pub struct ProfilePictureProps {
 
 #[styled_component]
 pub fn ProfilePicture(props: &ProfilePictureProps) -> Html {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
 
     const BORDER_WIDTH: &str = "3px";
 

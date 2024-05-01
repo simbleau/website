@@ -33,13 +33,28 @@ pub fn view() -> Html {
         PDF_MAX_HEIGHT = PDF_MAX_HEIGHT,
     };
 
+    let container_style = css!(
+        r#"
+            animation: size-anim 0.5s ease;
+            @keyframes size-anim {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        "#
+    );
+
     html! {
-        <>
+        <div align="center" class={container_style}>
             <div>
                 {"this résumé is "}
                 <ExternalLink
                     icon={IconMask::Git}
                     to={"https://github.com/simbleau/resume"}
+                    target={"_blank"}
                 >
                     {"source controlled"}
                 </ExternalLink>
@@ -47,6 +62,7 @@ pub fn view() -> Html {
                 <ExternalLink
                     icon={IconMask::Robot}
                     to={"https://github.com/simbleau/resume/actions"}
+                    target={"_blank"}
                 >
                     {"automated"}
                 </ExternalLink>
@@ -60,11 +76,12 @@ pub fn view() -> Html {
             <div>
                 <ExternalLink
                     to={"https://github.com/simbleau/resume/releases/download/latest/resume.pdf"}
+                    download={"Spencer_Imbleau_Resume.pdf"} // downloads the file as this name
                 >
                     {"click here"}
                 </ExternalLink>
                 {" to download"}
             </div>
-        </>
+        </div>
     }
 }

@@ -1108,36 +1108,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "themer"
-version = "0.3.0"
-source = "git+https://github.com/simbleau/themer#136f597ad4a8e6a5aa93851958e0167c0d728735"
-dependencies = [
- "themer-core",
- "themer-macros",
- "yew",
-]
-
-[[package]]
-name = "themer-core"
-version = "0.3.0"
-source = "git+https://github.com/simbleau/themer#136f597ad4a8e6a5aa93851958e0167c0d728735"
-dependencies = [
- "gloo-storage 0.3.0",
- "serde",
- "web-sys",
-]
-
-[[package]]
-name = "themer-macros"
-version = "0.3.0"
-source = "git+https://github.com/simbleau/themer#136f597ad4a8e6a5aa93851958e0167c0d728735"
-dependencies = [
- "quote",
- "syn 2.0.48",
- "themer-core",
-]
-
-[[package]]
 name = "thiserror"
 version = "1.0.56"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1398,6 +1368,7 @@ version = "0.1.0"
 dependencies = [
  "console_error_panic_hook",
  "console_log",
+ "gloo-storage 0.3.0",
  "gloo-timers 0.3.0",
  "gloo-utils 0.2.0",
  "hex_color",
@@ -1405,7 +1376,6 @@ dependencies = [
  "once_cell",
  "serde",
  "stylist",
- "themer",
  "url",
  "wasm-bindgen",
  "wasm-bindgen-test",

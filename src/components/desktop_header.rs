@@ -1,8 +1,8 @@
-use crate::{components::ThemeSwitcher, navigation::Navigation};
+use crate::components::{Navigation, ThemeSwitcher};
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
-#[styled_component(Header)]
+#[styled_component(DesktopHeader)]
 pub fn view() -> Html {
     let header_css = css! {
         margin-bottom: 20px;

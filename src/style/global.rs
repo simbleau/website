@@ -1,11 +1,10 @@
-use super::themes::ThemeChoice;
+use crate::hooks::use_theme;
 use stylist::{css, yew::use_media_query, StyleSource};
-use themer::yew::use_theme;
 use yew::hook;
 
 #[hook]
 pub fn use_global_css() -> (StyleSource, StyleSource) {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
 
     let is_mobile = use_media_query("(max-width: 992px)");
     let is_tablet = use_media_query("(max-width: 1200px)");

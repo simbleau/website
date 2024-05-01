@@ -1,19 +1,17 @@
 mod components;
-mod footer;
-mod header;
-mod navigation;
-mod pages;
+mod hooks;
+mod page_components;
 mod router;
 mod style;
 
 use crate::{
-    header::Header,
+    components::DesktopHeader,
+    hooks::{BrowserPreference, ThemeProvider},
     router::Route,
     style::{global::use_global_css, themes::ThemeChoice},
 };
 use log::{info, warn};
 use stylist::yew::{styled_component, Global};
-use themer::{browser::BrowserPreference, yew::ThemeProvider};
 use url::Url;
 use web_sys::window;
 use yew::prelude::*;
@@ -22,7 +20,7 @@ use yew_router::prelude::*;
 #[function_component(Root)]
 pub fn view() -> Html {
     // Get stored theme
-    let mut stored_theme = match BrowserPreference::load::<ThemeChoice>() {
+    let mut stored_theme = match BrowserPreference::load() {
         Some(pref) => pref,
         None => ThemeChoice::default(),
     };
@@ -49,9 +47,9 @@ pub fn view() -> Html {
     }
 
     html! {
-        <ThemeProvider<ThemeChoice> theme={stored_theme}>
+        <ThemeProvider theme={stored_theme}>
             <App />
-        </ThemeProvider<ThemeChoice>>
+        </ThemeProvider>
     }
 }
 
@@ -78,7 +76,7 @@ fn view() -> Html {
             <Global css={global_css.0} />
             <Global css={global_css.1} />
             <main class={main_container_css}>
-                <Header />
+                <DesktopHeader />
                 <div id="content" align="center" class={content_container_css}>
                     <Switch<Route> render={router::switch} />
                 </div>

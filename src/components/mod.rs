@@ -27,3 +27,12 @@ pub use spinner::Spinner;
 
 mod email_button;
 pub use email_button::EmailButton;
+
+mod footer;
+pub use footer::Footer;
+
+mod desktop_header;
+pub use desktop_header::DesktopHeader;
+
+mod navigation;
+pub use navigation::Navigation;

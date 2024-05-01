@@ -1,9 +1,8 @@
 use crate::{
     components::{Icon, IconMask},
-    style::themes::ThemeChoice,
+    hooks::use_theme,
 };
 use stylist::yew::styled_component;
-use themer::yew::use_theme;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -26,7 +25,7 @@ pub fn view<Route>(props: &RouterLinkProps<Route>) -> Html
 where
     Route: Routable + 'static,
 {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
 
     let hitbox_style = css! {
         & {

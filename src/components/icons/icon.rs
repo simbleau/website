@@ -1,8 +1,7 @@
 use super::IconMask;
-use crate::style::themes::ThemeChoice;
+use crate::hooks::use_theme;
 use hex_color::HexColor;
 use stylist::css;
-use themer::yew::use_theme;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
@@ -21,7 +20,7 @@ pub struct Props {
 
 #[function_component(Icon)]
 pub fn icon(props: &Props) -> Html {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
 
     let icon_style = css! {
         height: 0.8rem;

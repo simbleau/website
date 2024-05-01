@@ -1,6 +1,5 @@
-use crate::style::themes::ThemeChoice;
+use crate::hooks::use_theme;
 use stylist::yew::styled_component;
-use themer::yew::use_theme;
 use yew::prelude::*;
 
 const R: f32 = 10.0;
@@ -9,7 +8,7 @@ pub const SPINNER_SIZE: f32 = 50.0;
 
 #[styled_component(Spinner)]
 pub fn view() -> Html {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
 
     let spinner = css! {
             align-items:center;

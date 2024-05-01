@@ -1,10 +1,8 @@
+use crate::{components::Spinner, hooks::use_theme};
 use stylist::yew::styled_component;
-use themer::yew::use_theme;
 use wasm_bindgen::JsCast;
 use web_sys::Element;
 use yew::prelude::*;
-
-use crate::{components::Spinner, style::themes::ThemeChoice};
 
 #[derive(Properties, PartialEq)]
 pub struct IFrameProps {
@@ -14,7 +12,7 @@ pub struct IFrameProps {
 
 #[styled_component(IFrame)]
 pub fn view(props: &IFrameProps) -> Html {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
 
     pub const BORDER_WIDTH: &str = "3px";
     pub const BORDER_RADIUS: &str = "10px";

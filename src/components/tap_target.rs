@@ -1,10 +1,9 @@
 use crate::{
     components::{Icon, IconMask},
-    style::themes::ThemeChoice,
+    hooks::use_theme,
 };
 use hex_color::HexColor;
 use stylist::{css, yew::use_media_query};
-use themer::yew::use_theme;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
@@ -22,7 +21,7 @@ pub struct Props {
 
 #[function_component(TapTarget)]
 pub fn view(props: &Props) -> Html {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
 
     let is_mobile = use_media_query("(max-width: 992px)");
     let (size, fg_size) = if is_mobile {

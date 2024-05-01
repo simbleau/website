@@ -1,15 +1,17 @@
 use crate::{
     components::{Icon, IconMask},
-    style::themes::ThemeChoice,
+    hooks::use_theme,
 };
 use stylist::yew::styled_component;
-use themer::yew::use_theme;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
 pub struct ExternalLinkProps {
-    #[prop_or(AttrValue::Static("#"))]
     pub to: AttrValue,
+    #[prop_or_default]
+    pub target: Option<AttrValue>,
+    #[prop_or_default]
+    pub download: Option<AttrValue>,
     #[prop_or_default]
     pub children: Children,
     #[prop_or_default]
@@ -20,7 +22,7 @@ pub struct ExternalLinkProps {
 
 #[styled_component(ExternalLink)]
 pub fn view(props: &ExternalLinkProps) -> Html {
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
 
     let hitbox_style = css! {
         & {
@@ -42,7 +44,7 @@ pub fn view(props: &ExternalLinkProps) -> Html {
 
     html! {
         <div class={classes!(hitbox_style, props.class.clone())}>
-            <a href={ props.to.clone() } class={link_css} >
+            <a href={ props.to.clone() } class={link_css} target={props.target.clone()} download={props.download.clone()}>
                 if let Some(mask) = props.icon {
                     <Icon
                         data_aui_id="linkicon"

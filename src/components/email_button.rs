@@ -1,9 +1,8 @@
 use crate::{
     components::{Icon, IconMask},
-    style::themes::ThemeChoice,
+    hooks::use_theme,
 };
 use stylist::yew::{styled_component, use_media_query};
-use themer::yew::use_theme;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq, Eq)]
@@ -20,7 +19,7 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     const BORDER_WIDTH: &str = "3px";
 
     let is_mobile = use_media_query("(max-width: 768px)");
-    let theme = use_theme::<ThemeChoice>();
+    let theme = use_theme();
     let email = use_state(|| "".to_string());
     let visible = use_state(|| false);
 
