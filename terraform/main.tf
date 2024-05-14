@@ -108,7 +108,7 @@ resource "aws_cloudfront_distribution" "web_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn            = "arn:aws:acm:us-east-1:804184581672:certificate/924d54f4-5e73-4e87-a560-8e285ff119c4"
+    acm_certificate_arn            = aws_acm_certificate.tls_cert.arn
     ssl_support_method             = "sni-only"
     minimum_protocol_version       = "TLSv1"
     cloudfront_default_certificate = false
