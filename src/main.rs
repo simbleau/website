@@ -11,7 +11,7 @@ use crate::{
     style::{global::use_global_css, themes::ThemeChoice},
 };
 use log::{info, warn};
-use stylist::yew::{styled_component, Global};
+use stylist::yew::{Global, styled_component};
 use url::Url;
 use web_sys::window;
 use yew::prelude::*;
@@ -20,10 +20,7 @@ use yew_router::prelude::*;
 #[function_component(Root)]
 pub fn view() -> Html {
     // Get stored theme
-    let mut stored_theme = match BrowserPreference::load() {
-        Some(pref) => pref,
-        None => ThemeChoice::default(),
-    };
+    let mut stored_theme = BrowserPreference::load().unwrap_or_default();
     info!("Theme: {stored_theme:?}");
 
     // Override with theme from query string
