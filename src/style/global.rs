@@ -1,5 +1,5 @@
 use crate::hooks::use_theme;
-use stylist::{css, yew::use_media_query, StyleSource};
+use stylist::{StyleSource, css, yew::use_media_query};
 use yew::hook;
 
 #[hook]

@@ -1,2 +1,2 @@
 mod use_theme;
-pub use use_theme::{use_theme, BrowserPreference, ThemeProvider};
+pub use use_theme::{BrowserPreference, ThemeProvider, use_theme};

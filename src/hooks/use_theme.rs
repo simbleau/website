@@ -1,12 +1,8 @@
-use crate::style::themes::Theme;
-use crate::style::themes::ThemeChoice;
-use gloo_storage::errors::StorageError;
-use gloo_storage::Storage;
-use serde::Deserialize;
-use serde::Serialize;
+use crate::style::themes::{Theme, ThemeChoice};
+use gloo_storage::{Storage, errors::StorageError};
+use serde::{Deserialize, Serialize};
 use std::ops::Deref;
-use yew::prelude::*;
-use yew::use_context;
+use yew::{prelude::*, use_context};
 
 #[yew::hook]
 pub fn use_theme() -> ThemeContext {

@@ -12,9 +12,7 @@ pub fn view() -> Html {
         (NavDestination::Internal(Route::Home), html!({ "home" })),
         (NavDestination::Internal(Route::Resume), html!({ "résumé" })),
         (
-            NavDestination::External(AttrValue::Static(
-                "https://simbleau.github.io/",
-            )),
+            NavDestination::External(AttrValue::Static("https://simbleau.github.io/")),
             html! {{ "blog" }},
         ),
     ];

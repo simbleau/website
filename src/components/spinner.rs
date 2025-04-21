@@ -49,9 +49,7 @@ pub fn view() -> Html {
         let radius = R + STROKE_WIDTH / 2.00;
         let view_box_x = 50.00 - radius;
         let view_box_width = radius * 2.00;
-        format!(
-            "{view_box_x:.2} {view_box_x:.2} {view_box_width:.2} {view_box_width:.2}"
-        )
+        format!("{view_box_x:.2} {view_box_x:.2} {view_box_width:.2} {view_box_width:.2}")
     };
     let spinner_track = format!(
         "M 50,50 m 0,-{R:.0} a {R:.0},{R:.0} 0 1 1 0,{R2:.0} a {R:.0},{R:.0} 0 1 1 0,-{R2:.0}",

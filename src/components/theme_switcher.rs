@@ -1,6 +1,6 @@
 use crate::{
     components::{IconMask, TapTarget},
-    hooks::{use_theme, BrowserPreference},
+    hooks::{BrowserPreference, use_theme},
     style::themes::ThemeChoice,
 };
 use log::info;
