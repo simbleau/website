@@ -22,7 +22,7 @@ pub fn view() -> Html {
         <div align="center" class={container_style}>
             <ProfilePicture src={"/static/images/me.webp"} />
             <h1>{"Spencer C. Imbleau"}</h1>
-            <EmailButton user={"spencer"} domain={"imbleau.com"} />
+            <EmailButton email_base64={"c3BlbmNlckBpbWJsZWF1LmNvbQ=="} />
             <br/>
             <div class={ css!("display: inline-flex; & > * {margin: 0 10px;}") }>
                 <a href="https://www.linkedin.com/in/simbleau/" target="_blank">

@@ -1,11 +1,11 @@
 use crate::hooks::use_theme;
+use base64::Engine;
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq, Eq)]
 pub struct EmailButtonProps {
-    pub user: AttrValue,
-    pub domain: AttrValue,
+    pub email_base64: AttrValue,
 }
 
 #[styled_component]
@@ -22,7 +22,10 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     // I assemble the email like this because there are bots on GitHub that
     // scrape emails, too. Less common that web crawlers, but they still exist.
     // In other words, I don't want my 'example@domain.com' anywhere.
-    let real_email = format!("{}@{}", props.user, props.domain);
+    let email_decoded = base64::engine::general_purpose::STANDARD
+        .decode(props.email_base64.as_bytes())
+        .unwrap();
+    let real_email = String::from_utf8(email_decoded).unwrap();
 
     let btn_css = css! {
         font-family: inherit;
