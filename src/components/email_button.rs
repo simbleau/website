@@ -1,8 +1,5 @@
-use crate::{
-    components::{Icon, IconMask},
-    hooks::use_theme,
-};
-use stylist::yew::{styled_component, use_media_query};
+use crate::hooks::use_theme;
+use stylist::yew::styled_component;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq, Eq)]
@@ -18,7 +15,6 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
     const BORDER_RADIUS: &str = "10px";
     const BORDER_WIDTH: &str = "3px";
 
-    let is_mobile = use_media_query("(max-width: 768px)");
     let theme = use_theme();
     let email = use_state(|| "".to_string());
     let visible = use_state(|| false);
@@ -42,45 +38,6 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
 
         &:hover {
             background-color: ${ theme.color.scale(1.5).display_rgb() };
-        }
-    };
-
-    let tooltip_css = css! {
-        & {
-            position: relative;
-            font-size: 24px;
-        }
-
-        & > #wrapper {
-            cursor: help;
-            position: absolute;
-            left: -30px;
-            top: 50%;
-            text-align: center;
-            align-items: center;
-            display: inline-flex;
-            transform: translateX(-50%) translateY(-50%);
-        }
-        & > #wrapper > *[data-aui-id="help"] {
-            margin: 10px;
-        }
-
-        &::before {
-            content: attr(data-tooltip);
-            width: 200px;
-            display: none;
-            position: absolute;
-            background-color: ${theme.color.display_rgb()};
-            color: ${theme.background_color.display_rgb()};
-            padding: 10px;
-            border-radius: 5px;
-            left: 120px;
-            top: -0px;
-            transform: translateX(-50%) translateY(-100%);
-        }
-
-        &:hover::before {
-            display: block;
         }
     };
 
@@ -125,19 +82,6 @@ pub fn EmailButton(props: &EmailButtonProps) -> Html {
                         {"reveal email"}
                     </span>
                 </button>
-                if !is_mobile {
-                    <span
-                        class={tooltip_css}
-                        data-tooltip="my email is shy">
-                        <span id="wrapper">
-                            <Icon
-                                mask={IconMask::Question}
-                                fill={theme.background_color}
-                                data_aui_id={"help"}
-                            />
-                        </span>
-                    </span>
-                }
             </div>
         }
     }
