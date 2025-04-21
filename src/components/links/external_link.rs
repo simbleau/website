@@ -53,11 +53,19 @@ pub fn view(props: &ExternalLinkProps) -> Html {
                     />
                 }
                 { props.children.clone() }
-                <Icon
-                    data_aui_id="linkicon"
-                    mask={ IconMask::Share }
-                    class={classes!(css!("align-self: baseline; margin-left: 3px;"))}
-                />
+                if props.download.is_some() {
+                    <Icon
+                        data_aui_id="linkicon"
+                        mask={ IconMask::Download }
+                        class={classes!(css!("align-self: baseline; margin-left: 3px;"))}
+                    />
+                } else {
+                    <Icon
+                        data_aui_id="linkicon"
+                        mask={ IconMask::Share }
+                        class={classes!(css!("align-self: baseline; margin-left: 3px;"))}
+                    />
+                }
             </a>
         </div>
     }

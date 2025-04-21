@@ -25,6 +25,7 @@ pub fn view() -> Html {
 
     html! {
         <TapTarget
+            aria_label="Switch Theme"
             mask={match theme.kind() {
                 ThemeChoice::Light => IconMask::Moon,
                 ThemeChoice::Dark => IconMask::Sun,

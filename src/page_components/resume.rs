@@ -47,41 +47,48 @@ pub fn view() -> Html {
         "#
     );
 
+    let tap_target_css = css!("margin: 10px;");
+
     html! {
         <div align="center" class={container_style}>
-            <div>
-                {"this résumé is "}
-                <ExternalLink
-                    icon={IconMask::Git}
-                    to={"https://github.com/simbleau/resume"}
-                    target={"_blank"}
-                >
-                    {"source controlled"}
-                </ExternalLink>
-                {" and "}
-                <ExternalLink
-                    icon={IconMask::Robot}
-                    to={"https://github.com/simbleau/resume/actions"}
-                    target={"_blank"}
-                >
-                    {"automated"}
-                </ExternalLink>
-            </div>
-            <br />
-            <IFrame
-                class={classes!(resume_css)}
-                src="https://simbleau.github.io/resume/embed.html"
-            />
-            <br />
+
             <div>
                 <ExternalLink
                     to={"https://github.com/simbleau/resume/releases/download/latest/resume.pdf"}
                     download={"Spencer_Imbleau_Resume.pdf"} // downloads the file as this name
                 >
-                    {"click here"}
+                    {"click to download résumé"}
                 </ExternalLink>
-                {" to download"}
             </div>
+            <br />
+            <IFrame
+                title="Résumé"
+                class={classes!(resume_css)}
+                src="https://simbleau.github.io/resume/embed.html"
+            />
+            <br />
+            <span>
+                {"this résumé is "}
+                <span class={tap_target_css.clone()}>
+                    <ExternalLink
+                        icon={IconMask::Git}
+                        to={"https://github.com/simbleau/resume"}
+                        target={"_blank"}
+                    >
+                        {"source controlled"}
+                    </ExternalLink>
+                </span>
+                {" and "}
+                <span class={tap_target_css}>
+                    <ExternalLink
+                        icon={IconMask::Robot}
+                        to={"https://github.com/simbleau/resume/actions"}
+                        target={"_blank"}
+                    >
+                        {"released continuously"}
+                    </ExternalLink>
+                </span>
+            </span>
         </div>
     }
 }

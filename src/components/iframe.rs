@@ -6,6 +6,7 @@ use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
 pub struct IFrameProps {
+    pub title: AttrValue,
     pub class: Option<Classes>,
     pub src: AttrValue,
 }
@@ -69,6 +70,7 @@ pub fn view(props: &IFrameProps) -> Html {
             </div>
             <iframe
                 onload={ show }
+                title={ props.title.clone() }
                 src={ props.src.clone() }
                 class={iframe_css}
             />

@@ -9,6 +9,7 @@ use yew::prelude::*;
 #[derive(Properties, PartialEq)]
 pub struct Props {
     pub mask: IconMask,
+    pub aria_label: AttrValue,
     #[prop_or_default]
     pub color: Option<HexColor>,
     #[prop_or_default]
@@ -76,8 +77,10 @@ pub fn view(props: &Props) -> Html {
     };
 
     html! {
-        <button class={ classes!(style, props.class.clone()) }
+        <button
+            class={ classes!(style, props.class.clone()) }
             onclick={ props.onclick.clone() }
+            aria-label={ props.aria_label.clone() }
         >
         <Icon
             mask={ props.mask }

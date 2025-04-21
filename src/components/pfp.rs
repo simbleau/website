@@ -15,10 +15,12 @@ pub fn ProfilePicture(props: &ProfilePictureProps) -> Html {
 
     let img_css = css! {
         border-radius: 50%;
-        width: 300px;
-        max-width: 600px;
-        height: 300px;
-        max-height: 600px;
+        min-width: 300px;
+        width: min(40vh, 40vw);
+        max-width: 450px;
+        min-height: 300px;
+        height: min(40vh, 40vw);
+        max-height: 450px;
         object-fit: scale-down;
 
         /* Outline */
