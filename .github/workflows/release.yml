@@ -2,8 +2,44 @@ name: Release Latest
 on:
   push:
     branches: [main]
+  workflow_call:
+
+concurrency:
+  group: apply
+  cancel-in-progress: false
 
 jobs:
+  tf-apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure | AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-duration-seconds: 3600
+          role-session-name: GitHubActions
+
+      - name: Setup | Terraform
+        uses: hashicorp/setup-terraform@v3
+        env:
+          TF_ACTION_WORKING_DIR: "terraform"
+
+      - name: Terraform | Apply
+        run: |
+          cd terraform
+          terraform init
+          terraform apply -auto-approve
+        env:
+          TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
+          TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -50,22 +86,12 @@ jobs:
           role-duration-seconds: 3600
           role-session-name: GitHubActions
 
-      - name: Setup | Terraform
-        uses: hashicorp/setup-terraform@v3
-        env:
-          TF_ACTION_WORKING_DIR: 'terraform'
-
-      - name: Terraform | Apply
-        run: |
-          cd terraform
-          terraform init
-          terraform apply -auto-approve
-        env:
-          TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
-          TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
       - name: Deploy | S3
         run: |
           aws s3 sync ./dist/ s3://www.spencer.imbleau.com --delete
+
+      - name: Deploy | Invalidate Cache
+        run: |
+          bucket="www.spencer.imbleau.com"
+          distribution=$(aws cloudfront list-distributions --query "DistributionList.Items[?Origins.Items[?DomainName=='${bucket}.s3.amazonaws.com']].Id" --output text)
+          aws cloudfront create-invalidation --distribution-id ${distribution} --paths "/*"

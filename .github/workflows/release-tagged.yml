@@ -62,34 +62,3 @@ jobs:
             dist.zip.sha256
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Replace latest release
-      - name: Clean | Latest
-        uses: dev-drprasad/delete-tag-and-release@v1.1
-        with:
-          delete_release: true
-          tag_name: latest
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Release | Latest
-        id: create_release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: "latest"
-          name: My Website
-          body: "The latest distributable compilation, usually denoted `public/` or `dist/`, of my website."
-          fail_on_unmatched_files: true
-          files: |
-            dist.tar.gz
-            dist.tar.gz.sha256
-            dist.zip
-            dist.zip.sha256
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Release | Publish
-        uses: eregon/publish-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_id: ${{ steps.create_release.outputs.id }}
