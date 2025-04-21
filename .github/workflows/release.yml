@@ -65,7 +65,7 @@ jobs:
         with:
           path: ./dist/
 
-  aws:
+  deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
